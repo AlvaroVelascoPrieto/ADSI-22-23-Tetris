@@ -30,7 +30,7 @@ public class controladorPersonalizacion implements ActionListener {
 			//Aplicar fondo
 		}
 		else if (e.getSource().equals(botonesAplicar.get(1))) {
-			//Aplicar bloque
+			//Aplicar bloques
 		}
 		else if (e.getSource().equals(botonesAplicar.get(2))) {
 			//Aplicar sonido
