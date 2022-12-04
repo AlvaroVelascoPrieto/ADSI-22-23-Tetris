@@ -1,6 +1,8 @@
 package com.zetcode;
 
-public class Juego {
+import java.util.Observable;
+
+public class Juego extends Observable {
 	private static Juego miJuego;
 	private Juego() {
 		

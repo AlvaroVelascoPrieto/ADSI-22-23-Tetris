@@ -8,6 +8,8 @@ import javax.swing.JLabel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import vistas.IntPersonalizar;
+
 /*
 Java Tetris game clone
 
@@ -17,12 +19,12 @@ Website: https://zetcode.com
 public class Tetris extends JFrame {
 	
 	private static final Logger logger = LogManager.getLogger(Tetris.class);
-
     private JLabel statusbar;
-
+    private IntPersonalizar interf;
+    
     public Tetris() {
-
-        initUI();
+    	interf = new IntPersonalizar();
+        //initUI();
     }
 
     private void initUI() {

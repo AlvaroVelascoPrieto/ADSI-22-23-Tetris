@@ -4,16 +4,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 
 
 public class controladorPersonalizacion implements ActionListener {
-	private controladorPersonalizacion miControladorPersonalizacion;
+	private static controladorPersonalizacion miControladorPersonalizacion;
 	private ArrayList<JButton> botonesAplicar;
-	private ArrayList<> cuadrosTexto;
+	private ArrayList<JComboBox> cuadrosTexto;
 
 	private controladorPersonalizacion() {
 		botonesAplicar = new ArrayList<JButton>();
-		cuadrosTexto = new ArrayList<JButton>();
+		cuadrosTexto = new ArrayList<JComboBox>();
 	}
 
 	public static controladorPersonalizacion getMiControlador() {
@@ -25,16 +26,35 @@ public class controladorPersonalizacion implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+		if (e.getSource().equals(botonesAplicar.get(0))) {
+			//Aplicar fondo
+		}
+		else if (e.getSource().equals(botonesAplicar.get(1))) {
+			//Aplicar bloque
+		}
+		else if (e.getSource().equals(botonesAplicar.get(2))) {
+			//Aplicar sonido
+		}
+		else if (e.getSource().equals(cuadrosTexto.get(0))) {
+			//Actualizar seleccion fondo
+		}
+		else if (e.getSource().equals(cuadrosTexto.get(1))) {
+			//Actualizar seleccion bloque
+		}
+		else if (e.getSource().equals(cuadrosTexto.get(2))){
+			//Actualizar seleccion sonido
+		}
+		else {
+			//Salir
+		}
 	}
 	
-	public anadirBotonAplicar(JButton pBoton) {
+	public void anadirBotonAplicar(JButton pBoton) {
 		this.botonesAplicar.add(pBoton);
 	}
 	
-	public anadirCuadroTexto() {
-		
+	public void anadirCuadroTexto(JComboBox pOpciones) {
+		this.cuadrosTexto.add(pOpciones);
 	}
 
 }
