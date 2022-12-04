@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controladores.ControladorRankings;
+
 import java.awt.Window.Type;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
@@ -60,14 +63,20 @@ public class RankPersNiv extends JFrame {
 		JRadioButton facil = new JRadioButton("Nivel facil");
 		buttonGroup.add(facil);
 		botones.add(facil);
+		facil.addActionListener(ControladorRankings.getControladorRankings());
+		facil.setActionCommand("FacilPers");
 		
 		JRadioButton medio = new JRadioButton("Nivel medio");
 		buttonGroup.add(medio);
 		botones.add(medio);
+		medio.addActionListener(ControladorRankings.getControladorRankings());
+		medio.setActionCommand("MedioPers");
 		
 		JRadioButton dificil = new JRadioButton("Nivel dificil");
 		buttonGroup.add(dificil);
 		botones.add(dificil);
+		dificil.addActionListener(ControladorRankings.getControladorRankings());
+		dificil.setActionCommand("DificilPers");
 		
 		JPanel puntuaciones = new JPanel();
 		contentPane.add(puntuaciones);

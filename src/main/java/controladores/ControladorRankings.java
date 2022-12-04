@@ -28,7 +28,8 @@ public class ControladorRankings implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		System.out.println(e.getActionCommand());
+		// botones menu principal rankings
 		if (e.getActionCommand().equals("Ranking personal por niveles")) { //abrir el ranking personal por niveles
 			RankPersNiv rPersNiv = new RankPersNiv();
 			rPersNiv.setVisible(true);
@@ -46,6 +47,25 @@ public class ControladorRankings implements ActionListener{
 			rGlobAbs.setVisible(true);
 		}
 		
+		//botones para elegir dificultad
+		if (e.getActionCommand().equals("FacilGlob")) {
+			//TODO llamada a rank glob facil
+		}
+		if (e.getActionCommand().equals("MedioGlob")) {
+			//TODO llamada a rank glob medio
+		}
+		if (e.getActionCommand().equals("DificilGlob")) {
+			//TODO llamada a rank glob dificil
+		}
+		if (e.getActionCommand().equals("FacilPers")) {
+			//TODO llamada a rank pers facil
+		}
+		if (e.getActionCommand().equals("MedioPers")) {
+			//TODO llamada a rank pers medio
+		}
+		if (e.getActionCommand().equals("DificilPers")) {
+			//TODO llamada a rank pers dificil
+		}
 	}
 		
 	
