@@ -1,4 +1,4 @@
-package com.zetcode;
+package vistas;
 
 import java.awt.EventQueue;
 
