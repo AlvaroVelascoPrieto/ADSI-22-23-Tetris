@@ -1,10 +1,13 @@
-package com.zetcode;
+package vistas;
 
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controladores.ControladorRankings;
+
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
@@ -57,14 +60,20 @@ public class RankGlobNiv extends JFrame {
 		JRadioButton facil = new JRadioButton("Nivel facil");
 		buttonGroup.add(facil);
 		panel.add(facil);
+		facil.addActionListener(ControladorRankings.getControladorRankings());
+		facil.setActionCommand("FacilGlob");
 		
 		JRadioButton medio = new JRadioButton("Nivel medio");
 		buttonGroup.add(medio);
 		panel.add(medio);
+		medio.addActionListener(ControladorRankings.getControladorRankings());
+		medio.setActionCommand("MedioGlob");
 		
 		JRadioButton dificil = new JRadioButton("Nivel dificil");
 		buttonGroup.add(dificil);
 		panel.add(dificil);
+		dificil.addActionListener(ControladorRankings.getControladorRankings());
+		dificil.setActionCommand("DificilGlob");
 		
 		JPanel putuaciones = new JPanel();
 		contentPane.add(putuaciones);
