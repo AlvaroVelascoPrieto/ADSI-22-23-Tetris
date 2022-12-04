@@ -11,4 +11,16 @@ public class Personalizacion {
 		sonido = pSonido;
 	}
 	
+	public void setColorFondo(String pColor) {
+		colorFondo = pColor;
+	}
+	
+	public void setColorBloques(String pColor) {
+		colorBloques = pColor;
+	}
+	
+	public void setSonido(String pSonido) {
+		sonido = pSonido;
+	}
+	
 }

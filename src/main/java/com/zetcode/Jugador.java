@@ -19,5 +19,13 @@ public class Jugador {
 		lPremios = new ArrayList<Premio>();
 		personalizacion = new Personalizacion("Blanco", "Default", "Default");
 	}
+
+	public Personalizacion getPersonalizacion() {
+		return this.personalizacion;
+	}
+
+	public Object getUsuario() {
+		return this.usuario;
+	}
 	
 }

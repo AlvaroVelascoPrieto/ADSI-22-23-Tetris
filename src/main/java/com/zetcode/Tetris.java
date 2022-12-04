@@ -20,11 +20,9 @@ public class Tetris extends JFrame {
 	
 	private static final Logger logger = LogManager.getLogger(Tetris.class);
     private JLabel statusbar;
-    private IntPersonalizar interf;
     
     public Tetris() {
-    	interf = new IntPersonalizar();
-        //initUI();
+        initUI();
     }
 
     private void initUI() {
