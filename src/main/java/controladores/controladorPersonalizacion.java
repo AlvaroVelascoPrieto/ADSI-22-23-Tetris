@@ -23,7 +23,7 @@ public class controladorPersonalizacion implements ActionListener {
 		}
 		return miControladorPersonalizacion;
 	}
-	//hola
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(botonesAplicar.get(0))) {
