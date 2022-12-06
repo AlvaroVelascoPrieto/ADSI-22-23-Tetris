@@ -4,10 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import vistas.MenuPrincipal;
-import vistas.RankGlobAbs;
-import vistas.RankGlobNiv;
-import vistas.RankPersAbs;
-import vistas.RankPersNiv;
+import vistas.MenuRankings;
 
 public class ControladorMenuPrincipal implements ActionListener{
 
@@ -43,7 +40,8 @@ private static ControladorMenuPrincipal miControladorMenuPrincipal = null;
 
 		}
 		if (e.getActionCommand().equals("Consultar Ranking")) { // abrir el consultor de rankings
-
+			//MenuRankings menuRank = new MenuRankings();
+			//menuRank.setVisible(true);
 		}
 		if (e.getActionCommand().equals("Cambiar Contraseña")) { // cambiar contraseña
 
