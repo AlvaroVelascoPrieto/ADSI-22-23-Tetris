@@ -55,6 +55,7 @@ public class MenuPrincipal extends JFrame {
 		JButton jugar = new JButton("Jugar");
 		jugar.setBounds(152, 59, 119, 23);
 		contentPane.add(jugar);
+		jugar.addActionListener(ControladorMenuPrincipal.getControladorMenuPrincipal());
 		
 		JButton cargarPartida = new JButton("Cargar Partida");
 		cargarPartida.addActionListener(new ActionListener() {

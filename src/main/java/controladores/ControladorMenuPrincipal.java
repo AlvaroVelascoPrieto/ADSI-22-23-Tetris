@@ -3,6 +3,8 @@ package controladores;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import com.zetcode.Tetris;
+
 import vistas.IntPersonalizar;
 import vistas.MenuPrincipal;
 import vistas.MenuRankings;
@@ -29,7 +31,8 @@ private static ControladorMenuPrincipal miControladorMenuPrincipal = null;
 		System.out.println(e.getActionCommand());
 		// botones menu principal rankings
 		if (e.getActionCommand().equals("Jugar")) { // comenzar una partida
-
+			Tetris partidaNueva = new Tetris();
+			partidaNueva.setVisible(true);
 		}
 		if (e.getActionCommand().equals("Cargar Partida")) { // cargar partida guardada
 
