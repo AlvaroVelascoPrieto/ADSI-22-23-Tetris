@@ -15,6 +15,11 @@ public class Juego extends Observable {
 		return miJuego;
 	}
 	
+	public Board cargarPartida(String pUsuario)
+	{
+		Jugador j = ListaJugadores.getMiListaJugadores().buscarJugador(pUsuario);
+		return j.getPartida();
+	}
 	
 	public void cambiarColorFondo(String pColor) {
 		//Jugador elJugador = ListaJugadores.getMiListaJugadores().buscarJugador(usu);
