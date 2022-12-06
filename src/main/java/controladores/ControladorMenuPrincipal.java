@@ -40,8 +40,8 @@ private static ControladorMenuPrincipal miControladorMenuPrincipal = null;
 
 		}
 		if (e.getActionCommand().equals("Consultar Ranking")) { // abrir el consultor de rankings
-			//MenuRankings menuRank = new MenuRankings();
-			//menuRank.setVisible(true);
+			MenuRankings menuRank = new MenuRankings();
+			menuRank.setVisible(true);
 		}
 		if (e.getActionCommand().equals("Cambiar Contraseña")) { // cambiar contraseña
 

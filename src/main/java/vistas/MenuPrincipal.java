@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controladores.ControladorMenuPrincipal;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -50,32 +52,33 @@ public class MenuPrincipal extends JFrame {
 		lblNewLabel.setBounds(152, 11, 130, 25);
 		contentPane.add(lblNewLabel);
 		
-		JButton btnNewButton = new JButton("Jugar");
-		btnNewButton.setBounds(152, 59, 119, 23);
-		contentPane.add(btnNewButton);
+		JButton jugar = new JButton("Jugar");
+		jugar.setBounds(152, 59, 119, 23);
+		contentPane.add(jugar);
 		
-		JButton btnNewButton_1 = new JButton("Cargar Partida");
-		btnNewButton_1.addActionListener(new ActionListener() {
+		JButton cargarPartida = new JButton("Cargar Partida");
+		cargarPartida.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton_1.setBounds(152, 93, 119, 23);
-		contentPane.add(btnNewButton_1);
+		cargarPartida.setBounds(152, 93, 119, 23);
+		contentPane.add(cargarPartida);
 		
-		JButton btnNewButton_2 = new JButton("Elegir Nivel");
-		btnNewButton_2.setBounds(152, 127, 119, 23);
-		contentPane.add(btnNewButton_2);
+		JButton elegirNivel = new JButton("Elegir Nivel");
+		elegirNivel.setBounds(152, 127, 119, 23);
+		contentPane.add(elegirNivel);
 		
-		JButton btnNewButton_3 = new JButton("Personalizar");
-		btnNewButton_3.setBounds(152, 161, 119, 23);
-		contentPane.add(btnNewButton_3);
+		JButton personalizar = new JButton("Personalizar");
+		personalizar.setBounds(152, 161, 119, 23);
+		contentPane.add(personalizar);
 		
-		JButton btnNewButton_4 = new JButton("Consultar Ranking");
-		btnNewButton_4.setBounds(152, 195, 119, 23);
-		contentPane.add(btnNewButton_4);
+		JButton consultarRanking = new JButton("Consultar Ranking");
+		consultarRanking.setBounds(152, 195, 119, 23);
+		contentPane.add(consultarRanking);
+		consultarRanking.addActionListener(ControladorMenuPrincipal.getControladorMenuPrincipal());
 		
-		JButton btnNewButton_5 = new JButton("Cambiar Contraseña");
-		btnNewButton_5.setBounds(10, 227, 130, 23);
-		contentPane.add(btnNewButton_5);
+		JButton cambiarContrasena = new JButton("Cambiar Contraseña");
+		cambiarContrasena.setBounds(10, 227, 130, 23);
+		contentPane.add(cambiarContrasena);
 	}
 }
