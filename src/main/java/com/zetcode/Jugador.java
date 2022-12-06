@@ -7,6 +7,7 @@ public class Jugador {
 	private String correo;
 	private String contrasena;
 	private Board partidaJugada;
+	private Board partidaGuardada;
 	private ArrayList<Board> lPartidasTerminadas;
 	private ArrayList<Premio> lPremios;
 	private Personalizacion personalizacion;
@@ -26,6 +27,11 @@ public class Jugador {
 
 	public Object getUsuario() {
 		return this.usuario;
+	}
+	
+	public void guardarPartida(Board pPartida)
+	{
+		this.partidaGuardada = pPartida;
 	}
 	
 }
