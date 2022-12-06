@@ -3,6 +3,7 @@ package controladores;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import vistas.IntPersonalizar;
 import vistas.MenuPrincipal;
 import vistas.MenuRankings;
 
@@ -37,7 +38,8 @@ private static ControladorMenuPrincipal miControladorMenuPrincipal = null;
 
 		}
 		if (e.getActionCommand().equals("Personalizar")) { // abrir la personalización de partidas
-
+			IntPersonalizar menuPers = new IntPersonalizar();
+			menuPers.setVisible(true);
 		}
 		if (e.getActionCommand().equals("Consultar Ranking")) { // abrir el consultor de rankings
 			MenuRankings menuRank = new MenuRankings();

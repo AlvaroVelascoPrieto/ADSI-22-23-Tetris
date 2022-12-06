@@ -63,14 +63,17 @@ public class MenuPrincipal extends JFrame {
 		});
 		cargarPartida.setBounds(152, 93, 119, 23);
 		contentPane.add(cargarPartida);
+		cargarPartida.addActionListener(ControladorMenuPrincipal.getControladorMenuPrincipal());
 		
 		JButton elegirNivel = new JButton("Elegir Nivel");
 		elegirNivel.setBounds(152, 127, 119, 23);
 		contentPane.add(elegirNivel);
+		elegirNivel.addActionListener(ControladorMenuPrincipal.getControladorMenuPrincipal());
 		
 		JButton personalizar = new JButton("Personalizar");
 		personalizar.setBounds(152, 161, 119, 23);
 		contentPane.add(personalizar);
+		personalizar.addActionListener(ControladorMenuPrincipal.getControladorMenuPrincipal());
 		
 		JButton consultarRanking = new JButton("Consultar Ranking");
 		consultarRanking.setBounds(152, 195, 119, 23);
@@ -80,5 +83,6 @@ public class MenuPrincipal extends JFrame {
 		JButton cambiarContrasena = new JButton("Cambiar Contraseña");
 		cambiarContrasena.setBounds(10, 227, 130, 23);
 		contentPane.add(cambiarContrasena);
+		cambiarContrasena.addActionListener(ControladorMenuPrincipal.getControladorMenuPrincipal());
 	}
 }
