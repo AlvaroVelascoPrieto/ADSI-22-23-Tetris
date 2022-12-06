@@ -34,4 +34,8 @@ public class Jugador {
 		this.partidaGuardada = pPartida;
 	}
 	
+	public Board getPartida()
+	{
+		return this.partidaGuardada;
+	}
 }
