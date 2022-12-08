@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.Collection;
 
 public class Board extends JPanel {
 
@@ -334,4 +335,12 @@ public class Board extends JPanel {
             }
         }
     }
+
+	public int getNivel(){
+		// TODO falta de implementar los niveles
+		return 0;
+	}
+	public int getPuntuacion() {
+		return numLinesRemoved;
+	}
 }
