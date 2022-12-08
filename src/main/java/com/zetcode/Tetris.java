@@ -24,6 +24,11 @@ public class Tetris extends JFrame {
     public Tetris() {
         initUI();
     }
+    
+    public Tetris(String usuario)
+    {
+    	Juego.getMiJuego().cargarPartida(usuario);
+    }
 
     private void initUI() {
 
