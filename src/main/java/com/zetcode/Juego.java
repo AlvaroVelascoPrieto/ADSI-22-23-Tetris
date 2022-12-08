@@ -2,6 +2,8 @@ package com.zetcode;
 
 import java.util.Observable;
 
+import org.json.JSONObject;
+
 public class Juego extends Observable {
 	private static Juego miJuego;
 	private Juego() {
@@ -15,10 +17,13 @@ public class Juego extends Observable {
 		return miJuego;
 	}
 	
-	public Board cargarPartida(String pUsuario)
+	public JSONObject cargarPartida(String pUsuario)
 	{
 		Jugador j = ListaJugadores.getMiListaJugadores().buscarJugador(pUsuario);
-		return j.getPartida();
+		Board b = j.getPartida();
+		//Convertimos "b" en un JSONObject
+		JSONObject json1 = new JSONObject();
+		return json1;
 	}
 	
 	public void cambiarColorFondo(String pColor) {
