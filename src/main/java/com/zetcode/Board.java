@@ -82,6 +82,12 @@ public class Board extends JPanel {
 
         repaint();
     }
+    
+    private void guardarPartida(String pUsuario)
+    {
+    	Jugador j = ListaJugadores.getMiListaJugadores().buscarJugador(pUsuario);
+    	j.guardarPartida(this);
+    }
 
     @Override
     public void paintComponent(Graphics g) {
@@ -332,6 +338,7 @@ public class Board extends JPanel {
                 case KeyEvent.VK_UP -> tryMove(curPiece.rotateLeft(), curX, curY);
                 case KeyEvent.VK_SPACE -> dropDown();
                 case KeyEvent.VK_D -> oneLineDown();
+                case KeyEvent.VK_G -> guardarPartida();
             }
         }
     }
