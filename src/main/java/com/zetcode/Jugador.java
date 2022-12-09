@@ -3,8 +3,8 @@ package com.zetcode;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 
 public class Jugador {
 	private String usuario;
@@ -51,9 +51,9 @@ public class Jugador {
 		return lPartidasTerminadas.iterator();
 	}
 	
-	public JSONArray obtInfoPartidas() {
+	public JsonArray obtInfoPartidas() {
 		//el json tiene nombre, puntucacion y nivel
-		JSONArray json1 = new JSONArray();
+		JsonArray json1 = new JsonArray();
 		Iterator<Board> it = getIterador();
 		Board partida;
 		
@@ -61,18 +61,18 @@ public class Jugador {
 		//guardar los datos de cada partida en el json
 			partida = it.next();
 			
-			JSONObject jsonNombreInfoPartida = new JSONObject();
-			jsonNombreInfoPartida.put("nombre", usuario);
-			jsonNombreInfoPartida.put("puntuacion", partida.getPuntuacion());
-			jsonNombreInfoPartida.put("nivel", partida.getNivel());
-			json1.put(jsonNombreInfoPartida);
+			JsonObject jsonNombreInfoPartida = new JsonObject();
+			jsonNombreInfoPartida.addProperty("nombre", usuario);
+			jsonNombreInfoPartida.addProperty("puntuacion", partida.getPuntuacion());
+			jsonNombreInfoPartida.addProperty("nivel", partida.getNivel());
+			json1.add(jsonNombreInfoPartida);
 		}
 		return json1;
 	}
 
-	public JSONArray obtInfoPartidasNiv(int nivel) {
+	public JsonArray obtInfoPartidasNiv(int nivel) {
 		//el json tiene nombre, puntucacion y nivel (del nivel dado)
-		JSONArray json3 = new JSONArray();
+		JsonArray json3 = new JsonArray();
 		Iterator<Board> it = getIterador();
 		Board partida;
 		
@@ -81,12 +81,12 @@ public class Jugador {
 			partida = it.next();
 			int nivelP = partida.getNivel();
 			if (nivelP == nivel) {
-				JSONObject jsonNombreInfoPartida = new JSONObject();
-				jsonNombreInfoPartida.put("nombre", usuario);
-				jsonNombreInfoPartida.put("puntuacion", partida.getPuntuacion());
-				jsonNombreInfoPartida.put("nivel", nivelP);
+				JsonObject jsonNombreInfoPartida = new JsonObject();
+				jsonNombreInfoPartida.addProperty("nombre", usuario);
+				jsonNombreInfoPartida.addProperty("puntuacion", partida.getPuntuacion());
+				jsonNombreInfoPartida.addProperty("nivel", nivelP);
 				
-				json3.put(jsonNombreInfoPartida);
+				json3.add(jsonNombreInfoPartida);
 				
 				
 			}
