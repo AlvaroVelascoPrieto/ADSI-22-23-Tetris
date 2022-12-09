@@ -4,13 +4,20 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 
 public class RankGlobAbs extends JFrame {
-
-	private JPanel contentPane;
+	private DefaultTableModel model;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -35,18 +42,30 @@ public class RankGlobAbs extends JFrame {
 		setTitle("Ranking global absoluto");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
-		setContentPane(contentPane);
-		contentPane.setLayout(new GridLayout(2, 0, 0, 0));
-		
-		JLabel text = new JLabel("Puntuacion | Jugador | Nivel");
-		contentPane.add(text);
+		getContentPane().setLayout(new GridLayout(1, 0, 0, 0));
 		
 		JPanel panel = new JPanel();
-		contentPane.add(panel);
+		getContentPane().add(panel);
 		panel.setLayout(new GridLayout(1, 0, 0, 0));
+		
+		table = new JTable();
+		model = new DefaultTableModel();
+		model.addColumn("Jugador");
+		model.addColumn("Puntuacion");
+		model.addColumn("Nivel");
+		panel.add(table);
+	}
+	
+	public void mostrarRanking(JsonArray datos) {
+		// puntuacion jugador y nivel
+		for (JsonElement partida : datos) {
+			JsonObject datosPartida = partida.getAsJsonObject();
+			Object[] fila =new Object[3];
+			fila[0] = datosPartida.get("Nombre").getAsString();
+			fila[1] = datosPartida.get("Puntuacion").getAsInt();
+			fila[2] = datosPartida.get("Nivel").getAsInt();
+			model.addRow(fila);
+		}
 	}
 
 }

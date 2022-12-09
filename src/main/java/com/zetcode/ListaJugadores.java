@@ -1,10 +1,16 @@
 package com.zetcode;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
+import java.util.List;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+
 
 public class ListaJugadores {
 	private static ListaJugadores miListaJugadores; 
@@ -42,11 +48,14 @@ public class ListaJugadores {
 	}
 	
 	public JsonArray obtRankAbsPers(Jugador elJugador) {
-		return elJugador.obtInfoPartidas();
+		JsonArray ranking = elJugador.obtInfoPartidas();
+		return ordenarJsonArrayPuntuacion(ranking);
+
 	}
 	
 	public JsonArray obtRankPersNiv(Jugador elJugador, int nivel) {
-		return elJugador.obtInfoPartidasNiv(nivel);
+		JsonArray ranking =  elJugador.obtInfoPartidasNiv(nivel);
+		return ordenarJsonArrayPuntuacion(ranking);
 	}
 
 	public JsonArray obtRankAbs() {
@@ -57,7 +66,7 @@ public class ListaJugadores {
 			j = it.next();
 			json5.addAll(j.obtInfoPartidas());
 		}
-		return json5;
+		return ordenarJsonArrayPuntuacion(json5);
 	}
 
 	public JsonArray obtRankNiv(int niv) {
@@ -68,6 +77,28 @@ public class ListaJugadores {
 			j = it.next();
 			json6.addAll(j.obtInfoPartidasNiv(niv));
 		}
-		return json6;
+		return ordenarJsonArrayPuntuacion(json6);
+	}
+	
+	private JsonArray ordenarJsonArrayPuntuacion(JsonArray json) {
+		
+		//de jsonarray a list
+		List<JsonElement> lista = json.asList();
+		//ordenar la lista
+		Collections.sort(lista, new Comparator<JsonElement>(){
+			//indicar la logica de comparacion
+			@Override
+			public int compare(JsonElement o1, JsonElement o2) {
+				int p1 = ((JsonObject) o1).get("Puntuacion").getAsInt();
+				int p2 = ((JsonObject) o2).get("Puntuacion").getAsInt();
+				if (p1>p2) {return 1;}
+				else if (p1<p2) {return -1;}
+				else {return 0;}
+			}
+		});
+		
+		//pasar de la lista a jsonarray para devolver el resultado
+		JsonArray jsonOrdenado = (JsonArray) new Gson().toJsonTree(lista);
+		return jsonOrdenado;
 	}
 }

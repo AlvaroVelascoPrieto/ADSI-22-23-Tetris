@@ -5,13 +5,21 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+
 import java.awt.GridLayout;
 import javax.swing.JLabel;
+import javax.swing.JTable;
 
 public class RankPersAbs extends JFrame {
 
 	private JPanel contentPane;
-
+	private JTable table;
+	private DefaultTableModel model;
 	/**
 	 * Launch the application.
 	 */
@@ -54,6 +62,43 @@ public class RankPersAbs extends JFrame {
 		JPanel puntuaciones = new JPanel();
 		contentPane.add(puntuaciones);
 		puntuaciones.setLayout(new GridLayout(1, 0, 0, 0));
+		
+		table = new JTable();
+		model = new DefaultTableModel();
+		model.addColumn("Puntuacion");
+		model.addColumn("Nivel");
+		puntuaciones.add(table);
+		
+	}
+	public void mostrarRanking(JsonArray datos) {
+		//datos --> json array con nombre puntuacion y nivel
+		
+		for (JsonElement partida : datos) {
+			JsonObject datosPartida = partida.getAsJsonObject();
+			Object[] fila =new Object[2];
+			fila[0] = datosPartida.get("Puntuacion").getAsInt();
+			fila[1] = datosPartida.get("Nivel").getAsInt();
+			model.addRow(fila);
+		}
+			
+		
+			
+		
+		
+		/*
+		 datos = datos.substring(1, datos.length()-1); //para quitar los corchetes
+		String[] partidas = datos.split(","); //guardar las partidas separadas
+		String[] datosPartida;
+		for (String partida : partidas) {
+			partida = partida.substring(1, partida.length()-1); //para quitar las llaves
+			datosPartida = partida.split(","); // separar nombre puntuacion y nivel
+			Object[] fila =new Object[2];
+			fila[0] = datosPartida[1];
+			fila[1] = datosPartida[2];
+			model.addRow(fila);
+		 */
+		
+		
 	}
 
 }

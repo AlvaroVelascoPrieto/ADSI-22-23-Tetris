@@ -62,9 +62,9 @@ public class Jugador {
 			partida = it.next();
 			
 			JsonObject jsonNombreInfoPartida = new JsonObject();
-			jsonNombreInfoPartida.addProperty("nombre", usuario);
-			jsonNombreInfoPartida.addProperty("puntuacion", partida.getPuntuacion());
-			jsonNombreInfoPartida.addProperty("nivel", partida.getNivel());
+			jsonNombreInfoPartida.addProperty("Nombre", usuario);
+			jsonNombreInfoPartida.addProperty("Puntuacion", partida.getPuntuacion());
+			jsonNombreInfoPartida.addProperty("Nivel", partida.getNivel());
 			json1.add(jsonNombreInfoPartida);
 		}
 		return json1;
@@ -82,9 +82,9 @@ public class Jugador {
 			int nivelP = partida.getNivel();
 			if (nivelP == nivel) {
 				JsonObject jsonNombreInfoPartida = new JsonObject();
-				jsonNombreInfoPartida.addProperty("nombre", usuario);
-				jsonNombreInfoPartida.addProperty("puntuacion", partida.getPuntuacion());
-				jsonNombreInfoPartida.addProperty("nivel", nivelP);
+				jsonNombreInfoPartida.addProperty("Nombre", usuario);
+				jsonNombreInfoPartida.addProperty("Puntuacion", partida.getPuntuacion());
+				jsonNombreInfoPartida.addProperty("Nivel", nivelP);
 				
 				json3.add(jsonNombreInfoPartida);
 				

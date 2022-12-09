@@ -5,16 +5,23 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 
 import controladores.ControladorRankings;
 
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
+import javax.swing.JTable;
 import javax.swing.ButtonGroup;
 
 public class RankGlobNiv extends JFrame {
-
+	private DefaultTableModel model;
+	private JTable table;
 	private JPanel contentPane;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 
@@ -45,13 +52,10 @@ public class RankGlobNiv extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		contentPane.setLayout(new GridLayout(2, 2, 0, 0));
+		contentPane.setLayout(new GridLayout(2, 1, 0, 0));
 		
 		JLabel text1 = new JLabel("Elige el nivel");
 		contentPane.add(text1);
-		
-		JLabel text2 = new JLabel("Puntuaciones | Jugador");
-		contentPane.add(text2);
 		
 		JPanel panel = new JPanel();
 		contentPane.add(panel);
@@ -75,9 +79,28 @@ public class RankGlobNiv extends JFrame {
 		dificil.addActionListener(ControladorRankings.getControladorRankings());
 		dificil.setActionCommand("DificilGlob");
 		
-		JPanel putuaciones = new JPanel();
-		contentPane.add(putuaciones);
-		putuaciones.setLayout(new GridLayout(1, 0, 0, 0));
+		JPanel puntuaciones = new JPanel();
+		contentPane.add(puntuaciones);
+		puntuaciones.setLayout(new GridLayout(1, 0, 0, 0));
+		
+		table = new JTable();
+		model = new DefaultTableModel();
+		model.addColumn("Jugador");
+		model.addColumn("Puntuacion");
+		//model.addColumn("Nivel");
+		puntuaciones.add(table);
+	}
+	
+	public void mostrarRanking(JsonArray datos) {
+		// puntuacion jugador y nivel
+		for (JsonElement partida : datos) {
+			JsonObject datosPartida = partida.getAsJsonObject();
+			Object[] fila =new Object[2];
+			fila[0] = datosPartida.get("Nombre").getAsString();
+			fila[1] = datosPartida.get("Puntuacion").getAsInt();
+			//fila[2] = datosPartida.get("Nivel").getAsInt();
+			model.addRow(fila);
+		}
 	}
 
 }

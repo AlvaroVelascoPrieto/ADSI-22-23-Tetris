@@ -4,6 +4,8 @@ import java.util.Observable;
 
 import org.json.JSONObject;
 
+import com.google.gson.JsonArray;
+
 public class Juego extends Observable {
 	private static Juego miJuego;
 	private Juego() {
@@ -45,21 +47,21 @@ public class Juego extends Observable {
 	}
 	
 	///////  RANKINGS ////////////////////////////////
-	public String obtRankAbsPers(String usuario) {
+	public JsonArray obtRankAbsPers(String usuario) {
 		Jugador jugador = ListaJugadores.getMiListaJugadores().buscarJugador(usuario);
 		//suponemos que el jugador existe ya que esta iniciado sesion
-		return ListaJugadores.getMiListaJugadores().obtRankAbsPers(jugador).toString();
+		return ListaJugadores.getMiListaJugadores().obtRankAbsPers(jugador);
 	}
-	public String obtRankPersNiv(String usuario, int nivel) {
+	public JsonArray obtRankPersNiv(String usuario, int nivel) {
 		Jugador jugador = ListaJugadores.getMiListaJugadores().buscarJugador(usuario);
 		//suponemos que el jugador existe ya que esta iniciado sesion
-		return ListaJugadores.getMiListaJugadores().obtRankPersNiv(jugador, nivel).toString();
+		return ListaJugadores.getMiListaJugadores().obtRankPersNiv(jugador, nivel);
 	}
-	public String obtRankAbs() {
-		return ListaJugadores.getMiListaJugadores().obtRankAbs().toString();
+	public JsonArray obtRankAbs() {
+		return ListaJugadores.getMiListaJugadores().obtRankAbs();
 	}
 	
-	public String obtRankNiv(int niv) {
-		return ListaJugadores.getMiListaJugadores().obtRankNiv(niv).toString();
+	public JsonArray obtRankNiv(int niv) {
+		return ListaJugadores.getMiListaJugadores().obtRankNiv(niv);
 	}
 }

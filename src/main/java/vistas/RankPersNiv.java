@@ -5,6 +5,11 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 
 import controladores.ControladorRankings;
 
@@ -12,6 +17,7 @@ import java.awt.Window.Type;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
+import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.ButtonGroup;
 
@@ -19,7 +25,8 @@ public class RankPersNiv extends JFrame {
 
 	private JPanel contentPane;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
-
+	private JTable table;
+	private DefaultTableModel model;
 	/**
 	 * Launch the application.
 	 */
@@ -47,14 +54,10 @@ public class RankPersNiv extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		contentPane.setLayout(new GridLayout(0, 2, 0, 0));
+		contentPane.setLayout(new GridLayout(2, 1, 0, 0));
 		
 		JLabel text1 = new JLabel("Elige el nivel");
 		contentPane.add(text1);
-		
-		JLabel text2 = new JLabel("Puntuaciones");
-		text2.setHorizontalAlignment(SwingConstants.CENTER);
-		contentPane.add(text2);
 		
 		JPanel botones = new JPanel();
 		contentPane.add(botones);
@@ -80,6 +83,24 @@ public class RankPersNiv extends JFrame {
 		
 		JPanel puntuaciones = new JPanel();
 		contentPane.add(puntuaciones);
+		
+		table = new JTable();
+		model = new DefaultTableModel();
+		//model.addColumn("Puntuacion");
+		model.addColumn("Puntuacion");
+		puntuaciones.add(table);
+	}
+	
+	public void mostrarRanking(JsonArray datos) {
+		//datos --> json array con nombre puntuacion y nivel
+		
+		for (JsonElement partida : datos) {
+			JsonObject datosPartida = partida.getAsJsonObject();
+			Object[] fila =new Object[1];
+			fila[0] = datosPartida.get("Puntuacion").getAsInt();
+			//fila[1] = datosPartida.get("Nivel").getAsInt();
+			model.addRow(fila);
+		}
 	}
 
 }
