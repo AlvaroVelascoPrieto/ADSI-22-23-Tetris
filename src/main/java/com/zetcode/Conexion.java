@@ -11,6 +11,7 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.h2.tools.RunScript;
@@ -44,6 +45,63 @@ public class Conexion {
         return con;
     }
    
+	public void cargarJugadores() {
+	
+    try (Connection con = conectar();
+
+        PreparedStatement preparedStatement = con.prepareStatement("SELECT * FROM jugador");) {
+        System.out.println(preparedStatement);
+        ResultSet rs = preparedStatement.executeQuery();
+
+        while (rs.next()) {
+            int id = rs.getInt("id");
+            String usuario = rs.getString("usuario");
+            String correo = rs.getString("correo");
+            String contrasena = rs.getString("contrasena");
+            int idpersonalizacion = rs.getInt("id_personalizacion");
+            String parSinFin = rs.getString("id_partidaSF");
+            
+            Jugador j = new Jugador(usuario, correo, contrasena);
+            
+            //buscar las partidas que pertenecen al jugador
+            PreparedStatement preparedStatement2 = con.prepareStatement("SELECT * FROM partida where usuario=?");
+            preparedStatement2.setString(1, usuario);
+            ResultSet partidas = preparedStatement2.executeQuery();
+            //crear un objeto por cada partida y añadirla al jugador
+            while (rs.next()) {
+                int idPartida = partidas.getInt("id_partida");
+                int anchura = partidas.getInt("anchura");
+                int altura = partidas.getInt("altura");
+                int puntuacion = partidas.getInt("puntuacion");
+                int nivel = partidas.getInt("nivel");
+                Board parAcabada = new Board(idPartida, anchura, altura, puntuacion, nivel);
+                j.anadirPartidaAcabada(parAcabada);
+            }
+            
+            if (parSinFin!=null) {
+	            //anadir partida sin finalizar 
+	            PreparedStatement preparedStatement3 = con.prepareStatement("SELECT * FROM partida where id_partida=?");
+	            preparedStatement3.setString(1, parSinFin);
+	            ResultSet parGuardada = preparedStatement3.executeQuery();
+	            rs.next();
+                int idPartida = partidas.getInt("id_partida");
+                int anchura = partidas.getInt("anchura");
+                int altura = partidas.getInt("altura");
+                int puntuacion = partidas.getInt("puntuacion");
+                int nivel = partidas.getInt("nivel");
+                Board parAcabada = new Board(idPartida, anchura, altura, puntuacion, nivel);
+                j.guardarPartida(parAcabada);
+
+            }
+            
+            //select para guardarle la personalizacion
+            //crear objeto personalizacion
+            //añadirsela al jugador
+        }
+    } catch (SQLException e) {
+    }
+    
+}
     
    /*
     private static String leerSqlFile(){

@@ -35,7 +35,11 @@ public class Board extends JPanel {
         initBoard(parent);
     }
 
-    private void initBoard(Tetris parent) {
+    public Board(int idPartida, int anchura, int altura, int puntuacion, int nivel2) {
+		// TODO Auto-generated constructor stub
+	}
+
+	private void initBoard(Tetris parent) {
 
         setFocusable(true);
         statusbar = parent.getStatusBar();

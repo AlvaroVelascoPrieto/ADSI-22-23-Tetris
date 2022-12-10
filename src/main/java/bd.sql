@@ -13,7 +13,7 @@ usuario VARCHAR(25) NOT NULL,
 correo VARCHAR(60) NOT NULL,
 contrasena VARCHAR(25) NOT NULL,
 id_personalizacion INT NOT NULL,
-id_partidaSF INT NOT NULL,
+id_partidaSF INT,
 PRIMARY KEY(usuario)
 );
 
@@ -24,7 +24,7 @@ anchura INT NOT NULL,
 altura INT NOT NULL,
 puntuacion INT NOT NULL,
 nivel INT NOT NULL,
-usuario VARCHAR(25) NOT NULL,
+usuario VARCHAR(25),
 PRIMARY KEY(id_partida)
 );
 

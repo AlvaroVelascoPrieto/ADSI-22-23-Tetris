@@ -10,10 +10,9 @@ public class Jugador {
 	private String usuario;
 	private String correo;
 	private String contrasena;
-	private Board partidaJugada;
 	private Board partidaGuardada;
 	private ArrayList<Board> lPartidasTerminadas;
-	private ArrayList<Premio> lPremios;
+	//private ArrayList<Premio> lPremios;
 	private Personalizacion personalizacion;
 	
 	public Jugador(String pUsuario, String pCorreo, String pContrasena) {
@@ -21,7 +20,7 @@ public class Jugador {
 		correo = pCorreo;
 		contrasena = pContrasena;
 		lPartidasTerminadas = new ArrayList<Board>();
-		lPremios = new ArrayList<Premio>();
+		//lPremios = new ArrayList<Premio>();
 		personalizacion = new Personalizacion("Blanco", "Default", "Default");
 	}
 
@@ -93,5 +92,10 @@ public class Jugador {
 			
 		}
 		return json3;
+	}
+
+	public void anadirPartidaAcabada(Board parAcabada) {
+		lPartidasTerminadas.add(parAcabada);
+		
 	}
 }
