@@ -36,7 +36,7 @@ public class Conexion {
         Connection con = null;
         try{
             Class.forName("org.h2.Driver");
-            con = DriverManager.getConnection("jdbc:h2:file:./BDjuego","lasWinxDeADSI","");
+            con = DriverManager.getConnection("jdbc:h2:file:./bd/BDjuego","lasWinxDeADSI","");
             System.out.println("En linea");
         }catch(Exception ex){
             System.out.println("Error "+ex);
