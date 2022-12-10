@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.zetcode.Conexion;
+
 import controladores.ControladorRankings;
 
 import java.awt.GridBagLayout;
@@ -70,6 +72,8 @@ public class MenuRankings extends JFrame {
 		menu.add(globAbs);
 		globAbs.addActionListener(ControladorRankings.getControladorRankings());
 		
+		Conexion.getMiConexion().crearDB();
+		Conexion.getMiConexion().conectar();
 	}
 	
 

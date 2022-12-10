@@ -28,6 +28,7 @@ public class Board extends JPanel {
     private JLabel statusbar;
     private Shape curPiece;
     private Tetrominoe[] board;
+    private int nivel;
 
     public Board(Tetris parent) {
 
@@ -344,8 +345,7 @@ public class Board extends JPanel {
     }
 
 	public int getNivel(){
-		// TODO falta de implementar los niveles
-		return 0;
+		return nivel;
 	}
 	public int getPuntuacion() {
 		return numLinesRemoved;
