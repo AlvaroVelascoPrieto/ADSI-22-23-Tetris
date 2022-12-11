@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
@@ -49,28 +50,31 @@ public class RankPersAbs extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(0, 1, 0, 0));
 		
-		JPanel texto = new JPanel();
+		/*JPanel texto = new JPanel();
 		contentPane.add(texto);
-		texto.setLayout(new GridLayout(1, 0, 0, 0));
+		texto.setLayout(new GridLayout(1, 0, 0, 0));*/
 		
-		JLabel texto1 = new JLabel("Puntuaciones");
+		/*JLabel texto1 = new JLabel("Puntuaciones");
 		texto.add(texto1);
 		
 		JLabel texto2 = new JLabel("Nivel");
-		texto.add(texto2);
+		texto.add(texto2);*/
 		
-		JPanel puntuaciones = new JPanel();
+		JScrollPane puntuaciones = new JScrollPane();
 		contentPane.add(puntuaciones);
-		puntuaciones.setLayout(new GridLayout(1, 0, 0, 0));
+		//puntuaciones.setLayout(new GridLayout(1, 0, 0, 0));
 		
 		table = new JTable();
 		model = new DefaultTableModel();
+		table.setModel(model);
 		model.addColumn("Puntuacion");
 		model.addColumn("Nivel");
-		puntuaciones.add(table);
+		puntuaciones.setViewportView(table);
 		
 	}
 	public void mostrarRanking(JsonArray datos) {
+		//borrar los datos que hubiese anteriormente
+				model.setRowCount(0);
 		//datos --> json array con nombre puntuacion y nivel
 		
 		for (JsonElement partida : datos) {
