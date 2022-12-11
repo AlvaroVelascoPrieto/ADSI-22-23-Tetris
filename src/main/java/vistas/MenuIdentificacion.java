@@ -8,8 +8,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.*;
 
 public class MenuIdentificacion extends JFrame{
-
+    
     private JPanel contentPane;
+    
 
 
     public static void main(String[] args) {
@@ -36,19 +37,19 @@ public class MenuIdentificacion extends JFrame{
         contentPane.setLayout(null);
 
         JButton iniciarSes = new JButton("Iniciar Sesión");
-        iniciarSes.setBounds(152, 59, 119, 23);
+        iniciarSes.setBounds(152, 93, 200, 23);
         contentPane.add(iniciarSes);
         iniciarSes.addActionListener(ControladorMenuIdentificacion.getControladorMenuIdentificacion());
 
 
 
         JButton registrarse = new JButton("Registrarse");
-        registrarse.setBounds(152, 127, 119, 23);
+        registrarse.setBounds(152, 127, 200, 23);
         contentPane.add(registrarse);
         registrarse.addActionListener(ControladorMenuIdentificacion.getControladorMenuIdentificacion());
 
         JButton recordarPwd = new JButton("Recordar contraseña");
-        recordarPwd.setBounds(152, 161, 119, 23);
+        recordarPwd.setBounds(152, 161, 200, 23);
         contentPane.add(recordarPwd);
         recordarPwd.addActionListener(ControladorMenuIdentificacion.getControladorMenuIdentificacion());
 
