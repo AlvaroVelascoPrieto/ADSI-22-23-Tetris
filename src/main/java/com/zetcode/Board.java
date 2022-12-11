@@ -36,7 +36,8 @@ public class Board extends JPanel {
     }
 
     public Board(int idPartida, int anchura, int altura, int puntuacion, int nivel2) {
-		// TODO Auto-generated constructor stub
+		numLinesRemoved = puntuacion;
+		nivel = nivel2;
 	}
 
 	private void initBoard(Tetris parent) {

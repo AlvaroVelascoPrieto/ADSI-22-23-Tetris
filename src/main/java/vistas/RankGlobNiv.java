@@ -16,6 +16,7 @@ import controladores.ControladorRankings;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ButtonGroup;
 
@@ -79,19 +80,22 @@ public class RankGlobNiv extends JFrame {
 		dificil.addActionListener(ControladorRankings.getControladorRankings());
 		dificil.setActionCommand("DificilGlob");
 		
-		JPanel puntuaciones = new JPanel();
+		JScrollPane puntuaciones = new JScrollPane();
 		contentPane.add(puntuaciones);
-		puntuaciones.setLayout(new GridLayout(1, 0, 0, 0));
+		//puntuaciones.setLayout(new GridLayout(1, 0, 0, 0));
 		
 		table = new JTable();
 		model = new DefaultTableModel();
+		table.setModel(model);
 		model.addColumn("Jugador");
 		model.addColumn("Puntuacion");
 		//model.addColumn("Nivel");
-		puntuaciones.add(table);
+		puntuaciones.setViewportView(table);
 	}
 	
 	public void mostrarRanking(JsonArray datos) {
+		//borrar los datos que hubiese anteriormente
+		model.setRowCount(0);
 		// puntuacion jugador y nivel
 		for (JsonElement partida : datos) {
 			JsonObject datosPartida = partida.getAsJsonObject();
@@ -102,5 +106,4 @@ public class RankGlobNiv extends JFrame {
 			model.addRow(fila);
 		}
 	}
-
 }

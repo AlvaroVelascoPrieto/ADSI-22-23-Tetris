@@ -6,7 +6,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.zetcode.Board;
 import com.zetcode.Conexion;
+import com.zetcode.Jugador;
+import com.zetcode.ListaJugadores;
 
 import controladores.ControladorRankings;
 
@@ -43,6 +46,28 @@ public class MenuRankings extends JFrame {
 	 * Create the frame.
 	 */
 	public MenuRankings() {
+		/////////////////////////anadir jugadores y partidas para comprobar que funciona bien//////////////
+		Jugador j1 = new Jugador("Juan", "correo", "contraseña");
+		Jugador j2 = new Jugador("juana", "correo", "contraseña");
+		Jugador j3 = new Jugador("paco", "correo", "contraseña");
+		
+		j1.anadirPartidaAcabada(new Board(1, 1, 1, 1, 0));
+		j1.anadirPartidaAcabada(new Board(1, 1, 1, 2, 0));
+		j1.anadirPartidaAcabada(new Board(1, 1, 1, 1, 1));
+		
+		j2.anadirPartidaAcabada(new Board(1, 1, 1, 1, 2));
+		
+		j3.anadirPartidaAcabada(new Board(1, 1, 1, 2, 2));
+		
+		ListaJugadores.getMiListaJugadores().anadirJugador(j1);
+		ListaJugadores.getMiListaJugadores().anadirJugador(j2);
+		ListaJugadores.getMiListaJugadores().anadirJugador(j3);
+		
+		
+		//////////////////////////////////////////////////////////////////////////////////////////////////////
+		
+		
+		
 		setTitle("Rankings");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -73,7 +98,7 @@ public class MenuRankings extends JFrame {
 		globAbs.addActionListener(ControladorRankings.getControladorRankings());
 		
 		Conexion.getMiConexion().crearDB();
-		Conexion.getMiConexion().conectar();
+		//Conexion.getMiConexion().conectar();
 	}
 	
 

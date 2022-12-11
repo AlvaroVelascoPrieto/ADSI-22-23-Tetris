@@ -17,6 +17,7 @@ import java.awt.Window.Type;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.ButtonGroup;
@@ -81,17 +82,20 @@ public class RankPersNiv extends JFrame {
 		dificil.addActionListener(ControladorRankings.getControladorRankings());
 		dificil.setActionCommand("DificilPers");
 		
-		JPanel puntuaciones = new JPanel();
+		JScrollPane puntuaciones = new JScrollPane();
 		contentPane.add(puntuaciones);
+		//puntuaciones.setLayout(new GridLayout(1, 0, 0, 0));
 		
 		table = new JTable();
 		model = new DefaultTableModel();
+		table.setModel(model);
 		//model.addColumn("Puntuacion");
 		model.addColumn("Puntuacion");
-		puntuaciones.add(table);
-	}
+		puntuaciones.setViewportView(table);	}
 	
 	public void mostrarRanking(JsonArray datos) {
+		//borrar los datos que hubiese anteriormente
+				model.setRowCount(0);
 		//datos --> json array con nombre puntuacion y nivel
 		
 		for (JsonElement partida : datos) {
@@ -102,5 +106,8 @@ public class RankPersNiv extends JFrame {
 			model.addRow(fila);
 		}
 	}
+	
+
+	
 
 }

@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
@@ -13,6 +14,8 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import java.awt.GridLayout;
+import java.awt.ScrollPane;
+
 import javax.swing.JLabel;
 
 public class RankGlobAbs extends JFrame {
@@ -44,19 +47,23 @@ public class RankGlobAbs extends JFrame {
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new GridLayout(1, 0, 0, 0));
 		
-		JPanel panel = new JPanel();
+		JScrollPane panel = new JScrollPane();
 		getContentPane().add(panel);
-		panel.setLayout(new GridLayout(1, 0, 0, 0));
+		//panel.setLayout(new GridLayout(1, 0, 0, 0));
 		
-		table = new JTable();
+		table = new JTable(); 
 		model = new DefaultTableModel();
+		table.setModel(model);
 		model.addColumn("Jugador");
 		model.addColumn("Puntuacion");
 		model.addColumn("Nivel");
-		panel.add(table);
+		
+		panel.setViewportView(table);
 	}
 	
 	public void mostrarRanking(JsonArray datos) {
+		//borrar los datos que hubiese anteriormente
+				model.setRowCount(0);
 		// puntuacion jugador y nivel
 		for (JsonElement partida : datos) {
 			JsonObject datosPartida = partida.getAsJsonObject();

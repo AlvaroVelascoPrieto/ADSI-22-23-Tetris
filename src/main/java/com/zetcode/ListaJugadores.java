@@ -26,7 +26,11 @@ public class ListaJugadores {
 		}
 		return miListaJugadores;
 	}
-
+	
+	public void anadirJugador(Jugador pJugador) {
+		lJugadores.add(pJugador);
+	}
+	
 	public Jugador buscarJugador(String pUsuario) {
 		Iterator<Jugador> itr = this.getIterador();
 		Jugador act;
@@ -91,8 +95,8 @@ public class ListaJugadores {
 			public int compare(JsonElement o1, JsonElement o2) {
 				int p1 = ((JsonObject) o1).get("Puntuacion").getAsInt();
 				int p2 = ((JsonObject) o2).get("Puntuacion").getAsInt();
-				if (p1>p2) {return 1;}
-				else if (p1<p2) {return -1;}
+				if (p1>p2) {return -1;}
+				else if (p1<p2) {return 1;}
 				else {return 0;}
 			}
 		});
