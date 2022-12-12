@@ -47,7 +47,7 @@ public class MenuRankings extends JFrame {
 	 */
 	public MenuRankings() {
 		/////////////////////////anadir jugadores y partidas para comprobar que funciona bien//////////////
-		Jugador j1 = new Jugador("Juan", "correo", "contraseña");
+		/*Jugador j1 = new Jugador("Juan", "correo", "contraseña");
 		Jugador j2 = new Jugador("juana", "correo", "contraseña");
 		Jugador j3 = new Jugador("paco", "correo", "contraseña");
 		
@@ -63,7 +63,7 @@ public class MenuRankings extends JFrame {
 		ListaJugadores.getMiListaJugadores().anadirJugador(j2);
 		ListaJugadores.getMiListaJugadores().anadirJugador(j3);
 		
-		
+		*/
 		//////////////////////////////////////////////////////////////////////////////////////////////////////
 		
 		
@@ -98,6 +98,8 @@ public class MenuRankings extends JFrame {
 		globAbs.addActionListener(ControladorRankings.getControladorRankings());
 		
 		Conexion.getMiConexion().crearDB();
+		Conexion.getMiConexion().cargarJugadores();
+		System.out.println("jugadores cargados");
 		//Conexion.getMiConexion().conectar();
 	}
 	
