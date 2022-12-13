@@ -38,7 +38,7 @@ public class Juego extends Observable {
 		jsonA.add(json1);
 		
 		//creamos un JsonArray que contendrá Jsons sobre las propiedades de cada bloque
-		JsonArray jsonB = new JsonArray();
+		JsonArray jsonBloques = new JsonArray();
 		//insertamos las propiedades de cada bloque en el jsonB y lo añadimos al JsonA
 		ArrayList<Shape> bloques = b.getBloques();
 		//para cada bloque obtenemos su forma y sus coordenadas
@@ -46,10 +46,10 @@ public class Juego extends Observable {
 			JsonObject json2 = new JsonObject();
 			json2.addProperty(pUsuario, pUsuario);
 			//TODO insertamos las coordenadas
-			jsonB.add(json2);
+			jsonBloques.add(json2);
 		}
 		
-		jsonA.add(jsonB);
+		jsonA.add(jsonBloques);
 		
 		return jsonA;
 	}
