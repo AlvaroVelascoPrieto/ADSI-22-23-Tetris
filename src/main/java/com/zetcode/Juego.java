@@ -21,17 +21,16 @@ public class Juego extends Observable {
 		return miJuego;
 	}
 	
-	public JSONObject cargarPartida(String pUsuario)
+	public JsonObject cargarPartida(String pUsuario)
 	{
 		Jugador j = ListaJugadores.getMiListaJugadores().buscarJugador(pUsuario);
 		Board b = j.getPartida();
 		//Convertimos "b" en un JSON
 		JsonObject json1 = new JsonObject();
 		json1.addProperty("Puntuacion", b.getPuntuacion());
-		jsonNombreInfoPartida.addProperty("Puntuacion", partida.getPuntuacion());
-		jsonNombreInfoPartida.addProperty("Nivel", partida.getNivel());
+		json1.addProperty("Puntuacion", b.getPuntuacion());
+		json1.addProperty("Nivel", b.getNivel());
 		json1.add(jsonNombreInfoPartida);
-		}
 		return json1;
 	}
 	
