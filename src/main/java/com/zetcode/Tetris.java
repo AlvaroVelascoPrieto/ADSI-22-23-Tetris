@@ -54,6 +54,14 @@ public class Tetris extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         
+        this.addWindowListener(new WindowAdapter() {
+	        @Override
+	        public void windowClosing(WindowEvent e) {
+	            //Hacer lo que yo quiero
+	        	//TODO llamada al metodo para volcar objetos en la bd
+	            System.out.println("Estoy cerrando");
+	        }
+	 });
     }
     
     private void initUI(JsonArray jsonA)
