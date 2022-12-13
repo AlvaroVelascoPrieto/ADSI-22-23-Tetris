@@ -57,8 +57,8 @@ public class Tetris extends JFrame {
         this.addWindowListener(new WindowAdapter() {
 	        @Override
 	        public void windowClosing(WindowEvent e) {
-	            //Hacer lo que yo quiero
-	        	//TODO llamada al metodo para volcar objetos en la bd
+	            
+	        	Conexion.getMiConexion().guardarDatos();
 	            System.out.println("Estoy cerrando");
 	        }
 	 });
