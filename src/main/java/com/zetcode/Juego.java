@@ -39,14 +39,35 @@ public class Juego extends Observable {
 		
 		//creamos un JsonArray que contendrá Jsons sobre las propiedades de cada bloque
 		JsonArray jsonBloques = new JsonArray();
-		//insertamos las propiedades de cada bloque en el jsonB y lo añadimos al JsonA
-		ArrayList<Shape> bloques = b.getBloques();
-		//para cada bloque obtenemos su forma y sus coordenadas
-		for(int i = 0; i < bloques.size(); i++) {
-			JsonObject json2 = new JsonObject();
-			json2.addProperty(pUsuario, pUsuario);
-			//TODO insertamos las coordenadas
-			jsonBloques.add(json2);
+		//para cada bloque creamos un Json que contenga únicamente la forma de la posición i del array que expresa el tablero.
+		Tetrominoe[] listaBloques = b.getBloques();
+		for(int i = 0; i < listaBloques.length; i++)
+		{
+			int numForma = listaBloques[i].ordinal();
+			String nombreForma;
+			switch(numForma) {
+			case 0:
+				nombreForma = "NoShape";
+	    	case 1:
+	    		nombreForma = "ZShape";
+	    	case 2:
+	    		nombreForma = "SShape";
+	    	case 3:
+	    		nombreForma = "LineShape";
+	    	case 4:
+	    		nombreForma = "TShape";
+	    	case 5:
+	    		nombreForma = "SquareShape";
+	    	case 6:
+	    		nombreForma = "LShape";
+	    	case 7:
+	    		nombreForma = "MirroredShape";
+	    	default:
+	    			nombreForma = "NoShape";
+	    	}
+			JsonObject jsonB = new JsonObject();
+			jsonB.addProperty("nombreForma", nombreForma);
+			jsonBloques.add(jsonB);
 		}
 		
 		jsonA.add(jsonBloques);

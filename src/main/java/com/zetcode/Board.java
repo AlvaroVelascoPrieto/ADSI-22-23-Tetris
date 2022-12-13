@@ -97,9 +97,9 @@ public class Board extends JPanel {
     	j.guardarPartida(this);
     }
     
-    public ArrayList<Shape> getBloques()
+    public Tetrominoe[] getBloques()
     {
-    	return this.listaBloques;
+    	return board;
     }
 
     @Override
