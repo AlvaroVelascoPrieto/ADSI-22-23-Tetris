@@ -1,5 +1,6 @@
 package com.zetcode;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Observable;
 
@@ -39,7 +40,7 @@ public class Juego extends Observable {
 		//creamos un JsonArray que contendrá Jsons sobre las propiedades de cada bloque
 		JsonArray jsonB = new JsonArray();
 		//insertamos las propiedades de cada bloque en el jsonB y lo añadimos al JsonA
-		Tetrominoe[] t = b.getBloques();
+		ArrayList<Shape> bloques = b.getBloques();
 		
 		jsonA.add(jsonB);
 		

@@ -12,6 +12,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
 
+import com.google.gson.JsonArray;
+
 import vistas.IntPersonalizar;
 
 /*
@@ -31,7 +33,7 @@ public class Tetris extends JFrame {
     
     public Tetris(String usuario)
     {
-    	JSONObject json1 = Juego.getMiJuego().cargarPartida(usuario);
+    	JsonArray json1 = Juego.getMiJuego().cargarPartida(usuario);
     }
 
     private void initUI() {
