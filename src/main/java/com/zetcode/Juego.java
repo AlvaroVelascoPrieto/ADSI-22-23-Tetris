@@ -1,10 +1,12 @@
 package com.zetcode;
 
+import java.util.Iterator;
 import java.util.Observable;
 
 import org.json.JSONObject;
 
 import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 
 public class Juego extends Observable {
 	private static Juego miJuego;
@@ -23,8 +25,13 @@ public class Juego extends Observable {
 	{
 		Jugador j = ListaJugadores.getMiListaJugadores().buscarJugador(pUsuario);
 		Board b = j.getPartida();
-		//Convertimos "b" en un JSONObject
-		JSONObject json1 = new JSONObject();
+		//Convertimos "b" en un JSON
+		JsonObject json1 = new JsonObject();
+		json1.addProperty("Puntuacion", b.getPuntuacion());
+		jsonNombreInfoPartida.addProperty("Puntuacion", partida.getPuntuacion());
+		jsonNombreInfoPartida.addProperty("Nivel", partida.getNivel());
+		json1.add(jsonNombreInfoPartida);
+		}
 		return json1;
 	}
 	
