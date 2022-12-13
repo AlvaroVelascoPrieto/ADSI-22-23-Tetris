@@ -49,10 +49,11 @@ public class MenuIdentificacion extends JFrame{
         contentPane.add(registrarse);
         registrarse.addActionListener(ControladorMenuIdentificacion.getControladorMenuIdentificacion());
 
-        JButton recordarPwd = new JButton("Recuperar Contraseña");
-        recordarPwd.setBounds(152, 161, 200, 23);
-        contentPane.add(recordarPwd);
-        recordarPwd.addActionListener(ControladorMenuIdentificacion.getControladorMenuIdentificacion());
+        JButton recuperarPwd = new JButton("Recuperar Contraseña");
+        recuperarPwd.setBounds(152, 161, 200, 23);
+        contentPane.add(recuperarPwd);
+        recuperarPwd.addActionListener(ControladorMenuIdentificacion.getControladorMenuIdentificacion());
+
 
         setVisible(true);
     }

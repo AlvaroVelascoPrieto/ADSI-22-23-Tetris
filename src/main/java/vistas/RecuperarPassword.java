@@ -9,13 +9,13 @@ import controladores.*;
 public class RecuperarPassword extends JFrame {
 
     private JPanel contentPane;
+    private static RecuperarPassword miRecuperarPassword;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    RecuperarPassword frame = new RecuperarPassword();
-                    frame.setVisible(true);
+                    RecuperarPassword.getMiRecuperarPassword();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -72,6 +72,17 @@ public class RecuperarPassword extends JFrame {
         contentPane.add(atrasbtn);
         atrasbtn.addActionListener(ControladorMenuIdentificacion.getControladorMenuIdentificacion());
 
+        setVisible(true);
+
+    }
+
+    public static RecuperarPassword getMiRecuperarPassword()
+    {
+        if(miRecuperarPassword == null)
+        {
+            miRecuperarPassword = new RecuperarPassword();
+        }
+        return miRecuperarPassword;
     }
     
 }
