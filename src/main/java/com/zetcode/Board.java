@@ -30,6 +30,7 @@ public class Board extends JPanel {
     private Shape curPiece;
     private Tetrominoe[] board;
     private int nivel;
+    private ArrayList<Shape> listaBloques;
 
     public Board(Tetris parent) {
 
@@ -180,6 +181,7 @@ public class Board extends JPanel {
             int x = curX + curPiece.x(i);
             int y = curY - curPiece.y(i);
             board[(y * BOARD_WIDTH) + x] = curPiece.getShape();
+            this.listaBloques.add(curPiece);
         }
 
         removeFullLines();

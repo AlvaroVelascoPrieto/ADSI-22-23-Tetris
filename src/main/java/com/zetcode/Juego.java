@@ -7,6 +7,7 @@ import org.json.JSONObject;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.zetcode.Shape.Tetrominoe;
 
 public class Juego extends Observable {
 	private static Juego miJuego;
@@ -32,13 +33,14 @@ public class Juego extends Observable {
 		json1.addProperty("Puntuacion", b.getPuntuacion());
 		json1.addProperty("Puntuacion", b.getPuntuacion());
 		json1.addProperty("Nivel", b.getNivel());
-
+		
 		jsonA.add(json1);
 		
 		//creamos un JsonArray que contendrá Jsons sobre las propiedades de cada bloque
 		JsonArray jsonB = new JsonArray();
 		//insertamos las propiedades de cada bloque en el jsonB y lo añadimos al JsonA
-		//TODO Hacer lo propio con cada bloque
+		Tetrominoe[] t = b.getBloques();
+		
 		jsonA.add(jsonB);
 		
 		return jsonA;
