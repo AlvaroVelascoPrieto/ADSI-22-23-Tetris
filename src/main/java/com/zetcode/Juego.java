@@ -21,18 +21,27 @@ public class Juego extends Observable {
 		return miJuego;
 	}
 	
-	public JsonObject cargarPartida(String pUsuario)
+	public JsonArray cargarPartida(String pUsuario)
 	{
 		Jugador j = ListaJugadores.getMiListaJugadores().buscarJugador(pUsuario);
 		Board b = j.getPartida();
-		//Convertimos "b" en un JSON
+		//creamos un JsonArray que contendrá las propiedades de la partida + otro JsonArray de bloques.
+		JsonArray jsonA = new JsonArray();
+		//insertamos las propiedades de la partida en un json para dárselo al JsonArray
 		JsonObject json1 = new JsonObject();
 		json1.addProperty("Puntuacion", b.getPuntuacion());
 		json1.addProperty("Puntuacion", b.getPuntuacion());
 		json1.addProperty("Nivel", b.getNivel());
-		JsonArray json2 = new JsonArray();
+
+		jsonA.add(json1);
 		
-		return json1;
+		//creamos un JsonArray que contendrá Jsons sobre las propiedades de cada bloque
+		JsonArray jsonB = new JsonArray();
+		//insertamos las propiedades de cada bloque en el jsonB y lo añadimos al JsonA
+		//TODO Hacer lo propio con cada bloque
+		jsonA.add(jsonB);
+		
+		return jsonA;
 	}
 	
 	public void cambiarColorFondo(String pColor) {
