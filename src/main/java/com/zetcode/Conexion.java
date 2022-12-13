@@ -17,6 +17,8 @@ import java.util.ArrayList;
 
 import org.h2.tools.RunScript;
 
+import com.zetcode.Shape.Tetrominoe;
+
 
 
 public class Conexion {
@@ -73,29 +75,63 @@ public class Conexion {
             //crear un objeto por cada partida y añadirla al jugador
             while (partidas.next()) {
                 int idPartida = partidas.getInt("id_partida");
-                int anchura = partidas.getInt("anchura");
-                int altura = partidas.getInt("altura");
+                //int anchura = partidas.getInt("anchura");
+                //int altura = partidas.getInt("altura");
                 int puntuacion = partidas.getInt("puntuacion");
                 int nivel = partidas.getInt("nivel");
                 //falta añadir los bloques de cada partida
-                Board parAcabada = new Board(idPartida, anchura, altura, puntuacion, nivel);
+                Board parAcabada = new Board(puntuacion, nivel);
                 j.anadirPartidaAcabada(parAcabada);
             }
             
             if (parSinFin!=null) {
 	            //anadir partida sin finalizar 
+            	
 	            PreparedStatement preparedStatement3 = con.prepareStatement("SELECT * FROM partida where id_partida=?");
 	            preparedStatement3.setString(1, parSinFin);
 	            ResultSet parGuardada = preparedStatement3.executeQuery();
 	            rs.next();
-                int idPartida = partidas.getInt("id_partida");
                 int anchura = partidas.getInt("anchura");
                 int altura = partidas.getInt("altura");
                 int puntuacion = partidas.getInt("puntuacion");
                 int nivel = partidas.getInt("nivel");
-                Board parAcabada = new Board(idPartida, anchura, altura, puntuacion, nivel);
-                j.guardarPartida(parAcabada);
-
+                Board partidaGuardada = new Board(anchura, altura, puntuacion, nivel);
+                
+                //añadir los bloques a la partida acabada
+                //primero generara array
+                PreparedStatement preparedStatement4 = con.prepareStatement("SELECT * FROM bloque where id_partida=?");
+                preparedStatement4.setString(1, parSinFin);
+                ResultSet bloques = preparedStatement4.executeQuery();
+                Tetrominoe[] board = new Tetrominoe[altura * anchura];
+                while (bloques.next()) {
+					//sacar info de cada bloque y agregarlo a la partida
+                	int coord = partidas.getInt("coordenada");
+                	String forma = partidas.getString("forma");
+                	switch(forma)
+                	{
+                	case "NoShape":
+                		board[coord] = Tetrominoe.NoShape;
+                	case "ZShape":
+                		board[coord] = Tetrominoe.ZShape;
+                	case "SShape":
+                		board[coord] = Tetrominoe.SShape;
+                	case "LineShape":
+                		board[coord] = Tetrominoe.LineShape;
+                	case "TShape":
+                		board[coord] = Tetrominoe.TShape;
+                	case "SquareShape":
+                		board[coord] = Tetrominoe.SquareShape;
+                	case "LShape":
+                		board[coord] = Tetrominoe.LShape;
+                	case "MirroredLShape":
+                		board[coord] = Tetrominoe.MirroredLShape;
+                	default:
+                		board[coord] = Tetrominoe.NoShape;
+                	}
+				}
+                partidaGuardada.anadirBloques(board);
+                j.guardarPartida(partidaGuardada);
+                preparedStatement3.close();
             }
             
             //añadir la personalizacion
@@ -112,6 +148,11 @@ public class Conexion {
             
             //añadir jugador a la lista de jugadores
             ListaJugadores.getMiListaJugadores().anadirJugador(j);
+            
+            preparedStatement.close();
+            preparedStatement2.close();
+            
+            preparedStatement4.close();
         }
     } catch (SQLException e) {
     	System.out.println("ha habido algun error al crear los jugadores");

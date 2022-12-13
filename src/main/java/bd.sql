@@ -20,8 +20,8 @@ PRIMARY KEY(usuario)
 CREATE TABLE IF NOT EXISTS partida
 (
 id_partida INT NOT NULL,
-anchura INT NOT NULL,
-altura INT NOT NULL,
+anchura INT,
+altura INT,
 puntuacion INT NOT NULL,
 nivel INT NOT NULL,
 usuario VARCHAR(25),
@@ -31,9 +31,8 @@ PRIMARY KEY(id_partida)
 CREATE TABLE IF NOT EXISTS bloque
 (
 id_bloque INT NOT NULL,
-coordenada VARCHAR(25) NOT NULL,
+coordenada INT NOT NULL,
 forma VARCHAR(25) NOT NULL,
-orientacion INT NOT NULL,
 id_partida INT NOT NULL,
 PRIMARY KEY(id_bloque)
 );
