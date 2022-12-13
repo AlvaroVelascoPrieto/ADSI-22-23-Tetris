@@ -13,6 +13,9 @@ import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
 
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.zetcode.Shape.Tetrominoe;
 
 import vistas.IntPersonalizar;
 
@@ -33,7 +36,8 @@ public class Tetris extends JFrame {
     
     public Tetris(String usuario)
     {
-    	JsonArray json1 = Juego.getMiJuego().cargarPartida(usuario);
+    	JsonArray jsonA = Juego.getMiJuego().cargarPartida(usuario);
+    	initUI(jsonA);
     }
 
     private void initUI() {
@@ -50,6 +54,27 @@ public class Tetris extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         
+    }
+    
+    private void initUI(JsonArray jsonA)
+    {
+    	statusbar = new JLabel(" 0");
+        add(statusbar, BorderLayout.SOUTH);
+
+        var board = new Board(this);
+        //establecemos los datos básicos de la partida
+        JsonObject json1 = jsonA.get(0).getAsJsonObject();
+        board.setDatosBasicos(json1.get("Anchura").getAsInt(), json1.get("Altura").getAsInt(), json1.get("Puntuacion").getAsInt(), json1.get("Nivel").getAsInt());
+        add(board);
+        //cargamos finalmente los bloques de la partida
+        JsonArray jsonBloqes = jsonA.get(1).getAsJsonArray();
+        Tetrominoe[] listaBloques = new Tetrominoe[json1.get("Anchura").getAsInt() * json1.get("Altura").getAsInt()];
+        board.start(listaBloques);
+
+        setTitle("Tetris");
+        setSize(200, 400);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
     }
 
     JLabel getStatusBar() {

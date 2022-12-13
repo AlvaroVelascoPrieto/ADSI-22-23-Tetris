@@ -31,7 +31,8 @@ public class Juego extends Observable {
 		JsonArray jsonA = new JsonArray();
 		//insertamos las propiedades de la partida en un json para dárselo al JsonArray
 		JsonObject json1 = new JsonObject();
-		json1.addProperty("Puntuacion", b.getPuntuacion());
+		json1.addProperty("Anchura", b.getAnchura());
+		json1.addProperty("Altura", b.getAltura());
 		json1.addProperty("Puntuacion", b.getPuntuacion());
 		json1.addProperty("Nivel", b.getNivel());
 		

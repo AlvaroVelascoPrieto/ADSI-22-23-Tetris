@@ -36,6 +36,14 @@ public class Board extends JPanel {
 
         initBoard(parent);
     }
+    
+    public void setDatosBasicos(int pAnchura, int pAltura, int pPuntuacion, int pNivel)
+    {
+    	//this.BOARD_WIDTH = pAnchura;
+    	//this.BOARD_HEIGHT = pAltura;
+    	this.numLinesRemoved = pPuntuacion;
+    	this.nivel = pNivel;
+    }
 
     public Board(int idPartida, int anchura, int altura, int puntuacion, int nivel2) {
 		numLinesRemoved = puntuacion;
@@ -70,6 +78,17 @@ public class Board extends JPanel {
         board = new Tetrominoe[BOARD_WIDTH * BOARD_HEIGHT];
 
         clearBoard();
+        newPiece();
+
+        timer = new Timer(PERIOD_INTERVAL, new GameCycle());
+        timer.start();
+    }
+    
+    void start(Tetrominoe[] listaBloques)
+    {
+    	curPiece = new Shape();
+        board = listaBloques;
+
         newPiece();
 
         timer = new Timer(PERIOD_INTERVAL, new GameCycle());
@@ -357,6 +376,16 @@ public class Board extends JPanel {
         }
     }
 
+    public int getAnchura()
+    {
+    	return this.BOARD_WIDTH;
+    }
+    
+    public int getAltura()
+    {
+    	return this.BOARD_HEIGHT;
+    }
+    
 	public int getNivel(){
 		return nivel;
 	}
