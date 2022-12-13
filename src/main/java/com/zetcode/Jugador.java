@@ -102,4 +102,15 @@ public class Jugador {
 	public void setPersonalizacion (Personalizacion pPersonalizacion) {
 		personalizacion = pPersonalizacion;
 	}
+	
+	public String getCorreo()
+	{
+		return this.correo;
+	}
+	
+	public String getContrasena()
+	{
+		return this.contrasena;
+	}
+	
 }

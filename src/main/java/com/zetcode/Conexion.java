@@ -157,11 +157,15 @@ public class Conexion {
 		try (Connection con = conectar()){
 			
 			ArrayList<Jugador> listaJugadores = ListaJugadores.getMiListaJugadores().getLista();
+			PreparedStatement preparedStatement = con.prepareStatement("");
 			for(int i = 0; i < listaJugadores.size(); i++)
 			{
-				PreparedStatement preparedStatement = con.prepareStatement("insert into");
+				String usuario = listaJugadores.get(i).getUsuario().toString();
+				String correo = listaJugadores.get(i).getCorreo();
+				String contrasena = listaJugadores.get(i).getContrasena();
+				int idPersonalizacion = i;
+				int idPartidaSF = i;
 			}
-	        PreparedStatement preparedStatement = con.prepareStatement("SELECT * FROM jugador");
 	        System.out.println(preparedStatement);
 	        ResultSet rs = preparedStatement.executeQuery();
 
