@@ -90,10 +90,15 @@ public class Board extends JPanel {
         repaint();
     }
     
-    private void guardarPartida(String pUsuario)
+    public void guardarPartida(String pUsuario)
     {
     	Jugador j = ListaJugadores.getMiListaJugadores().buscarJugador(pUsuario);
     	j.guardarPartida(this);
+    }
+    
+    public Tetrominoe[] getBloques()
+    {
+    	return this.board;
     }
 
     @Override

@@ -30,6 +30,7 @@ public class Juego extends Observable {
 		json1.addProperty("Puntuacion", b.getPuntuacion());
 		json1.addProperty("Puntuacion", b.getPuntuacion());
 		json1.addProperty("Nivel", b.getNivel());
+		JsonArray json2 = new JsonArray();
 		
 		return json1;
 	}
