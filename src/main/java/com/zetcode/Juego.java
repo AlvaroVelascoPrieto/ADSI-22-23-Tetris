@@ -31,6 +31,7 @@ public class Juego extends Observable {
 		json1.addProperty("Puntuacion", b.getPuntuacion());
 		json1.addProperty("Nivel", b.getNivel());
 		json1.add(jsonNombreInfoPartida);
+		
 		return json1;
 	}
 	
