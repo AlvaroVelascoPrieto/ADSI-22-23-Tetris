@@ -105,4 +105,9 @@ public class ListaJugadores {
 		JsonArray jsonOrdenado = (JsonArray) new Gson().toJsonTree(lista);
 		return jsonOrdenado;
 	}
+	
+	public ArrayList<Jugador> getLista()
+	{
+		return this.lJugadores;
+	}
 }
