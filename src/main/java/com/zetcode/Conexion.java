@@ -157,7 +157,7 @@ public class Conexion {
 		try (Connection con = conectar()){
 			
 			ArrayList<Jugador> listaJugadores = ListaJugadores.getMiListaJugadores().getLista();
-			PreparedStatement preparedStatement = con.prepareStatement("");
+			PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO jugador VALUES (?,?,?,?,?)");
 			for(int i = 0; i < listaJugadores.size(); i++)
 			{
 				String usuario = listaJugadores.get(i).getUsuario().toString();
@@ -165,6 +165,11 @@ public class Conexion {
 				String contrasena = listaJugadores.get(i).getContrasena();
 				int idPersonalizacion = i;
 				int idPartidaSF = i;
+				preparedStatement.setString(1, usuario);
+				preparedStatement.setString(2, usuario);
+				preparedStatement.setString(3, usuario);
+				preparedStatement.setInt(4, idPersonalizacion);
+				preparedStatement.setInt(5, idPartidaSF);
 			}
 	        System.out.println(preparedStatement);
 	        ResultSet rs = preparedStatement.executeQuery();
