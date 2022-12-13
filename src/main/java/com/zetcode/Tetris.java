@@ -13,6 +13,8 @@ import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
 
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 
 import vistas.IntPersonalizar;
 
@@ -33,7 +35,8 @@ public class Tetris extends JFrame {
     
     public Tetris(String usuario)
     {
-    	JsonArray json1 = Juego.getMiJuego().cargarPartida(usuario);
+    	JsonArray jsonA = Juego.getMiJuego().cargarPartida(usuario);
+    	initUI(jsonA);
     }
 
     private void initUI() {
@@ -50,6 +53,23 @@ public class Tetris extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         
+    }
+    
+    private void initUI(JsonArray jsonA)
+    {
+    	statusbar = new JLabel(" 0");
+        add(statusbar, BorderLayout.SOUTH);
+
+        var board = new Board(this);
+        JsonObject json1 = jsonA.get(0).getAsJsonObject();
+        board.setAnchura(json1.get);
+        add(board);
+        board.start();
+
+        setTitle("Tetris");
+        setSize(200, 400);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
     }
 
     JLabel getStatusBar() {

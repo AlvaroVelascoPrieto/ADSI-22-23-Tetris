@@ -357,6 +357,16 @@ public class Board extends JPanel {
         }
     }
 
+    public int getAnchura()
+    {
+    	return this.BOARD_WIDTH;
+    }
+    
+    public int getAltura()
+    {
+    	return this.BOARD_HEIGHT;
+    }
+    
 	public int getNivel(){
 		return nivel;
 	}
