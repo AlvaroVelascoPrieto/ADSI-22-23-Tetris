@@ -102,7 +102,7 @@ public class Tetris extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
     }
-
+//
     JLabel getStatusBar() {
 
         return statusbar;
