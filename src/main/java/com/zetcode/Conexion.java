@@ -150,6 +150,11 @@ public class Conexion {
         }
         return new String(buffer);
     }*/
+	
+	public void guardarDatos()
+	{
+		
+	}
 
     public void crearDB(){
         //ejecutamos el script de creacion de la BD
