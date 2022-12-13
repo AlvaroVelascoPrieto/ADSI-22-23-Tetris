@@ -3,6 +3,7 @@ package vistas;
 
 import controladores.ControladorMenuIdentificacion;
 
+
 import java.awt.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.*;
@@ -10,6 +11,9 @@ import javax.swing.*;
 public class MenuIdentificacion extends JFrame{
     
     private JPanel contentPane;
+    private static MenuIdentificacion miMenuIdentificacion;
+    
+
     
 
 
@@ -17,8 +21,7 @@ public class MenuIdentificacion extends JFrame{
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    MenuIdentificacion frame = new MenuIdentificacion();
-                    frame.setVisible(true);
+                   MenuIdentificacion.getMiMenuIdentificacion();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -28,7 +31,7 @@ public class MenuIdentificacion extends JFrame{
 
     public MenuIdentificacion(){
         setTitle("Menu Identificación");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 450, 300);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -41,20 +44,30 @@ public class MenuIdentificacion extends JFrame{
         contentPane.add(iniciarSes);
         iniciarSes.addActionListener(ControladorMenuIdentificacion.getControladorMenuIdentificacion());
 
-
-
         JButton registrarse = new JButton("Registrarse");
         registrarse.setBounds(152, 127, 200, 23);
         contentPane.add(registrarse);
         registrarse.addActionListener(ControladorMenuIdentificacion.getControladorMenuIdentificacion());
 
-        JButton recordarPwd = new JButton("Recordar contraseña");
+        JButton recordarPwd = new JButton("Recuperar Contraseña");
         recordarPwd.setBounds(152, 161, 200, 23);
         contentPane.add(recordarPwd);
         recordarPwd.addActionListener(ControladorMenuIdentificacion.getControladorMenuIdentificacion());
 
-
+        setVisible(true);
     }
+    
+    public static MenuIdentificacion getMiMenuIdentificacion()
+    {
+        if(miMenuIdentificacion == null)
+        {
+            miMenuIdentificacion = new MenuIdentificacion();
+        }
+        return miMenuIdentificacion;
+    }
+
+
+
 
 
 

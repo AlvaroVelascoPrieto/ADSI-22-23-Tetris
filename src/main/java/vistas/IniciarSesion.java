@@ -3,16 +3,23 @@ package vistas;
 import java.awt.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.*;
+
+import controladores.*;
+
+
+
 public class IniciarSesion extends JFrame{
         
     private JPanel contentPane;
+    private static IniciarSesion miInicioSesion;
+    //private boolean estado=false;
+
     
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    IniciarSesion frame = new IniciarSesion();
-                    frame.setVisible(true);
+                    IniciarSesion.getMiInicioSesion();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -24,7 +31,7 @@ public class IniciarSesion extends JFrame{
     public IniciarSesion(){
 
         setTitle("Iniciar Sesión");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 450, 300);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -51,7 +58,7 @@ public class IniciarSesion extends JFrame{
         passwordLabel.setBounds(152, 140, 200, 23);
         contentPane.add(passwordLabel);
 
-        JTextField textoPassword = new JTextField();
+        JPasswordField textoPassword = new JPasswordField();
         textoPassword.setBounds(152,162,140,23);
         contentPane.add(textoPassword);
 
@@ -64,18 +71,33 @@ public class IniciarSesion extends JFrame{
         contentPane.add(continuarbtn);
 
 
-        JButton atrasbtn = new JButton();
-        atrasbtn.setText("Atras");
+        JButton atrasbtn = new JButton("Atras");
+        //atrasbtn.setText("Atras");
         atrasbtn.setBounds(170,220,100,23);
         contentPane.add(atrasbtn);
+        atrasbtn.addActionListener(ControladorMenuIdentificacion.getControladorMenuIdentificacion());
 
 
-
-
-
-        
-        
+        setVisible(true);
 
     }
-    
+    public static IniciarSesion getMiInicioSesion()
+    {
+        if(miInicioSesion == null)
+        {
+            miInicioSesion = new IniciarSesion();
+        }
+        return miInicioSesion;
+    }
+  /*  
+    public void alternar() {
+        if (estado) {
+            setVisible(false);
+            estado = false;
+        } else {
+            setVisible(true);
+            estado = true;
+        }
+    }
+     */ 
 }

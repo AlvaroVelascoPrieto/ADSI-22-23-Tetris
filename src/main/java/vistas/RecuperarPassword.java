@@ -3,12 +3,13 @@ package vistas;
 import java.awt.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.*;
+import controladores.*;
 
 
 public class RecuperarPassword extends JFrame {
 
     private JPanel contentPane;
-    
+
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -26,7 +27,7 @@ public class RecuperarPassword extends JFrame {
     public RecuperarPassword(){
 
         setTitle("Recuperar Contraseña");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 450, 300);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -69,6 +70,8 @@ public class RecuperarPassword extends JFrame {
         atrasbtn.setText("Atras");
         atrasbtn.setBounds(170,220,100,23);
         contentPane.add(atrasbtn);
+        atrasbtn.addActionListener(ControladorMenuIdentificacion.getControladorMenuIdentificacion());
+
     }
     
 }

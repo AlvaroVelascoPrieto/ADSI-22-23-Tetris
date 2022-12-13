@@ -3,17 +3,19 @@ package vistas;
 import java.awt.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.*;
+import controladores.*;
 
 public class Registro extends JFrame {
 
     private JPanel contentPane;
+    private static Registro miRegistro;
+
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    Registro frame = new Registro();
-                    frame.setVisible(true);
+                    Registro.getMiRegistro();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -24,7 +26,7 @@ public class Registro extends JFrame {
     public Registro(){
 
         setTitle("Registro");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 450, 300);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -77,6 +79,20 @@ public class Registro extends JFrame {
         atrasbtn.setText("Atras");
         atrasbtn.setBounds(170,220,100,23);
         contentPane.add(atrasbtn);
+        atrasbtn.addActionListener(ControladorMenuIdentificacion.getControladorMenuIdentificacion());
+
+        setVisible(true);
 
     }
+
+    public static Registro getMiRegistro()
+    {
+        if(miRegistro == null)
+        {
+            miRegistro = new Registro();
+        }
+        return miRegistro;
+    }
+
+    
 }
