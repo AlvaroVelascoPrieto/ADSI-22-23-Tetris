@@ -63,6 +63,8 @@ public class Conexion {
             
             Jugador j = new Jugador(usuario, correo, contrasena);
             
+            //añadir las partidas finalizadas al jugador
+            
             //buscar las partidas que pertenecen al jugador
             PreparedStatement preparedStatement2 = con.prepareStatement("SELECT * FROM partida where usuario=?");
             preparedStatement2.setString(1, usuario);
@@ -74,6 +76,7 @@ public class Conexion {
                 int altura = partidas.getInt("altura");
                 int puntuacion = partidas.getInt("puntuacion");
                 int nivel = partidas.getInt("nivel");
+                //falta añadir los bloques de cada partida
                 Board parAcabada = new Board(idPartida, anchura, altura, puntuacion, nivel);
                 j.anadirPartidaAcabada(parAcabada);
             }
@@ -94,15 +97,23 @@ public class Conexion {
 
             }
             
-            //select para guardarle la personalizacion
-            //crear objeto personalizacion
-            //añadirsela al jugador
+            //añadir la personalizacion
             
+            PreparedStatement preparedStatement4 = con.prepareStatement("SELECT * FROM personalizacion where id_personalizacion=?");
+            preparedStatement4.setInt(1, idpersonalizacion);
+            ResultSet personalizacion = preparedStatement4.executeQuery();
+            rs.next();//obtener resultado de select --> personalizacion
+            String colorFondo = personalizacion.getString("colorFondo");
+            String colorBloques = personalizacion.getString("colorBloques");
+            String sonido = personalizacion.getString("sonido");
+            Personalizacion personalizacionJ = new Personalizacion(colorFondo, colorBloques, sonido);
+            j.setPersonalizacion(personalizacionJ);
             
             //añadir jugador a la lista de jugadores
             ListaJugadores.getMiListaJugadores().anadirJugador(j);
         }
     } catch (SQLException e) {
+    	System.out.println("ha habido algun error al crear los jugadores");
     }
     
 }
@@ -155,7 +166,7 @@ public class Conexion {
 			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("error en la creacion de la bd");
 		}
     	
        /* String createTables = "";

@@ -98,4 +98,8 @@ public class Jugador {
 		lPartidasTerminadas.add(parAcabada);
 		
 	}
+	
+	public void setPersonalizacion (Personalizacion pPersonalizacion) {
+		personalizacion = pPersonalizacion;
+	}
 }
