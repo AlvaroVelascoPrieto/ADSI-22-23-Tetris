@@ -2,11 +2,15 @@ package com.zetcode;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.json.JSONObject;
 
 import vistas.IntPersonalizar;
 
@@ -27,7 +31,7 @@ public class Tetris extends JFrame {
     
     public Tetris(String usuario)
     {
-    	Juego.getMiJuego().cargarPartida(usuario);
+    	JSONObject json1 = Juego.getMiJuego().cargarPartida(usuario);
     }
 
     private void initUI() {
@@ -43,6 +47,7 @@ public class Tetris extends JFrame {
         setSize(200, 400);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        
     }
 
     JLabel getStatusBar() {
@@ -59,4 +64,5 @@ public class Tetris extends JFrame {
             game.setVisible(true);
         });
     }
+    
 }
