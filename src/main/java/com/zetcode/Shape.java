@@ -125,4 +125,28 @@ public class Shape {
 
         return result;
     }
+    
+    public String getForma()
+    {
+    	switch(this.pieceShape){
+    	case NoShape:
+    		return null;
+    	case ZShape:
+    		return "ZShape";
+    	case SShape:
+    		return "SShape";
+    	case LineShape:
+    		return "LineShape";
+    	case TShape:
+    		return "TShape";
+    	case SquareShape:
+    		return "SquareShape";
+    	case LShape:
+    		return "LShape";
+    	case MirroredLShape:
+    		return "MirroredShape";
+    	default:
+    			return null;
+    	}
+    }
 }
