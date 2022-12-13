@@ -54,7 +54,7 @@ public class Conexion {
         ResultSet rs = preparedStatement.executeQuery();
 
         while (rs.next()) {
-            int id = rs.getInt("id");
+            //int id = rs.getInt("id");
             String usuario = rs.getString("usuario");
             String correo = rs.getString("correo");
             String contrasena = rs.getString("contrasena");
@@ -68,7 +68,7 @@ public class Conexion {
             preparedStatement2.setString(1, usuario);
             ResultSet partidas = preparedStatement2.executeQuery();
             //crear un objeto por cada partida y añadirla al jugador
-            while (rs.next()) {
+            while (partidas.next()) {
                 int idPartida = partidas.getInt("id_partida");
                 int anchura = partidas.getInt("anchura");
                 int altura = partidas.getInt("altura");
@@ -97,6 +97,10 @@ public class Conexion {
             //select para guardarle la personalizacion
             //crear objeto personalizacion
             //añadirsela al jugador
+            
+            
+            //añadir jugador a la lista de jugadores
+            ListaJugadores.getMiListaJugadores().anadirJugador(j);
         }
     } catch (SQLException e) {
     }

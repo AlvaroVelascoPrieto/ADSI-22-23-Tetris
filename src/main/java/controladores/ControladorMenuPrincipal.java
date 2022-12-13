@@ -35,7 +35,8 @@ private static ControladorMenuPrincipal miControladorMenuPrincipal = null;
 			partidaNueva.setVisible(true);
 		}
 		if (e.getActionCommand().equals("Cargar Partida")) { // cargar partida guardada
-
+			Tetris partidaCargada = new Tetris("usuario");
+			partidaCargada.setVisible(true);
 		}
 		if (e.getActionCommand().equals("Elegir Nivel")) { // abrir elegir nivel
 
