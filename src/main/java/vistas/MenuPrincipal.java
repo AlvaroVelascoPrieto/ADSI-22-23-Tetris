@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.zetcode.Conexion;
+
 import controladores.ControladorMenuPrincipal;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
@@ -94,6 +96,15 @@ public class MenuPrincipal extends JFrame {
 		cambiarContrasena.addActionListener(ControladorMenuPrincipal.getControladorMenuPrincipal());
 		
 		setVisible(true);
+		
+		this.addWindowListener(new WindowAdapter() {
+	        @Override
+	        public void windowClosing(WindowEvent e) {
+	            
+	        	Conexion.getMiConexion().guardarDatos();
+	            System.out.println("Estoy cerrando");
+	        }
+	 });
 		
 		/* //codigo para que realice una accion al cerrar
 		// |-> para utilizarlo para guardar en la base de datos los objetos 
