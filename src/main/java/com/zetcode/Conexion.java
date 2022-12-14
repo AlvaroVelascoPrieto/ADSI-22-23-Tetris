@@ -200,6 +200,7 @@ public class Conexion {
 			ArrayList<Jugador> listaJugadores = ListaJugadores.getMiListaJugadores().getLista();
 			PreparedStatement preparedStatement1 = con.prepareStatement("INSERT INTO jugador VALUES (?,?,?,?,?)");
 			PreparedStatement preparedStatement2 = con.prepareStatement("INSERT INTO personalizacion VALUES (?,?,?,?)");
+			PreparedStatement preparedStatement3 = con.prepareStatement("INSERT INTO partida VALUES (?,?,?,?,?,?)");
 			
 			//por cada jugador en listajugadores
 			for(int i = 0; i < listaJugadores.size(); i++)
@@ -228,8 +229,19 @@ public class Conexion {
 				preparedStatement2.executeQuery();
 				
 				//insertamos los datos de la partida guardada
+				int anchura = listaJugadores.get(i).getPartida().getAnchura();
+				int altura = listaJugadores.get(i).getPartida().getAltura();
+				int puntuacion = listaJugadores.get(i).getPartida().getPuntuacion();
+				int nivel = listaJugadores.get(i).getPartida().getNivel();
+				preparedStatement3.setInt(1, idPartidaGuardada);
+				preparedStatement3.setInt(2, anchura);
+				preparedStatement3.setInt(3, altura);
+				preparedStatement3.setInt(4, puntuacion);
+				preparedStatement3.setInt(5, nivel);
+				preparedStatement3.setString(6, usuario);
+				preparedStatement3.executeQuery();
 				
-				//por cada partida acabada por un jugador
+				//por cada partida acabada en jugador
 			}
 
 	    } catch (SQLException e) {
