@@ -251,7 +251,37 @@ public class Conexion {
 				Tetrominoe[] t = listaJugadores.get(i).getPartida().getBloques();
 				for(int j = 0; j < t.length; j++)
 				{
+					//insertamos los datos de la partida acabada
+					String forma;
+					switch(t[j])
+					{
+					case NoShape:
+						forma = "NoShape";
+					case ZShape:
+						forma = "ZShape";
+					case SShape:
+						forma = "SShape";
+					case LineShape:
+						forma = "LineShape";
+					case TShape:
+						forma = "TShape";
+					case SquareShape:
+						forma = "SquareShape";
+					case LShape:
+						forma = "LShape";
+					case MirroredLShape:
+						forma = "MirroredLShape";
+					default:
+						forma = "NoShape";
+					}
 					
+					preparedStatement3.setInt(1, idBloque);
+					preparedStatement3.setString(2, forma);
+					preparedStatement3.setInt(3, j);
+					preparedStatement3.setInt(4, idPartidaGuardada);
+					preparedStatement3.executeQuery();
+					
+					idBloque += 1;
 				}
 				
 				ArrayList<Board> listaParAcabadas = listaJugadores.get(i).getPartidasAcabadas();
