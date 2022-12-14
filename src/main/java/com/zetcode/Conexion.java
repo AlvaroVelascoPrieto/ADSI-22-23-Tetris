@@ -13,8 +13,11 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import org.h2.tools.RunScript;
+
+import com.zetcode.Shape.Tetrominoe;
 
 
 
@@ -72,29 +75,63 @@ public class Conexion {
             //crear un objeto por cada partida y añadirla al jugador
             while (partidas.next()) {
                 int idPartida = partidas.getInt("id_partida");
-                int anchura = partidas.getInt("anchura");
-                int altura = partidas.getInt("altura");
+                //int anchura = partidas.getInt("anchura");
+                //int altura = partidas.getInt("altura");
                 int puntuacion = partidas.getInt("puntuacion");
                 int nivel = partidas.getInt("nivel");
                 //falta añadir los bloques de cada partida
-                Board parAcabada = new Board(idPartida, anchura, altura, puntuacion, nivel);
+                Board parAcabada = new Board(puntuacion, nivel);
                 j.anadirPartidaAcabada(parAcabada);
             }
             
             if (parSinFin!=null) {
 	            //anadir partida sin finalizar 
+            	
 	            PreparedStatement preparedStatement3 = con.prepareStatement("SELECT * FROM partida where id_partida=?");
 	            preparedStatement3.setString(1, parSinFin);
 	            ResultSet parGuardada = preparedStatement3.executeQuery();
 	            rs.next();
-                int idPartida = partidas.getInt("id_partida");
                 int anchura = partidas.getInt("anchura");
                 int altura = partidas.getInt("altura");
                 int puntuacion = partidas.getInt("puntuacion");
                 int nivel = partidas.getInt("nivel");
-                Board parAcabada = new Board(idPartida, anchura, altura, puntuacion, nivel);
-                j.guardarPartida(parAcabada);
-
+                Board partidaGuardada = new Board(anchura, altura, puntuacion, nivel);
+                
+                //añadir los bloques a la partida acabada
+                //primero generara array
+                PreparedStatement preparedStatement4 = con.prepareStatement("SELECT * FROM bloque where id_partida=?");
+                preparedStatement4.setString(1, parSinFin);
+                ResultSet bloques = preparedStatement4.executeQuery();
+                Tetrominoe[] board = new Tetrominoe[altura * anchura];
+                while (bloques.next()) {
+					//sacar info de cada bloque y agregarlo a la partida
+                	int coord = partidas.getInt("coordenada");
+                	String forma = partidas.getString("forma");
+                	switch(forma)
+                	{
+                	case "NoShape":
+                		board[coord] = Tetrominoe.NoShape;
+                	case "ZShape":
+                		board[coord] = Tetrominoe.ZShape;
+                	case "SShape":
+                		board[coord] = Tetrominoe.SShape;
+                	case "LineShape":
+                		board[coord] = Tetrominoe.LineShape;
+                	case "TShape":
+                		board[coord] = Tetrominoe.TShape;
+                	case "SquareShape":
+                		board[coord] = Tetrominoe.SquareShape;
+                	case "LShape":
+                		board[coord] = Tetrominoe.LShape;
+                	case "MirroredLShape":
+                		board[coord] = Tetrominoe.MirroredLShape;
+                	default:
+                		board[coord] = Tetrominoe.NoShape;
+                	}
+				}
+                partidaGuardada.anadirBloques(board);
+                j.guardarPartida(partidaGuardada);
+                preparedStatement3.close();
             }
             
             //añadir la personalizacion
@@ -111,6 +148,11 @@ public class Conexion {
             
             //añadir jugador a la lista de jugadores
             ListaJugadores.getMiListaJugadores().anadirJugador(j);
+            
+            preparedStatement.close();
+            preparedStatement2.close();
+            
+            preparedStatement4.close();
         }
     } catch (SQLException e) {
     	System.out.println("ha habido algun error al crear los jugadores");
@@ -150,6 +192,92 @@ public class Conexion {
         }
         return new String(buffer);
     }*/
+	
+	public void guardarDatos()
+	{
+		try (Connection con = conectar()){
+			
+			ArrayList<Jugador> listaJugadores = ListaJugadores.getMiListaJugadores().getLista();
+			PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO jugador VALUES (?,?,?,?,?)");
+			for(int i = 0; i < listaJugadores.size(); i++)
+			{
+				String usuario = listaJugadores.get(i).getUsuario().toString();
+				String correo = listaJugadores.get(i).getCorreo();
+				String contrasena = listaJugadores.get(i).getContrasena();
+				int idPersonalizacion = i;
+				int idPartidaSF = i;
+				preparedStatement.setString(1, usuario);
+				preparedStatement.setString(2, usuario);
+				preparedStatement.setString(3, usuario);
+				preparedStatement.setInt(4, idPersonalizacion);
+				preparedStatement.setInt(5, idPartidaSF);
+			}
+	        System.out.println(preparedStatement);
+	        ResultSet rs = preparedStatement.executeQuery();
+
+	        while (rs.next()) {
+	            //int id = rs.getInt("id");
+	            String usuario = rs.getString("usuario");
+	            String correo = rs.getString("correo");
+	            String contrasena = rs.getString("contrasena");
+	            int idpersonalizacion = rs.getInt("id_personalizacion");
+	            String parSinFin = rs.getString("id_partidaSF");
+	            
+	            Jugador j = new Jugador(usuario, correo, contrasena);
+	            
+	            //añadir las partidas finalizadas al jugador
+	            
+	            //buscar las partidas que pertenecen al jugador
+	            PreparedStatement preparedStatement2 = con.prepareStatement("SELECT * FROM partida where usuario=?");
+	            preparedStatement2.setString(1, usuario);
+	            ResultSet partidas = preparedStatement2.executeQuery();
+	            //crear un objeto por cada partida y añadirla al jugador
+	            while (partidas.next()) {
+	                int idPartida = partidas.getInt("id_partida");
+	                int anchura = partidas.getInt("anchura");
+	                int altura = partidas.getInt("altura");
+	                int puntuacion = partidas.getInt("puntuacion");
+	                int nivel = partidas.getInt("nivel");
+	                //falta añadir los bloques de cada partida
+	                Board parAcabada = new Board(idPartida, anchura, altura, puntuacion, nivel);
+	                j.anadirPartidaAcabada(parAcabada);
+	            }
+	            
+	            if (parSinFin!=null) {
+		            //anadir partida sin finalizar 
+		            PreparedStatement preparedStatement3 = con.prepareStatement("SELECT * FROM partida where id_partida=?");
+		            preparedStatement3.setString(1, parSinFin);
+		            ResultSet parGuardada = preparedStatement3.executeQuery();
+		            rs.next();
+	                int idPartida = partidas.getInt("id_partida");
+	                int anchura = partidas.getInt("anchura");
+	                int altura = partidas.getInt("altura");
+	                int puntuacion = partidas.getInt("puntuacion");
+	                int nivel = partidas.getInt("nivel");
+	                Board parAcabada = new Board(idPartida, anchura, altura, puntuacion, nivel);
+	                j.guardarPartida(parAcabada);
+
+	            }
+	            
+	            //añadir la personalizacion
+	            
+	            PreparedStatement preparedStatement4 = con.prepareStatement("SELECT * FROM personalizacion where id_personalizacion=?");
+	            preparedStatement4.setInt(1, idpersonalizacion);
+	            ResultSet personalizacion = preparedStatement4.executeQuery();
+	            rs.next();//obtener resultado de select --> personalizacion
+	            String colorFondo = personalizacion.getString("colorFondo");
+	            String colorBloques = personalizacion.getString("colorBloques");
+	            String sonido = personalizacion.getString("sonido");
+	            Personalizacion personalizacionJ = new Personalizacion(colorFondo, colorBloques, sonido);
+	            j.setPersonalizacion(personalizacionJ);
+	            
+	            //añadir jugador a la lista de jugadores
+	            ListaJugadores.getMiListaJugadores().anadirJugador(j);
+	        }
+	    } catch (SQLException e) {
+	    	System.out.println("ha habido algun error al crear los jugadores");
+	    }
+	}
 
     public void crearDB(){
         //ejecutamos el script de creacion de la BD

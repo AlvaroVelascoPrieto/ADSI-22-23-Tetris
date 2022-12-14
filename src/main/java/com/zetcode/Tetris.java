@@ -54,6 +54,14 @@ public class Tetris extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         
+        this.addWindowListener(new WindowAdapter() {
+	        @Override
+	        public void windowClosing(WindowEvent e) {
+	            
+	        	Conexion.getMiConexion().guardarDatos();
+	            System.out.println("Estoy cerrando");
+	        }
+	 });
     }
     
     private void initUI(JsonArray jsonA)
@@ -67,8 +75,34 @@ public class Tetris extends JFrame {
         board.setDatosBasicos(json1.get("Anchura").getAsInt(), json1.get("Altura").getAsInt(), json1.get("Puntuacion").getAsInt(), json1.get("Nivel").getAsInt());
         add(board);
         //cargamos finalmente los bloques de la partida
-        JsonArray jsonBloqes = jsonA.get(1).getAsJsonArray();
+        JsonArray jsonBloques = jsonA.get(1).getAsJsonArray();
         Tetrominoe[] listaBloques = new Tetrominoe[json1.get("Anchura").getAsInt() * json1.get("Altura").getAsInt()];
+        for(int i = 0; i < jsonBloques.size(); i++)
+        {
+        	JsonObject jsonB = jsonBloques.get(i).getAsJsonObject();
+        	String nombreForma = jsonB.get("nombreForma").getAsString();
+        	switch(nombreForma)
+        	{
+        	case "NoShape":
+        		listaBloques[i] = Tetrominoe.NoShape;
+        	case "ZShape":
+        		listaBloques[i] = Tetrominoe.ZShape;
+        	case "SShape":
+        		listaBloques[i] = Tetrominoe.SShape;
+        	case "LineShape":
+        		listaBloques[i] = Tetrominoe.LineShape;
+        	case "TShape":
+        		listaBloques[i] = Tetrominoe.TShape;
+        	case "SquareShape":
+        		listaBloques[i] = Tetrominoe.SquareShape;
+        	case "LShape":
+        		listaBloques[i] = Tetrominoe.LShape;
+        	case "MirroredLShape":
+        		listaBloques[i] = Tetrominoe.MirroredLShape;
+        	default:
+        		listaBloques[i] = Tetrominoe.NoShape;
+        	}
+        }
         board.start(listaBloques);
 
         setTitle("Tetris");
@@ -76,7 +110,7 @@ public class Tetris extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
     }
-
+    
     JLabel getStatusBar() {
 
         return statusbar;

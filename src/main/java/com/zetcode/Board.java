@@ -45,9 +45,15 @@ public class Board extends JPanel {
     	this.nivel = pNivel;
     }
 
-    public Board(int idPartida, int anchura, int altura, int puntuacion, int nivel2) {
+    public Board(int anchura, int altura, int puntuacion, int nivel) {
 		numLinesRemoved = puntuacion;
-		nivel = nivel2;
+		this.nivel = nivel;
+	}
+
+	public Board(int pPuntuacion, int pNivel) {
+		//CONSTRUCTORA PARA PARTIDAS ACABADAS
+		numLinesRemoved = pPuntuacion;
+		nivel = pNivel;		
 	}
 
 	private void initBoard(Tetris parent) {
@@ -392,4 +398,10 @@ public class Board extends JPanel {
 	public int getPuntuacion() {
 		return numLinesRemoved;
 	}
+
+	public void anadirBloques(Tetrominoe[] pBloques) {
+		board = pBloques;
+		
+	}
+	
 }
