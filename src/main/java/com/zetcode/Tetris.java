@@ -50,7 +50,7 @@ public class Tetris extends JFrame {
         board.setBackground(Juego.getMiJuego().getColorFondo());
         setTitle("Tetris");
         setSize(200, 400);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         
         this.addWindowListener(new WindowAdapter() {
