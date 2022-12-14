@@ -201,6 +201,8 @@ public class Conexion {
 			PreparedStatement preparedStatement1 = con.prepareStatement("INSERT INTO jugador VALUES (?,?,?,?,?)");
 			PreparedStatement preparedStatement2 = con.prepareStatement("INSERT INTO personalizacion VALUES (?,?,?,?)");
 			PreparedStatement preparedStatement3 = con.prepareStatement("INSERT INTO partida VALUES (?,?,?,?,?,?)");
+			int idBloque = 0;
+			int idPartidaAcabada = 0;
 			
 			//por cada jugador en listajugadores
 			for(int i = 0; i < listaJugadores.size(); i++)
@@ -241,7 +243,19 @@ public class Conexion {
 				preparedStatement3.setString(6, usuario);
 				preparedStatement3.executeQuery();
 				
+				//por cada bloque en partida guardada
+				Tetrominoe[] t = listaJugadores.get(i).getPartida().getBloques();
+				for(int j = 0; j < t.length; j++)
+				{
+					
+				}
+				
+				ArrayList<Partida> listaP = listaJugadores.get(i);
 				//por cada partida acabada en jugador
+				for(int j = 0; j < 1; j++)
+				{
+					
+				}
 			}
 
 	    } catch (SQLException e) {
