@@ -199,36 +199,25 @@ public class Conexion {
 			
 			ArrayList<Jugador> listaJugadores = ListaJugadores.getMiListaJugadores().getLista();
 			PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO jugador VALUES (?,?,?,?,?)");
+			//por cada jugador en listajugadores
 			for(int i = 0; i < listaJugadores.size(); i++)
 			{
+				//insertamos los datos del jugador
 				String usuario = listaJugadores.get(i).getUsuario().toString();
 				String correo = listaJugadores.get(i).getCorreo();
 				String contrasena = listaJugadores.get(i).getContrasena();
 				int idPersonalizacion = i;
-				int idPartidaSF = i;
+				int idPartidaGuardada = i;
 				preparedStatement.setString(1, usuario);
 				preparedStatement.setString(2, usuario);
 				preparedStatement.setString(3, usuario);
 				preparedStatement.setInt(4, idPersonalizacion);
-				preparedStatement.setInt(5, idPartidaSF);
+				preparedStatement.setInt(5, idPartidaGuardada);
+				preparedStatement.executeQuery();
 			}
 	        System.out.println(preparedStatement);
 	        ResultSet rs = preparedStatement.executeQuery();
 
-	        while (rs.next()) {
-	            //int id = rs.getInt("id");
-	            String usuario = rs.getString("usuario");
-	            String correo = rs.getString("correo");
-	            String contrasena = rs.getString("contrasena");
-	            int idpersonalizacion = rs.getInt("id_personalizacion");
-	            String parSinFin = rs.getString("id_partidaSF");
-	            
-	            Jugador j = new Jugador(usuario, correo, contrasena);
-	            
-	            //añadir las partidas finalizadas al jugador
-	            
-	            
-	        }
 	    } catch (SQLException e) {
 	    	System.out.println("ha habido algun error al crear los jugadores");
 	    }
