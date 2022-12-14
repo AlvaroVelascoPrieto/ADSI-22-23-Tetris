@@ -231,53 +231,12 @@ public class Conexion {
 	            PreparedStatement preparedStatement2 = con.prepareStatement("SELECT * FROM partida where usuario=?");
 	            preparedStatement2.setString(1, usuario);
 	            ResultSet partidas = preparedStatement2.executeQuery();
-	            //crear un objeto por cada partida y añadirla al jugador
-	            while (partidas.next()) {
-	                int idPartida = partidas.getInt("id_partida");
-	                int anchura = partidas.getInt("anchura");
-	                int altura = partidas.getInt("altura");
-	                int puntuacion = partidas.getInt("puntuacion");
-	                int nivel = partidas.getInt("nivel");
-	                //falta añadir los bloques de cada partida
-	                Board parAcabada = new Board(idPartida, anchura, altura, puntuacion, nivel);
-	                j.anadirPartidaAcabada(parAcabada);
-	            }
-	            
-	            if (parSinFin!=null) {
-		            //anadir partida sin finalizar 
-		            PreparedStatement preparedStatement3 = con.prepareStatement("SELECT * FROM partida where id_partida=?");
-		            preparedStatement3.setString(1, parSinFin);
-		            ResultSet parGuardada = preparedStatement3.executeQuery();
-		            rs.next();
-	                int idPartida = partidas.getInt("id_partida");
-	                int anchura = partidas.getInt("anchura");
-	                int altura = partidas.getInt("altura");
-	                int puntuacion = partidas.getInt("puntuacion");
-	                int nivel = partidas.getInt("nivel");
-	                Board parAcabada = new Board(idPartida, anchura, altura, puntuacion, nivel);
-	                j.guardarPartida(parAcabada);
 
 	            }
-	            
-	            //añadir la personalizacion
-	            
-	            PreparedStatement preparedStatement4 = con.prepareStatement("SELECT * FROM personalizacion where id_personalizacion=?");
-	            preparedStatement4.setInt(1, idpersonalizacion);
-	            ResultSet personalizacion = preparedStatement4.executeQuery();
-	            rs.next();//obtener resultado de select --> personalizacion
-	            String colorFondo = personalizacion.getString("colorFondo");
-	            String colorBloques = personalizacion.getString("colorBloques");
-	            String sonido = personalizacion.getString("sonido");
-	            Personalizacion personalizacionJ = new Personalizacion(colorFondo, colorBloques, sonido);
-	            j.setPersonalizacion(personalizacionJ);
-	            
-	            //añadir jugador a la lista de jugadores
-	            ListaJugadores.getMiListaJugadores().anadirJugador(j);
 	        }
-	    } catch (SQLException e) {
-	    	System.out.println("ha habido algun error al crear los jugadores");
-	    }
-	}
+		}
+	            
+
 
     public void crearDB(){
         //ejecutamos el script de creacion de la BD
