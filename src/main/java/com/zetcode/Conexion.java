@@ -200,7 +200,9 @@ public class Conexion {
 			ArrayList<Jugador> listaJugadores = ListaJugadores.getMiListaJugadores().getLista();
 			PreparedStatement preparedStatement1 = con.prepareStatement("INSERT INTO jugador VALUES (?,?,?,?,?)");
 			PreparedStatement preparedStatement2 = con.prepareStatement("INSERT INTO personalizacion VALUES (?,?,?,?)");
-			PreparedStatement preparedStatement3 = con.prepareStatement("INSERT INTO partida VALUES (?,?,?,?,?,?)");
+			PreparedStatement preparedStatement3 = con.prepareStatement("INSERT INTO partida VALUES (?,?,?,?,?)");
+			PreparedStatement preparedStatement4 = con.prepareStatement("INSERT INTO bloque VALUES (?,?,?,?,?,?)");
+			PreparedStatement preparedStatement5 = con.prepareStatement("INSERT INTO partida VALUES (?,?,?,?)");
 			int idBloque = 0;
 			int idPartidaAcabada = 0;
 			
@@ -213,6 +215,7 @@ public class Conexion {
 				String contrasena = listaJugadores.get(i).getContrasena();
 				int idPersonalizacion = i;
 				int idPartidaGuardada = i;
+				
 				preparedStatement1.setString(1, usuario);
 				preparedStatement1.setString(2, usuario);
 				preparedStatement1.setString(3, usuario);
@@ -224,6 +227,7 @@ public class Conexion {
 				String colorFondo = listaJugadores.get(i).getPersonalizacion().getColorFondo();
 				String colorBloques = listaJugadores.get(i).getPersonalizacion().getColorBloques();
 				String sonido = listaJugadores.get(i).getPersonalizacion().getSonido();
+				
 				preparedStatement2.setInt(1, idPersonalizacion);
 				preparedStatement2.setString(2, colorFondo);
 				preparedStatement2.setString(3, colorBloques);
@@ -235,12 +239,12 @@ public class Conexion {
 				int altura = listaJugadores.get(i).getPartida().getAltura();
 				int puntuacion = listaJugadores.get(i).getPartida().getPuntuacion();
 				int nivel = listaJugadores.get(i).getPartida().getNivel();
+				
 				preparedStatement3.setInt(1, idPartidaGuardada);
 				preparedStatement3.setInt(2, anchura);
 				preparedStatement3.setInt(3, altura);
 				preparedStatement3.setInt(4, puntuacion);
 				preparedStatement3.setInt(5, nivel);
-				preparedStatement3.setString(6, usuario);
 				preparedStatement3.executeQuery();
 				
 				//por cada bloque en partida guardada
@@ -250,11 +254,21 @@ public class Conexion {
 					
 				}
 				
-				ArrayList<Partida> listaP = listaJugadores.get(i);
+				ArrayList<Board> listaParAcabadas = listaJugadores.get(i).getPartidasAcabadas();
 				//por cada partida acabada en jugador
-				for(int j = 0; j < 1; j++)
+				for(int j = 0; j < listaParAcabadas.size(); j++)
 				{
+					//insertamos los datos de la partida acabada
+					puntuacion = listaParAcabadas.get(j).getPuntuacion();
+					nivel = listaParAcabadas.get(j).getNivel();
 					
+					preparedStatement3.setInt(1, idPartidaAcabada);
+					preparedStatement3.setInt(2, puntuacion);
+					preparedStatement3.setInt(3, nivel);
+					preparedStatement3.setString(4, usuario);
+					preparedStatement3.executeQuery();
+					
+					idPartidaAcabada += 1;
 				}
 			}
 
