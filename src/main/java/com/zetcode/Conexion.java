@@ -227,23 +227,6 @@ public class Conexion {
 	            
 	            //añadir las partidas finalizadas al jugador
 	            
-	            //buscar las partidas que pertenecen al jugador
-	            PreparedStatement preparedStatement2 = con.prepareStatement("SELECT * FROM partida where usuario=?");
-	            preparedStatement2.setString(1, usuario);
-	            ResultSet partidas = preparedStatement2.executeQuery();
-	            //crear un objeto por cada partida y añadirla al jugador
-	            while (partidas.next()) {
-	                int idPartida = partidas.getInt("id_partida");
-	                int anchura = partidas.getInt("anchura");
-	                int altura = partidas.getInt("altura");
-	                int puntuacion = partidas.getInt("puntuacion");
-	                int nivel = partidas.getInt("nivel");
-	                //falta añadir los bloques de cada partida
-	                Board parAcabada = new Board(anchura, altura, puntuacion, nivel);
-	                j.anadirPartidaAcabada(parAcabada);
-	            }
-	            
-	            //añadir la personalizacion
 	            
 	        }
 	    } catch (SQLException e) {
