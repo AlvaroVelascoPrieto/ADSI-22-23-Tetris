@@ -53,14 +53,6 @@ public class Tetris extends JFrame {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         
-        this.addWindowListener(new WindowAdapter() {
-	        @Override
-	        public void windowClosing(WindowEvent e) {
-	            
-	        	Conexion.getMiConexion().guardarDatos();
-	            System.out.println("Estoy cerrando");
-	        }
-	 });
     }
     
     private void initUI(JsonArray jsonA)
