@@ -74,6 +74,7 @@ public class RankGlobNiv extends JFrame {
 		medio.addActionListener(ControladorRankings.getControladorRankings());
 		medio.setActionCommand("MedioGlob");
 		
+		
 		JRadioButton dificil = new JRadioButton("Nivel dificil");
 		buttonGroup.add(dificil);
 		panel.add(dificil);

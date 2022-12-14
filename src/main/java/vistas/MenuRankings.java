@@ -23,7 +23,7 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 public class MenuRankings extends JFrame {
-
+	private String usuario;
 	private JPanel menu;
 
 	/**
@@ -33,7 +33,7 @@ public class MenuRankings extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MenuRankings frame = new MenuRankings();
+					MenuRankings frame = new MenuRankings(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -45,7 +45,7 @@ public class MenuRankings extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MenuRankings() {
+	public MenuRankings(String pUsuario) {
 		/////////////////////////anadir jugadores y partidas para comprobar que funciona bien//////////////
 		/*Jugador j1 = new Jugador("Juan", "correo", "contraseña");
 		Jugador j2 = new Jugador("juana", "correo", "contraseña");
@@ -66,7 +66,8 @@ public class MenuRankings extends JFrame {
 		*/
 		//////////////////////////////////////////////////////////////////////////////////////////////////////
 		
-		
+		usuario = pUsuario;
+		ControladorRankings.getControladorRankings().setUsuarioIdentificado(pUsuario);
 		
 		setTitle("Rankings");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -100,6 +101,7 @@ public class MenuRankings extends JFrame {
 		Conexion.getMiConexion().crearDB();
 		Conexion.getMiConexion().cargarJugadores();
 		System.out.println("jugadores cargados");
+		System.out.println(usuario);
 		//Conexion.getMiConexion().conectar();
 	}
 	

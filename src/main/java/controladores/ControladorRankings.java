@@ -18,6 +18,7 @@ public class ControladorRankings implements ActionListener{
 	private RankPersAbs rPersAbs;
 	private RankGlobNiv rGlobNiv;
 	private RankGlobAbs rGlobAbs;
+	private String usuario;
 	private ControladorRankings() {
 		
 	}
@@ -35,13 +36,14 @@ public class ControladorRankings implements ActionListener{
 		System.out.println(e.getActionCommand());
 		// botones menu principal rankings
 		if (e.getActionCommand().equals("Ranking personal por niveles")) { //abrir el ranking personal por niveles
-			JsonArray datos = Juego.getMiJuego().obtRankPersNiv(null, 0);//por defecto abrir el nivel facil
+			JsonArray datos = Juego.getMiJuego().obtRankPersNiv(usuario, 0);//por defecto abrir el nivel facil
 			rPersNiv = new RankPersNiv();
+			rPersNiv.mostrarRanking(datos);
 			rPersNiv.setVisible(true);
 			
 		}
 		if (e.getActionCommand().equals("Ranking personal absoluto")) { // abrir el ranking personal absoluto
-			JsonArray datos = Juego.getMiJuego().obtRankAbsPers(null);
+			JsonArray datos = Juego.getMiJuego().obtRankAbsPers(usuario);
 			rPersAbs = new RankPersAbs();
 			rPersAbs.mostrarRanking(datos);
 			rPersAbs.setVisible(true);
@@ -73,17 +75,21 @@ public class ControladorRankings implements ActionListener{
 			rGlobNiv.mostrarRanking(datos);
 		}
 		if (e.getActionCommand().equals("FacilPers")) {
-			JsonArray datos = Juego.getMiJuego().obtRankPersNiv(null, 0);
+			JsonArray datos = Juego.getMiJuego().obtRankPersNiv(usuario, 0);
 			rPersNiv.mostrarRanking(datos);
 		}
 		if (e.getActionCommand().equals("MedioPers")) {
-			JsonArray datos = Juego.getMiJuego().obtRankPersNiv(null, 1);
+			JsonArray datos = Juego.getMiJuego().obtRankPersNiv(usuario, 1);
 			rPersNiv.mostrarRanking(datos);
 		}
 		if (e.getActionCommand().equals("DificilPers")) {
-			JsonArray datos = Juego.getMiJuego().obtRankPersNiv(null, 2);
+			JsonArray datos = Juego.getMiJuego().obtRankPersNiv(usuario, 2);
 			rPersNiv.mostrarRanking(datos);
 		}
+	}
+	
+	public void setUsuarioIdentificado(String pUsu) {
+		this.usuario = pUsu;
 	}
 		
 	

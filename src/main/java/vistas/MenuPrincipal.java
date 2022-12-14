@@ -20,12 +20,12 @@ public class MenuPrincipal extends JFrame {
 
 	private JPanel contentPane;
 	private static MenuPrincipal miMenuPrincipal;
-
+	private String usuario;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -35,12 +35,16 @@ public class MenuPrincipal extends JFrame {
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the frame.
 	 */
-	public MenuPrincipal() {
+	public MenuPrincipal(String pUsuario) {
+		
+		usuario = pUsuario;
+		ControladorMenuPrincipal.getControladorMenuPrincipal().setUsuarioIdentificado(pUsuario);
+		
 		setTitle("Menu Principal");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -104,13 +108,13 @@ public class MenuPrincipal extends JFrame {
 	        }
 	 }); */
 	}
-	public static MenuPrincipal getMiMenuPrincipal()
+	/*public static MenuPrincipal getMiMenuPrincipal()
     {
         if(miMenuPrincipal == null)
         {
             miMenuPrincipal = new MenuPrincipal();
         }
         return miMenuPrincipal;
-    }
+    }*/
 
 }
