@@ -119,4 +119,9 @@ public class Jugador {
 		return this.contrasena;
 	}
 	
+	public ArrayList<Board> getPartidasAcabadas()
+	{
+		return this.lPartidasTerminadas;
+	}
+	
 }
