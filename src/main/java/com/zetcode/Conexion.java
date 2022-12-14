@@ -239,7 +239,7 @@ public class Conexion {
 	                int puntuacion = partidas.getInt("puntuacion");
 	                int nivel = partidas.getInt("nivel");
 	                //falta añadir los bloques de cada partida
-	                Board parAcabada = new Board(idPartida, anchura, altura, puntuacion, nivel);
+	                Board parAcabada = new Board(anchura, altura, puntuacion, nivel);
 	                j.anadirPartidaAcabada(parAcabada);
 	            }
 	            
@@ -254,7 +254,7 @@ public class Conexion {
 	                int altura = partidas.getInt("altura");
 	                int puntuacion = partidas.getInt("puntuacion");
 	                int nivel = partidas.getInt("nivel");
-	                Board parAcabada = new Board(idPartida, anchura, altura, puntuacion, nivel);
+	                Board parAcabada = new Board(anchura, altura, puntuacion, nivel);
 	                j.guardarPartida(parAcabada);
 
 	            }

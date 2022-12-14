@@ -22,5 +22,10 @@ public class Personalizacion {
 	public void setSonido(String pSonido) {
 		sonido = pSonido;
 	}
-	
+
+    public String getColorBloques() {return this.colorBloques;}
+
+	public String getColorFondo() {return this.colorFondo;}
+
+	public String getSonido() {return this.sonido;}
 }

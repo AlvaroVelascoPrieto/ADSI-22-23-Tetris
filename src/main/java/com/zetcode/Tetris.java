@@ -1,7 +1,6 @@
 package com.zetcode;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -48,7 +47,7 @@ public class Tetris extends JFrame {
         var board = new Board(this);
         add(board);
         board.start();
-
+        board.setBackground(Juego.getMiJuego().getColorFondo());
         setTitle("Tetris");
         setSize(200, 400);
         setDefaultCloseOperation(EXIT_ON_CLOSE);

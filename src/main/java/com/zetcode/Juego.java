@@ -1,5 +1,6 @@
 package com.zetcode;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Observable;
@@ -93,6 +94,40 @@ public class Juego extends Observable {
 		//Personalizacion laPersonalizacion = ListaJugadores.getMiListaJugadores().getPersonalizacion(elJugador);
 		//laPersonalizacion.setSonido(pSonido);
 	}
+
+	public Color getColorFondo() {
+		//Jugador elJugador = ListaJugadores.getMiListaJugadores().buscarJugador(usu);
+		//Personalizacion laPersonalizacion = ListaJugadores.getMiListaJugadores().getPersonalizacion(elJugador);
+		//String color = laPersonalizacion.getColorFondo();
+		/*if(color=="Blanco"){
+			return new Color(255, 255, 255);
+		}
+		else if(color=="Negro"){
+			return new Color(0, 0, 0);
+		}
+		else if (color=="Azul"){
+			return new Color(0, 128, 255);
+		}
+		else if (color=="Verde"){
+			return new Color(102, 204, 102);
+		}
+		else{
+			return new Color(255, 141, 0);
+		}*/
+		return new Color(255, 255, 255);
+	}
+
+	public Color[] getColorBloques() {
+		//Jugador elJugador = ListaJugadores.getMiListaJugadores().buscarJugador(usu);
+		//Personalizacion laPersonalizacion = ListaJugadores.getMiListaJugadores().getPersonalizacion(elJugador);
+		//String color = laPersonalizacion.getColorBloques();
+		Color colors[] = {new Color(0, 0, 0), new Color(204, 102, 102),
+				new Color(102, 204, 102), new Color(102, 102, 204),
+				new Color(204, 204, 102), new Color(204, 102, 204),
+				new Color(102, 204, 204), new Color(218, 170, 0)
+		};
+		return colors;
+	}
 	
 	///////  RANKINGS ////////////////////////////////
 	public JsonArray obtRankAbsPers(String usuario) {
@@ -112,4 +147,5 @@ public class Juego extends Observable {
 	public JsonArray obtRankNiv(int niv) {
 		return ListaJugadores.getMiListaJugadores().obtRankNiv(niv);
 	}
+
 }
