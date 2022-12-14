@@ -23,6 +23,7 @@ public class ListaJugadores {
 	public static ListaJugadores getMiListaJugadores() {
 		if(miListaJugadores == null) {
 			miListaJugadores = new ListaJugadores();
+			
 		}
 		return miListaJugadores;
 	}
@@ -41,6 +42,16 @@ public class ListaJugadores {
 			}
 		}
 		return null;
+	}
+	public int getNumeroDeJugadores() {
+		Iterator<Jugador> itr = this.getIterador();
+		Jugador act;
+		int cont = 0;
+		while(itr.hasNext()) {
+			act = itr.next();
+			cont = cont+1;
+		}
+		return cont;
 	}
 	
 	public Personalizacion getPersonalizacion(Jugador elJugador) {

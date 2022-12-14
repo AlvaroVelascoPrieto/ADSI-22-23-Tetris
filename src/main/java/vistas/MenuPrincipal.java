@@ -19,6 +19,8 @@ import java.awt.event.ActionEvent;
 public class MenuPrincipal extends JFrame {
 
 	private JPanel contentPane;
+	private static MenuPrincipal miMenuPrincipal;
+
 
 	/**
 	 * Launch the application.
@@ -27,8 +29,7 @@ public class MenuPrincipal extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MenuPrincipal frame = new MenuPrincipal();
-					frame.setVisible(true);
+					MenuPrincipal.getMiMenuPrincipal();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -88,9 +89,9 @@ public class MenuPrincipal extends JFrame {
 		contentPane.add(cambiarContrasena);
 		cambiarContrasena.addActionListener(ControladorMenuPrincipal.getControladorMenuPrincipal());
 		
+		setVisible(true);
 		
-		
-		//codigo para que realice una accion al cerrar
+		/* //codigo para que realice una accion al cerrar
 		// |-> para utilizarlo para guardar en la base de datos los objetos 
 		
 		
@@ -101,6 +102,15 @@ public class MenuPrincipal extends JFrame {
 	        	//TODO llamada al metodo para volcar objetos en la bd
 	            System.out.println("Estoy cerrando");
 	        }
-	 });
+	 }); */
 	}
+	public static MenuPrincipal getMiMenuPrincipal()
+    {
+        if(miMenuPrincipal == null)
+        {
+            miMenuPrincipal = new MenuPrincipal();
+        }
+        return miMenuPrincipal;
+    }
+
 }

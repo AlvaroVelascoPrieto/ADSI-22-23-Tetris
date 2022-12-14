@@ -24,6 +24,12 @@ public class Jugador {
 		personalizacion = new Personalizacion("Blanco", "Default", "Default");
 	}
 
+	public String getNombreUsuario(){
+		return this.usuario;
+	}
+	public String getPassword(){
+		return this.contrasena;
+	}
 	public Personalizacion getPersonalizacion() {
 		return this.personalizacion;
 	}

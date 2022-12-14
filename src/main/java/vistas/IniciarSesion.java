@@ -12,7 +12,8 @@ public class IniciarSesion extends JFrame{
         
     private JPanel contentPane;
     private static IniciarSesion miInicioSesion;
-    //private boolean estado=false;
+    private static JTextField textoNombre;
+    private static JPasswordField textoPassword;
 
     
     public static void main(String[] args) {
@@ -46,9 +47,8 @@ public class IniciarSesion extends JFrame{
         nombreLabel.setBounds(152, 93, 200, 23);
         contentPane.add(nombreLabel);
 
-        JTextField textoNombre = new JTextField();
-        textoNombre.setBounds(152,115,140,23);
-        contentPane.add(textoNombre);
+
+        contentPane.add(this.getNombreUsuario());
 
 
         //Contraseña
@@ -58,9 +58,8 @@ public class IniciarSesion extends JFrame{
         passwordLabel.setBounds(152, 140, 200, 23);
         contentPane.add(passwordLabel);
 
-        JPasswordField textoPassword = new JPasswordField();
-        textoPassword.setBounds(152,162,140,23);
-        contentPane.add(textoPassword);
+       
+        contentPane.add(this.getPassworField());
 
 
         //Botones
@@ -69,6 +68,8 @@ public class IniciarSesion extends JFrame{
         continuarbtn.setText("Continuar");
         continuarbtn.setBounds(170,190,100,23);
         contentPane.add(continuarbtn);
+        continuarbtn.addActionListener(ControladorMenuIdentificacion.getControladorMenuIdentificacion());
+
 
 
         JButton atrasbtn = new JButton("Atras");
@@ -89,15 +90,19 @@ public class IniciarSesion extends JFrame{
         }
         return miInicioSesion;
     }
-  /*  
-    public void alternar() {
-        if (estado) {
-            setVisible(false);
-            estado = false;
-        } else {
-            setVisible(true);
-            estado = true;
+
+    public  JTextField getNombreUsuario() {
+		if (textoNombre == null) {
+			textoNombre = new JTextField();
+            textoNombre.setBounds(152,115,140,23);
+		}
+		return textoNombre;
+}
+    public  JTextField getPassworField() {
+        if (textoPassword == null) {
+            textoPassword = new JPasswordField();
+            textoPassword.setBounds(152,162,140,23);
         }
+        return textoPassword;
     }
-     */ 
 }

@@ -13,6 +13,7 @@ public class MenuIdentificacion extends JFrame{
     private JPanel contentPane;
     private static MenuIdentificacion miMenuIdentificacion;
     
+    
 
     
 
