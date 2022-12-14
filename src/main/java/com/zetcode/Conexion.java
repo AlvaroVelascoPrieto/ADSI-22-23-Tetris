@@ -198,7 +198,9 @@ public class Conexion {
 		try (Connection con = conectar()){
 			
 			ArrayList<Jugador> listaJugadores = ListaJugadores.getMiListaJugadores().getLista();
-			PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO jugador VALUES (?,?,?,?,?)");
+			PreparedStatement preparedStatement1 = con.prepareStatement("INSERT INTO jugador VALUES (?,?,?,?,?)");
+			PreparedStatement preparedStatement2 = con.prepareStatement("INSERT INTO personalizacion VALUES (?,?,?,?)");
+			
 			//por cada jugador en listajugadores
 			for(int i = 0; i < listaJugadores.size(); i++)
 			{
@@ -208,15 +210,27 @@ public class Conexion {
 				String contrasena = listaJugadores.get(i).getContrasena();
 				int idPersonalizacion = i;
 				int idPartidaGuardada = i;
-				preparedStatement.setString(1, usuario);
-				preparedStatement.setString(2, usuario);
-				preparedStatement.setString(3, usuario);
-				preparedStatement.setInt(4, idPersonalizacion);
-				preparedStatement.setInt(5, idPartidaGuardada);
-				preparedStatement.executeQuery();
+				preparedStatement1.setString(1, usuario);
+				preparedStatement1.setString(2, usuario);
+				preparedStatement1.setString(3, usuario);
+				preparedStatement1.setInt(4, idPersonalizacion);
+				preparedStatement1.setInt(5, idPartidaGuardada);
+				preparedStatement1.executeQuery();
+				
+				//insertamos los datos de la personalización
+				String colorFondo = listaJugadores.get(i).getPersonalizacion().getColorFondo();
+				String colorBloques = listaJugadores.get(i).getPersonalizacion().getColorBloques();
+				String sonido = listaJugadores.get(i).getPersonalizacion().getSonido();
+				preparedStatement2.setInt(1, idPersonalizacion);
+				preparedStatement2.setString(2, colorFondo);
+				preparedStatement2.setString(3, colorBloques);
+				preparedStatement2.setString(4, sonido);
+				preparedStatement2.executeQuery();
+				
+				//insertamos los datos de la partida guardada
+				
+				//por cada partida acabada por un jugador
 			}
-	        System.out.println(preparedStatement);
-	        ResultSet rs = preparedStatement.executeQuery();
 
 	    } catch (SQLException e) {
 	    	System.out.println("ha habido algun error al crear los jugadores");
