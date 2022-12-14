@@ -11,6 +11,10 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.zetcode.Shape.Tetrominoe;
 
+import vistas.*;
+import javax.swing.JOptionPane;
+
+
 public class Juego extends Observable {
 	private static Juego miJuego;
 	private Juego() {
@@ -128,6 +132,42 @@ public class Juego extends Observable {
 		};
 		return colors;
 	}
+
+	///////  Inicio Sesión ////////////////////////////////
+	public String nombreJugador(){
+
+		MenuIdentificacion.getMiMenuIdentificacion().setVisible(false);
+		Registro.getMiRegistro().setVisible(false);
+		IniciarSesion.getMiInicioSesion().setVisible(false);	
+		String inputNombre=IniciarSesion.getMiInicioSesion().getNombreUsuario().getText();
+		String inputpassword=IniciarSesion.getMiInicioSesion().getPassworField().getText();
+		int i=0;
+		boolean enc=false;
+		while (!enc&& i<ListaJugadores.getMiListaJugadores().getNumeroDeJugadores()){
+
+			if (ListaJugadores.getMiListaJugadores().buscarJugador(inputNombre) != null){
+				Jugador jugador = ListaJugadores.getMiListaJugadores().buscarJugador(inputNombre);
+				if(jugador.getPassword().equals(inputpassword)){
+					MenuPrincipal.getMiMenuPrincipal();
+					MenuPrincipal.getMiMenuPrincipal().setVisible(true);
+					enc=true;
+
+				}
+				
+			}
+			
+			i=i+1;
+
+
+		} 
+		if (enc==false){
+			JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos", "Error Inicio de Sesión", JOptionPane.WARNING_MESSAGE);
+			IniciarSesion.getMiInicioSesion().setVisible(true);
+		} 
+
+	}
+
+	
 	
 	///////  RANKINGS ////////////////////////////////
 	public JsonArray obtRankAbsPers(String usuario) {
