@@ -11,23 +11,19 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.zetcode.Shape.Tetrominoe;
 
-import vistas.*;
-import javax.swing.JOptionPane;
-
-
 public class Juego extends Observable {
 	private static Juego miJuego;
 	private Juego() {
-		
+
 	}
-	
+
 	public static Juego getMiJuego() {
 		if(miJuego == null) {
 			miJuego = new Juego();
 		}
 		return miJuego;
 	}
-	
+
 	public JsonArray cargarPartida(String pUsuario)
 	{
 		Jugador j = ListaJugadores.getMiListaJugadores().buscarJugador(pUsuario);
@@ -40,9 +36,9 @@ public class Juego extends Observable {
 		json1.addProperty("Altura", b.getAltura());
 		json1.addProperty("Puntuacion", b.getPuntuacion());
 		json1.addProperty("Nivel", b.getNivel());
-		
+
 		jsonA.add(json1);
-		
+
 		//creamos un JsonArray que contendrá Jsons sobre las propiedades de cada bloque
 		JsonArray jsonBloques = new JsonArray();
 		//para cada bloque creamos un Json que contenga únicamente la forma de la posición i del array que expresa el tablero.
@@ -75,35 +71,35 @@ public class Juego extends Observable {
 			jsonB.addProperty("nombreForma", nombreForma);
 			jsonBloques.add(jsonB);
 		}
-		
+
 		jsonA.add(jsonBloques);
-		
+
 		return jsonA;
 	}
-	
-	public void cambiarColorFondo(String pColor) {
-		//Jugador elJugador = ListaJugadores.getMiListaJugadores().buscarJugador(usu);
-		//Personalizacion laPersonalizacion = ListaJugadores.getMiListaJugadores().getPersonalizacion(elJugador);
-		//laPersonalizacion.setColorFondo(pColor);
-	}
-	
-	public void cambiarColorLadrillo(String pColor) {
-		//Jugador elJugador = ListaJugadores.getMiListaJugadores().buscarJugador(usu);
-		//Personalizacion laPersonalizacion = ListaJugadores.getMiListaJugadores().getPersonalizacion(elJugador);
-		//laPersonalizacion.setColorBloques(pColor);
-	}
-	
-	public void cambiarSonido(String pSonido) {
-		//Jugador elJugador = ListaJugadores.getMiListaJugadores().buscarJugador(usu);
-		//Personalizacion laPersonalizacion = ListaJugadores.getMiListaJugadores().getPersonalizacion(elJugador);
-		//laPersonalizacion.setSonido(pSonido);
+
+	public void cambiarColorFondo(String pColor, String pUsuario) {
+		Jugador elJugador = ListaJugadores.getMiListaJugadores().buscarJugador(pUsuario);
+		Personalizacion laPersonalizacion = ListaJugadores.getMiListaJugadores().getPersonalizacion(elJugador);
+		laPersonalizacion.setColorFondo(pColor);
 	}
 
-	public Color getColorFondo() {
-		//Jugador elJugador = ListaJugadores.getMiListaJugadores().buscarJugador(usu);
-		//Personalizacion laPersonalizacion = ListaJugadores.getMiListaJugadores().getPersonalizacion(elJugador);
-		//String color = laPersonalizacion.getColorFondo();
-		/*if(color=="Blanco"){
+	public void cambiarColorLadrillo(String pColor, String pUsuario) {
+		Jugador elJugador = ListaJugadores.getMiListaJugadores().buscarJugador(pUsuario);
+		Personalizacion laPersonalizacion = ListaJugadores.getMiListaJugadores().getPersonalizacion(elJugador);
+		laPersonalizacion.setColorBloques(pColor);
+	}
+
+	public void cambiarSonido(String pSonido, String pUsuario) {
+		Jugador elJugador = ListaJugadores.getMiListaJugadores().buscarJugador(pUsuario);
+		Personalizacion laPersonalizacion = ListaJugadores.getMiListaJugadores().getPersonalizacion(elJugador);
+		laPersonalizacion.setSonido(pSonido);
+	}
+
+	public Color getColorFondo(String pUsuario) {
+		Jugador elJugador = ListaJugadores.getMiListaJugadores().buscarJugador(pUsuario);
+		Personalizacion laPersonalizacion = ListaJugadores.getMiListaJugadores().getPersonalizacion(elJugador);
+		String color = laPersonalizacion.getColorFondo();
+		if(color=="Blanco"){
 			return new Color(255, 255, 255);
 		}
 		else if(color=="Negro"){
@@ -117,57 +113,46 @@ public class Juego extends Observable {
 		}
 		else{
 			return new Color(255, 141, 0);
-		}*/
-		return new Color(255, 255, 255);
+		}
 	}
 
-	public Color[] getColorBloques() {
-		//Jugador elJugador = ListaJugadores.getMiListaJugadores().buscarJugador(usu);
-		//Personalizacion laPersonalizacion = ListaJugadores.getMiListaJugadores().getPersonalizacion(elJugador);
-		//String color = laPersonalizacion.getColorBloques();
-		Color colors[] = {new Color(0, 0, 0), new Color(204, 102, 102),
-				new Color(102, 204, 102), new Color(102, 102, 204),
-				new Color(204, 204, 102), new Color(204, 102, 204),
-				new Color(102, 204, 204), new Color(218, 170, 0)
-		};
-		return colors;
+	public Color[] getColorBloques(String pUsuario) {
+		Jugador elJugador = ListaJugadores.getMiListaJugadores().buscarJugador(pUsuario);
+		Personalizacion laPersonalizacion = ListaJugadores.getMiListaJugadores().getPersonalizacion(elJugador);
+		String color = laPersonalizacion.getColorBloques();
+		if (color=="Default") {
+			Color colors[] = {new Color(0, 0, 0), new Color(204, 102, 102),
+					new Color(102, 204, 102), new Color(102, 102, 204),
+					new Color(204, 204, 102), new Color(204, 102, 204),
+					new Color(102, 204, 204), new Color(218, 170, 0)
+			};
+			return colors;
+		}
+		else if (color=="Retro"){
+			Color colors[] = {new Color(229, 210, 141), new Color(77, 72, 69),
+					new Color(255, 135, 0), new Color(0, 0, 0),
+					new Color(77, 65, 4), new Color(73, 70, 70),
+					new Color(73, 39, 24), new Color(0, 0, 0)
+			};
+			return colors;
+		}
+		else if (color == "Modern") {
+			Color colors[] = {new Color(229, 210, 141), new Color(229, 210, 141),
+					new Color(229, 210, 141), new Color(229, 210, 141),
+					new Color(229, 210, 141), new Color(229, 210, 141),
+					new Color(229, 210, 141), new Color(229, 210, 141)
+			};
+			return colors;
+		}
+		else{
+			Color colors[] = {new Color(0, 205, 255), new Color(0, 255, 77),
+					new Color(165, 156, 215), new Color(102, 102, 204),
+					new Color(171, 104, 222), new Color(204, 102, 204),
+					new Color(0, 180, 255), new Color(160, 229, 141)
+			};
+			return colors;
+		}
 	}
-
-	///////  Inicio Sesión ////////////////////////////////
-	public String nombreJugador(){
-
-		MenuIdentificacion.getMiMenuIdentificacion().setVisible(false);
-		Registro.getMiRegistro().setVisible(false);
-		IniciarSesion.getMiInicioSesion().setVisible(false);	
-		String inputNombre=IniciarSesion.getMiInicioSesion().getNombreUsuario().getText();
-		String inputpassword=IniciarSesion.getMiInicioSesion().getPassworField().getText();
-		int i=0;
-		boolean enc=false;
-		while (!enc&& i<ListaJugadores.getMiListaJugadores().getNumeroDeJugadores()){
-
-			if (ListaJugadores.getMiListaJugadores().buscarJugador(inputNombre) != null){
-				Jugador jugador = ListaJugadores.getMiListaJugadores().buscarJugador(inputNombre);
-				if(jugador.getPassword().equals(inputpassword)){
-					MenuPrincipal.getMiMenuPrincipal();
-					MenuPrincipal.getMiMenuPrincipal().setVisible(true);
-					enc=true;
-
-				}
-				
-			}
-			
-			i=i+1;
-
-
-		} 
-		if (enc==false){
-			JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos", "Error Inicio de Sesión", JOptionPane.WARNING_MESSAGE);
-			IniciarSesion.getMiInicioSesion().setVisible(true);
-		} 
-
-	}
-
-	
 	
 	///////  RANKINGS ////////////////////////////////
 	public JsonArray obtRankAbsPers(String usuario) {

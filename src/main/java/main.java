@@ -1,4 +1,7 @@
+import vistas.IntPersonalizar;
 import vistas.MenuIdentificacion;
+import vistas.MenuPrincipal;
+
 import java.awt.EventQueue;
 
 public class main {

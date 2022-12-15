@@ -28,15 +28,17 @@ public class Tetris extends JFrame {
 	
 	private static final Logger logger = LogManager.getLogger(Tetris.class);
     private JLabel statusbar;
+    private String usuario;
     
     public Tetris() {
         initUI();
     }
     
-    public Tetris(String usuario)
+    public Tetris(String pUsuario)
     {
     	JsonArray jsonA = Juego.getMiJuego().cargarPartida(usuario);
     	initUI(jsonA);
+        usuario = pUsuario;
     }
 
     private void initUI() {
@@ -44,10 +46,10 @@ public class Tetris extends JFrame {
         statusbar = new JLabel(" 0");
         add(statusbar, BorderLayout.SOUTH);
 
-        var board = new Board(this);
+        var board = new Board(this, usuario);
         add(board);
         board.start();
-        board.setBackground(Juego.getMiJuego().getColorFondo());
+        board.setBackground(Juego.getMiJuego().getColorFondo(usuario));
         setTitle("Tetris");
         setSize(200, 400);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -60,7 +62,7 @@ public class Tetris extends JFrame {
     	statusbar = new JLabel(" 0");
         add(statusbar, BorderLayout.SOUTH);
 
-        var board = new Board(this);
+        var board = new Board(this, usuario);
         //establecemos los datos básicos de la partida
         JsonObject json1 = jsonA.get(0).getAsJsonObject();
         board.setDatosBasicos(json1.get("Anchura").getAsInt(), json1.get("Altura").getAsInt(), json1.get("Puntuacion").getAsInt(), json1.get("Nivel").getAsInt());

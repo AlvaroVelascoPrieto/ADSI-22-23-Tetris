@@ -31,10 +31,11 @@ public class Board extends JPanel {
     private Tetrominoe[] board;
     private int nivel;
     private ArrayList<Shape> listaBloques;
+    private String usuario;
 
-    public Board(Tetris parent) {
-
+    public Board(Tetris parent, String pUsuario) {
         initBoard(parent);
+        usuario = pUsuario;
     }
     
     public void setDatosBasicos(int pAnchura, int pAltura, int pPuntuacion, int pNivel)
@@ -300,7 +301,7 @@ public class Board extends JPanel {
     }
 
     private void drawSquare(Graphics g, int x, int y, Tetrominoe shape) {
-        Color colors[] = Juego.getMiJuego().getColorBloques();
+        Color colors[] = Juego.getMiJuego().getColorBloques(usuario);
 
         var color = colors[shape.ordinal()];
 

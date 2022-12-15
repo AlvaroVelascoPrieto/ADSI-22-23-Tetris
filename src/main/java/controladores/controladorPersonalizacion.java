@@ -1,5 +1,7 @@
 package controladores;
 
+import com.zetcode.Juego;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -11,6 +13,7 @@ public class controladorPersonalizacion implements ActionListener {
 	private static controladorPersonalizacion miControladorPersonalizacion;
 	private ArrayList<JButton> botonesAplicar;
 	private ArrayList<JComboBox> cuadrosTexto;
+	private String usuario;
 
 	private controladorPersonalizacion() {
 		botonesAplicar = new ArrayList<JButton>();
@@ -28,24 +31,19 @@ public class controladorPersonalizacion implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(botonesAplicar.get(0))) {
 			//Aplicar fondo
+			Juego.getMiJuego().cambiarColorFondo(cuadrosTexto.get(0).getSelectedItem().toString(),usuario);
+
 		}
 		else if (e.getSource().equals(botonesAplicar.get(1))) {
-			//Aplicar bloques
+			Juego.getMiJuego().cambiarColorLadrillo(cuadrosTexto.get(1).getSelectedItem().toString(),usuario);
 		}
 		else if (e.getSource().equals(botonesAplicar.get(2))) {
 			//Aplicar sonido
-		}
-		else if (e.getSource().equals(cuadrosTexto.get(0))) {
-			//Actualizar seleccion fondo
-		}
-		else if (e.getSource().equals(cuadrosTexto.get(1))) {
-			//Actualizar seleccion bloque
-		}
-		else if (e.getSource().equals(cuadrosTexto.get(2))){
-			//Actualizar seleccion sonido
+			Juego.getMiJuego().cambiarSonido(cuadrosTexto.get(2).getSelectedItem().toString(),usuario);
 		}
 		else {
 			//Salir
+
 		}
 	}
 	
@@ -56,5 +54,7 @@ public class controladorPersonalizacion implements ActionListener {
 	public void anadirCuadroTexto(JComboBox pOpciones) {
 		this.cuadrosTexto.add(pOpciones);
 	}
+
+	public void setUsuarioIdentificado(String pUsuario){this.usuario=pUsuario;}
 
 }

@@ -67,8 +67,8 @@ public static ControladorMenuIdentificacion getControladorMenuIdentificacion() {
             RecuperarPassword.getMiRecuperarPassword().setVisible(true);   
         }    
         if (e.getActionCommand().equals("Continuar")) {
-            String nombreUsuario = Juego.getMiJuego().nombreJugador();
-            MenuPrincipal menuPrincipal= new MenuPrincipal(nombreUsuario);
+            //String nombreUsuario = Juego.getMiJuego().nombreJugador();
+            //MenuPrincipal menuPrincipal= new MenuPrincipal(nombreUsuario);
 
 
         }

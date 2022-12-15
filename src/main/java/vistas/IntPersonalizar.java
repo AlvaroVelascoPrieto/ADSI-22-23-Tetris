@@ -28,15 +28,18 @@ public class IntPersonalizar extends JFrame implements Observer {
 	private JComboBox opcionesBloque;
 	private JComboBox opcionesSonido;
 	private String[] optFondo = { "Blanco", "Negro", "Azul", "Verde", "Naranja" };
-	private String[] optBloques = { "Default", "Retro", "Clasic", "Modern", "Cool" };
+	private String[] optBloques = { "Default", "Retro", "Modern", "Cool" };
 	private String[] optSonido = { "Agua", "Metal", "Roca"};
 	private JButton salir;
+	private String usuario;
 	
-	public IntPersonalizar() {
+	public IntPersonalizar(String pUsuario) {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		inicializar();
 		setVisible(true);
 		Juego.getMiJuego().addObserver(this);
+		usuario = pUsuario;
+		controladorPersonalizacion.getMiControlador().setUsuarioIdentificado(usuario);
 	}
 	
 	public void inicializar(){
@@ -75,9 +78,6 @@ public class IntPersonalizar extends JFrame implements Observer {
 		aplicarBloque.addActionListener(controladorPersonalizacion.getMiControlador());
 		aplicarSonido.addActionListener(controladorPersonalizacion.getMiControlador());
 		salir.addActionListener(controladorPersonalizacion.getMiControlador());
-		opcionesFondo.addActionListener(controladorPersonalizacion.getMiControlador());
-		opcionesBloque.addActionListener(controladorPersonalizacion.getMiControlador());
-		opcionesSonido.addActionListener(controladorPersonalizacion.getMiControlador());
 		
 		//Anadir elementos a la vista
 		panelFondo.add(new JLabel("Color fondo: "));
