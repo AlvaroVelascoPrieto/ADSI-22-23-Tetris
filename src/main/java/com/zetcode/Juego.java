@@ -5,11 +5,15 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Observable;
 
+import javax.swing.JOptionPane;
+
 import org.json.JSONObject;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.zetcode.Shape.Tetrominoe;
+
+import vistas.*;
 
 public class Juego extends Observable {
 	private static Juego miJuego;
@@ -153,6 +157,70 @@ public class Juego extends Observable {
 			return colors;
 		}
 	}
+
+	///////  Iniciar Sesión ////////////////////////////////
+	public String inicioSesion(){
+
+	
+		String inputNombre=IniciarSesion.getMiInicioSesion().getNombreUsuario().getText();
+		System.out.println(inputNombre);
+		String inputpassword=IniciarSesion.getMiInicioSesion().getPassworField().getText();
+		int i=0;
+		boolean enc=false;
+		while (!enc&& i<ListaJugadores.getMiListaJugadores().getNumeroDeJugadores()){
+
+			if (ListaJugadores.getMiListaJugadores().buscarJugador(inputNombre) != null){
+				Jugador jugador = ListaJugadores.getMiListaJugadores().buscarJugador(inputNombre);
+				if(jugador.getPassword().equals(inputpassword)){
+					MenuPrincipal menuPrincipal = new MenuPrincipal(inputNombre);
+					menuPrincipal.setVisible(true);
+					enc=true;
+				}
+				
+			}
+			
+			i=i+1;
+
+
+		} 
+		if (enc==false){
+			JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos", "Error Inicio de Sesión", JOptionPane.WARNING_MESSAGE);
+			IniciarSesion.getMiInicioSesion().setVisible(true);
+		} 
+
+		return inputNombre;
+
+	}
+	///////  Registrar Jugador ////////////////////////////////
+
+	public String registrarJugador(){
+		String inputNombreR = Registro.getMiRegistro().getNombreUsuario().getText();
+		System.out.println(inputNombreR);
+		String inputPassR = Registro.getMiRegistro().getPassworField().getText();
+		System.out.println(inputPassR);
+
+		String inputCorreoR = Registro.getMiRegistro().getCorreo().getText();
+		System.out.println(inputCorreoR);
+
+		if (inputCorreoR.equals("") || inputNombreR.equals("")|| inputPassR.equals("")){
+
+			JOptionPane.showMessageDialog(null, "Debe rellenar todos los campos", "Error al registrar el usuario", JOptionPane.WARNING_MESSAGE);
+			Registro.getMiRegistro().setVisible(true);
+		}
+		else{
+			Jugador j = new Jugador(inputNombreR, inputCorreoR, inputPassR);
+			ListaJugadores.getMiListaJugadores().anadirJugador(j);
+			MenuPrincipal menuPrincipal = new MenuPrincipal(inputNombreR);
+			menuPrincipal.setVisible(true);		
+		}
+		return inputNombreR;
+		
+	}
+	 
+
+
+
+
 	
 	///////  RANKINGS ////////////////////////////////
 	public JsonArray obtRankAbsPers(String usuario) {

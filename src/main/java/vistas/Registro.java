@@ -9,6 +9,9 @@ public class Registro extends JFrame {
 
     private JPanel contentPane;
     private static Registro miRegistro;
+    private static JTextField textoNombre;
+    private static JTextField textoCorreo;
+    private static JPasswordField textoPassword;
 
 
     public static void main(String[] args) {
@@ -40,9 +43,7 @@ public class Registro extends JFrame {
         correoLabel.setBounds(152, 40, 200, 23);
         contentPane.add(correoLabel);
 
-        JTextField textoCorreo = new JTextField();
-        textoCorreo.setBounds(152,62,140,23);
-        contentPane.add(textoCorreo);
+        contentPane.add(this.getCorreo());
 
         //Nombre usuario
         JLabel nombreLabel = new JLabel();
@@ -50,9 +51,8 @@ public class Registro extends JFrame {
         nombreLabel.setBounds(152, 93, 200, 23);
         contentPane.add(nombreLabel);
 
-        JTextField textoNombre = new JTextField();
-        textoNombre.setBounds(152,115,140,23);
-        contentPane.add(textoNombre);
+   
+        contentPane.add(this.getNombreUsuario());
 
 
         //Contraseña
@@ -62,17 +62,17 @@ public class Registro extends JFrame {
         passwordLabel.setBounds(152, 140, 200, 23);
         contentPane.add(passwordLabel);
 
-        JTextField textoPassword = new JTextField();
-        textoPassword.setBounds(152,162,140,23);
-        contentPane.add(textoPassword);
+
+        contentPane.add(this.getPassworField());
 
 
         //Botones
 
         JButton continuarbtn = new JButton();
-        continuarbtn.setText("Continuar");
+        continuarbtn.setText("Listo");
         continuarbtn.setBounds(170,190,100,23);
         contentPane.add(continuarbtn);
+        continuarbtn.addActionListener(ControladorMenuIdentificacion.getControladorMenuIdentificacion());
 
 
         JButton atrasbtn = new JButton();
@@ -83,6 +83,27 @@ public class Registro extends JFrame {
 
         setVisible(true);
 
+    }
+    public  JTextField getNombreUsuario() {
+		if (textoNombre == null) {
+			textoNombre = new JTextField();
+            textoNombre.setBounds(152,115,140,23);
+		}
+		return textoNombre;
+}
+public  JTextField getCorreo() {
+    if (textoCorreo == null) {
+        textoCorreo = new JTextField();
+        textoCorreo.setBounds(152,62,140,23);
+    }
+    return textoCorreo;
+}
+    public  JTextField getPassworField() {
+        if (textoPassword == null) {
+            textoPassword = new JPasswordField();
+            textoPassword.setBounds(152,162,140,23);
+        }
+        return textoPassword;
     }
 
     public static Registro getMiRegistro()
