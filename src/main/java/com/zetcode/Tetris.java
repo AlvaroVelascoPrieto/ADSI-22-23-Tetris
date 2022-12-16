@@ -38,9 +38,9 @@ public class Tetris extends JFrame {
     
     public Tetris(String pUsuario,boolean cargar)
     {
+    	usuario = pUsuario;
     	JsonArray jsonA = Juego.getMiJuego().cargarPartida(usuario);
     	initUI(jsonA);
-        usuario = pUsuario;
     }
 
     private void initUI() {
