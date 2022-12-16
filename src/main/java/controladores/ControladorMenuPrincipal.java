@@ -3,11 +3,13 @@ package controladores;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import com.zetcode.Juego;
 import com.zetcode.Tetris;
 
 import vistas.IntPersonalizar;
 import vistas.MenuPrincipal;
 import vistas.MenuRankings;
+import vistas.Sonido;
 
 public class ControladorMenuPrincipal implements ActionListener{
 
@@ -32,6 +34,7 @@ private String usuario;
 		System.out.println(e.getActionCommand());
 		// botones menu principal rankings
 		if (e.getActionCommand().equals("Jugar")) { // comenzar una partida
+			Sonido.getMiSonido().reproducirSondoEnLoop("/audios/" + Juego.getMiJuego().getSonido(usuario));
 			Tetris partidaNueva = new Tetris(usuario);
 			partidaNueva.setVisible(true);
 		}

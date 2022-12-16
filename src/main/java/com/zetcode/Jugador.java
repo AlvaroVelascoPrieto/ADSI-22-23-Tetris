@@ -21,7 +21,7 @@ public class Jugador {
 		contrasena = pContrasena;
 		lPartidasTerminadas = new ArrayList<Board>();
 		//lPremios = new ArrayList<Premio>();
-		personalizacion = new Personalizacion("Blanco", "Default", "Default");
+		personalizacion = new Personalizacion("Blanco", "Default", "default");
 	}
 
 	public String getNombreUsuario(){

@@ -158,6 +158,14 @@ public class Juego extends Observable {
 		}
 	}
 
+	public String getSonido(String pUsuario){
+		Jugador elJugador = ListaJugadores.getMiListaJugadores().buscarJugador(pUsuario);
+		Personalizacion laPersonalizacion = ListaJugadores.getMiListaJugadores().getPersonalizacion(elJugador);
+		String color = laPersonalizacion.getSonido();
+		return color + ".wav";
+
+	}
+
 	///////  Iniciar Sesión ////////////////////////////////
 	public String inicioSesion(){
 		String inputNombre=IniciarSesion.getMiInicioSesion().getNombreUsuario().getText();

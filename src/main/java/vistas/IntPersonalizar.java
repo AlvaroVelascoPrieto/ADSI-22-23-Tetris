@@ -29,7 +29,7 @@ public class IntPersonalizar extends JFrame implements Observer {
 	private JComboBox opcionesSonido;
 	private String[] optFondo = { "Blanco", "Negro", "Azul", "Verde", "Naranja" };
 	private String[] optBloques = { "Default", "Retro", "Modern", "Cool" };
-	private String[] optSonido = { "Agua", "Metal", "Roca"};
+	private String[] optSonido = { "default", "animado", "PanteraRosa", "retro", "StarWars"};
 	private JButton salir;
 	private String usuario;
 	private static IntPersonalizar miIntPersonalizar;
