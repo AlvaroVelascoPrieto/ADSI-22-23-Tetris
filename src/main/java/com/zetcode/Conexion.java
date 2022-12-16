@@ -210,19 +210,8 @@ public class Conexion {
 			//por cada jugador en listajugadores
 			for(int i = 0; i < listaJugadores.size(); i++)
 			{
-				//insertamos los datos del jugador
-				String usuario = listaJugadores.get(i).getUsuario().toString();
-				String correo = listaJugadores.get(i).getCorreo();
-				String contrasena = listaJugadores.get(i).getContrasena();
 				int idPersonalizacion = i;
 				int idPartidaGuardada = i;
-				
-				preparedStatement1.setString(1, usuario);
-				preparedStatement1.setString(2, usuario);
-				preparedStatement1.setString(3, usuario);
-				preparedStatement1.setInt(4, idPersonalizacion);
-				preparedStatement1.setInt(5, idPartidaGuardada);
-				preparedStatement1.execute();
 				
 				//insertamos los datos de la personalización
 				String colorFondo = listaJugadores.get(i).getPersonalizacion().getColorFondo();
@@ -234,6 +223,18 @@ public class Conexion {
 				preparedStatement2.setString(3, colorBloques);
 				preparedStatement2.setString(4, sonido);
 				preparedStatement2.execute();
+				
+				//insertamos los datos del jugador
+				String usuario = listaJugadores.get(i).getUsuario().toString();
+				String correo = listaJugadores.get(i).getCorreo();
+				String contrasena = listaJugadores.get(i).getContrasena();
+				
+				preparedStatement1.setString(1, usuario);
+				preparedStatement1.setString(2, usuario);
+				preparedStatement1.setString(3, usuario);
+				preparedStatement1.setInt(4, idPersonalizacion);
+				preparedStatement1.setInt(5, idPartidaGuardada);
+				preparedStatement1.execute();
 				
 				//insertamos los datos de la partida guardada
 				int anchura = listaJugadores.get(i).getPartida().getAnchura();
