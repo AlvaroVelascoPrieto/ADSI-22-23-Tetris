@@ -12,6 +12,7 @@ public class main {
             public void run() {
                 try {
                    MenuIdentificacion.getMiMenuIdentificacion();
+                   Conexion.getMiConexion().crearDB();
                    Conexion.getMiConexion().cargarJugadores();
                    
                    //TODO BORRAR ESTO DESPUES
