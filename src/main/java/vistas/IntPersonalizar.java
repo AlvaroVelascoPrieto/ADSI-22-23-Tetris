@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 
 import com.zetcode.Juego;
 
+import controladores.ControladorMenuIdentificacion;
 import controladores.controladorPersonalizacion;
 
 public class IntPersonalizar extends JFrame implements Observer {
@@ -31,8 +32,9 @@ public class IntPersonalizar extends JFrame implements Observer {
 	private String[] optSonido = { "Agua", "Metal", "Roca"};
 	private JButton salir;
 	private String usuario;
+	private static IntPersonalizar miIntPersonalizar;
 	
-	public IntPersonalizar(String pUsuario) {
+	private IntPersonalizar(String pUsuario) {
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		inicializar();
 		setVisible(true);
@@ -40,6 +42,13 @@ public class IntPersonalizar extends JFrame implements Observer {
 		usuario = pUsuario;
 		controladorPersonalizacion.getMiControlador().setUsuarioIdentificado(usuario);
 		controladorPersonalizacion.getMiControlador().setVista(this);
+	}
+
+	public static IntPersonalizar getMiIntPersonalizar(String pUsuario){
+		if (miIntPersonalizar == null) {
+			miIntPersonalizar = new IntPersonalizar(pUsuario);
+		}
+		return miIntPersonalizar;
 	}
 	
 	public void inicializar(){

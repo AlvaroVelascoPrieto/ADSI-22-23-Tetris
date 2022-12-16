@@ -43,8 +43,7 @@ private String usuario;
 
 		}
 		if (e.getActionCommand().equals("Personalizar")) { // abrir la personalización de partidas
-			IntPersonalizar menuPers = new IntPersonalizar(usuario);
-			menuPers.setVisible(true);
+			IntPersonalizar.getMiIntPersonalizar(usuario).setVisible(true);
 		}
 		if (e.getActionCommand().equals("Consultar Ranking")) { // abrir el consultor de rankings
 			MenuRankings menuRank = new MenuRankings(usuario);
