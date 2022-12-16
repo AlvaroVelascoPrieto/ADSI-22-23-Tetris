@@ -98,10 +98,10 @@ public class MenuRankings extends JFrame {
 		menu.add(globAbs);
 		globAbs.addActionListener(ControladorRankings.getControladorRankings());
 		
-		Conexion.getMiConexion().crearDB();
+		/*Conexion.getMiConexion().crearDB();
 		Conexion.getMiConexion().cargarJugadores();
 		System.out.println("jugadores cargados");
-		System.out.println(usuario);
+		System.out.println(usuario);*/
 		//Conexion.getMiConexion().conectar();
 	}
 	

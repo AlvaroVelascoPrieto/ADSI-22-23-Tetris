@@ -5,7 +5,13 @@ import controladores.ControladorMenuIdentificacion;
 
 
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 import javax.swing.border.EmptyBorder;
+
+import com.zetcode.Conexion;
+
 import javax.swing.*;
 
 public class MenuIdentificacion extends JFrame{
@@ -57,6 +63,15 @@ public class MenuIdentificacion extends JFrame{
 
 
         setVisible(true);
+        
+        this.addWindowListener(new WindowAdapter() {
+	        @Override
+	        public void windowClosing(WindowEvent e) {
+	            
+	        	Conexion.getMiConexion().guardarDatos();
+	            System.out.println("Estoy cerrando");
+	        }
+	 });
     }
     
     public static MenuIdentificacion getMiMenuIdentificacion()

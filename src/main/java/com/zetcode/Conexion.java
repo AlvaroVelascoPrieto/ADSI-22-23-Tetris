@@ -90,11 +90,11 @@ public class Conexion {
 	            PreparedStatement preparedStatement3 = con.prepareStatement("SELECT * FROM partida where id_partida=?");
 	            preparedStatement3.setString(1, parSinFin);
 	            ResultSet parGuardada = preparedStatement3.executeQuery();
-	            rs.next();
-                int anchura = partidas.getInt("anchura");
-                int altura = partidas.getInt("altura");
-                int puntuacion = partidas.getInt("puntuacion");
-                int nivel = partidas.getInt("nivel");
+	            parGuardada.next();
+                int anchura = parGuardada.getInt("anchura");
+                int altura = parGuardada.getInt("altura");
+                int puntuacion = parGuardada.getInt("puntuacion");
+                int nivel = parGuardada.getInt("nivel");
                 Board partidaGuardada = new Board(anchura, altura, puntuacion, nivel);
                 
                 //añadir los bloques a la partida acabada
@@ -105,8 +105,8 @@ public class Conexion {
                 Tetrominoe[] board = new Tetrominoe[altura * anchura];
                 while (bloques.next()) {
 					//sacar info de cada bloque y agregarlo a la partida
-                	int coord = partidas.getInt("coordenada");
-                	String forma = partidas.getString("forma");
+                	int coord = bloques.getInt("coordenada");
+                	String forma = bloques.getString("forma");
                 	switch(forma)
                 	{
                 	case "NoShape":
@@ -139,7 +139,7 @@ public class Conexion {
             PreparedStatement preparedStatement4 = con.prepareStatement("SELECT * FROM personalizacion where id_personalizacion=?");
             preparedStatement4.setInt(1, idpersonalizacion);
             ResultSet personalizacion = preparedStatement4.executeQuery();
-            rs.next();//obtener resultado de select --> personalizacion
+            personalizacion.next();//obtener resultado de select --> personalizacion
             String colorFondo = personalizacion.getString("colorFondo");
             String colorBloques = personalizacion.getString("colorBloques");
             String sonido = personalizacion.getString("sonido");
@@ -149,13 +149,14 @@ public class Conexion {
             //añadir jugador a la lista de jugadores
             ListaJugadores.getMiListaJugadores().anadirJugador(j);
             
-            preparedStatement.close();
             preparedStatement2.close();
             
             preparedStatement4.close();
         }
+        preparedStatement.close();
+       
     } catch (SQLException e) {
-    	System.out.println("ha habido algun error al crear los jugadores");
+    	System.out.println("ha habido algun error al crear los jugadores"+e);
     }
     
 }
@@ -200,7 +201,7 @@ public class Conexion {
 			ArrayList<Jugador> listaJugadores = ListaJugadores.getMiListaJugadores().getLista();
 			PreparedStatement preparedStatement1 = con.prepareStatement("INSERT INTO jugador VALUES (?,?,?,?,?)");
 			PreparedStatement preparedStatement2 = con.prepareStatement("INSERT INTO personalizacion VALUES (?,?,?,?)");
-			PreparedStatement preparedStatement3 = con.prepareStatement("INSERT INTO partida VALUES (?,?,?,?,?)");
+			PreparedStatement preparedStatement3 = con.prepareStatement("INSERT INTO partida VALUES (?,?,?,?,?,?)");
 			PreparedStatement preparedStatement4 = con.prepareStatement("INSERT INTO bloque VALUES (?,?,?,?,?,?)");
 			PreparedStatement preparedStatement5 = con.prepareStatement("INSERT INTO partida VALUES (?,?,?,?)");
 			int idBloque = 0;
@@ -303,7 +304,7 @@ public class Conexion {
 			}
 
 	    } catch (SQLException e) {
-	    	System.out.println("ha habido algun error al crear los jugadores");
+	    	System.out.println("ha habido algun error al guardar los datos"+e);
 	    }
 	}
 
