@@ -50,27 +50,40 @@ public class Juego extends Observable {
 		for(int i = 0; i < listaBloques.length; i++)
 		{
 			int numForma = listaBloques[i].ordinal();
-			String nombreForma;
-			switch(numForma) {
-			case 0:
+			String nombreForma = "NoShape";
+			if(numForma == 0)
+			{
 				nombreForma = "NoShape";
-	    	case 1:
-	    		nombreForma = "ZShape";
-	    	case 2:
-	    		nombreForma = "SShape";
-	    	case 3:
-	    		nombreForma = "LineShape";
-	    	case 4:
-	    		nombreForma = "TShape";
-	    	case 5:
-	    		nombreForma = "SquareShape";
-	    	case 6:
-	    		nombreForma = "LShape";
-	    	case 7:
-	    		nombreForma = "MirroredShape";
-	    	default:
-	    			nombreForma = "NoShape";
-	    	}
+			}
+			else if(numForma == 1)
+			{
+				nombreForma = "ZShape";
+			}
+			else if(numForma == 2)
+			{
+				nombreForma = "SShape";
+			}
+			else if(numForma == 3)
+			{
+				nombreForma = "LineShape";
+			}
+			else if(numForma == 4)
+			{
+				nombreForma = "TShape";
+			}
+			else if(numForma == 5)
+			{
+				nombreForma = "SquareShape";
+			}
+			else if(numForma == 6)
+			{
+				nombreForma = "LShape";
+			}
+			else if(numForma == 7)
+			{
+				nombreForma = "MirroredShape";
+			}
+
 			JsonObject jsonB = new JsonObject();
 			jsonB.addProperty("nombreForma", nombreForma);
 			jsonBloques.add(jsonB);
