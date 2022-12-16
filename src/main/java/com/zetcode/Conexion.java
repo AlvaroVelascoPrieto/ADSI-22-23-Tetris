@@ -222,7 +222,7 @@ public class Conexion {
 				preparedStatement1.setString(3, usuario);
 				preparedStatement1.setInt(4, idPersonalizacion);
 				preparedStatement1.setInt(5, idPartidaGuardada);
-				preparedStatement1.executeQuery();
+				preparedStatement1.execute();
 				
 				//insertamos los datos de la personalización
 				String colorFondo = listaJugadores.get(i).getPersonalizacion().getColorFondo();
@@ -233,7 +233,7 @@ public class Conexion {
 				preparedStatement2.setString(2, colorFondo);
 				preparedStatement2.setString(3, colorBloques);
 				preparedStatement2.setString(4, sonido);
-				preparedStatement2.executeQuery();
+				preparedStatement2.execute();
 				
 				//insertamos los datos de la partida guardada
 				int anchura = listaJugadores.get(i).getPartida().getAnchura();
@@ -246,7 +246,7 @@ public class Conexion {
 				preparedStatement3.setInt(3, altura);
 				preparedStatement3.setInt(4, puntuacion);
 				preparedStatement3.setInt(5, nivel);
-				preparedStatement3.executeQuery();
+				preparedStatement3.execute();
 				
 				//por cada bloque en partida guardada
 				Tetrominoe[] t = listaJugadores.get(i).getPartida().getBloques();
@@ -280,7 +280,7 @@ public class Conexion {
 					preparedStatement4.setString(2, forma);
 					preparedStatement4.setInt(3, j);
 					preparedStatement4.setInt(4, idPartidaGuardada);
-					preparedStatement4.executeQuery();
+					preparedStatement4.execute();
 					
 					idBloque += 1;
 				}
@@ -297,7 +297,7 @@ public class Conexion {
 					preparedStatement5.setInt(4, puntuacion);
 					preparedStatement5.setInt(5, nivel);
 					preparedStatement5.setString(6, usuario);
-					preparedStatement5.executeQuery();
+					preparedStatement5.execute();
 					
 					idPartidaAcabada += 1;
 				}
