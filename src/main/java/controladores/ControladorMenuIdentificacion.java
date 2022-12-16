@@ -1,6 +1,7 @@
 package controladores;
 
 import com.zetcode.Tetris;
+import com.zetcode.enviarCorreo;
 
 import vistas.*;
 import javax.swing.JOptionPane;
@@ -61,6 +62,7 @@ public static ControladorMenuIdentificacion getControladorMenuIdentificacion() {
          }
 
          if (e.getActionCommand().equals("Recuperar Contraseña")) { // Recuperar contraseña
+            System.out.println(ListaJugadores.getMiListaJugadores().getNumeroDeJugadores());
             MenuIdentificacion.getMiMenuIdentificacion().setVisible(false);
             RecuperarPassword.getMiRecuperarPassword();
             RecuperarPassword.getMiRecuperarPassword().setVisible(true);   
@@ -74,10 +76,11 @@ public static ControladorMenuIdentificacion getControladorMenuIdentificacion() {
         if (e.getActionCommand().equals("Listo")) {
            Registro.getMiRegistro().setVisible(false);
            Juego.getMiJuego().registrarJugador();
-           System.out.println( ListaJugadores.getMiListaJugadores().getNumeroDeJugadores());  
 
         }
         if (e.getActionCommand().equals("Recuperar")) {
+            Juego.getMiJuego().recuperarPassword();
+            //enviarCorreo.sendEmail();
 
  
          }

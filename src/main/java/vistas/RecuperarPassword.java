@@ -10,6 +10,8 @@ public class RecuperarPassword extends JFrame {
 
     private JPanel contentPane;
     private static RecuperarPassword miRecuperarPassword;
+    private static JTextField textoNombre;
+    private static JTextField textoCorreo;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -42,9 +44,7 @@ public class RecuperarPassword extends JFrame {
         correoLabel.setBounds(152, 40, 200, 23);
         contentPane.add(correoLabel);
 
-        JTextField textoCorreo = new JTextField();
-        textoCorreo.setBounds(152,62,140,23);
-        contentPane.add(textoCorreo);
+        contentPane.add(this.getCorreo());
 
 
          //Nombre usuario
@@ -53,17 +53,16 @@ public class RecuperarPassword extends JFrame {
          nombreLabel.setBounds(152, 93, 200, 23);
          contentPane.add(nombreLabel);
  
-         JTextField textoNombre = new JTextField();
-         textoNombre.setBounds(152,115,140,23);
-         contentPane.add(textoNombre);
+         contentPane.add(this.getNombreUsuario());
 
 
         //Botones
 
         JButton continuarbtn = new JButton();
-        continuarbtn.setText("Continuar");
+        continuarbtn.setText("Recuperar");
         continuarbtn.setBounds(170,190,100,23);
         contentPane.add(continuarbtn);
+        continuarbtn.addActionListener(ControladorMenuIdentificacion.getControladorMenuIdentificacion());
 
 
         JButton atrasbtn = new JButton();
@@ -75,6 +74,21 @@ public class RecuperarPassword extends JFrame {
         setVisible(true);
 
     }
+
+    public  JTextField getNombreUsuario() {
+		if (textoNombre == null) {
+			textoNombre = new JTextField();
+            textoNombre.setBounds(152,115,140,23);
+		}
+		return textoNombre;
+}
+public  JTextField getCorreo() {
+    if (textoCorreo == null) {
+        textoCorreo = new JTextField();
+        textoCorreo.setBounds(152,62,140,23);
+    }
+    return textoCorreo;
+}
 
     public static RecuperarPassword getMiRecuperarPassword()
     {

@@ -101,7 +101,6 @@ public class Juego extends Observable {
 
 	public Color getColorFondo(String pUsuario) {
 		Jugador elJugador = ListaJugadores.getMiListaJugadores().buscarJugador(pUsuario);
-		System.out.println(elJugador.getContrasena());
 		Personalizacion laPersonalizacion = ListaJugadores.getMiListaJugadores().getPersonalizacion(elJugador);
 		String color = laPersonalizacion.getColorFondo();
 		if(color=="Blanco"){
@@ -162,7 +161,6 @@ public class Juego extends Observable {
 	///////  Iniciar Sesión ////////////////////////////////
 	public String inicioSesion(){
 		String inputNombre=IniciarSesion.getMiInicioSesion().getNombreUsuario().getText();
-		System.out.println(inputNombre);
 		String inputpassword=IniciarSesion.getMiInicioSesion().getPassworField().getText();
 		int i=0;
 		boolean enc=false;
@@ -193,12 +191,8 @@ public class Juego extends Observable {
 
 	public String registrarJugador(){
 		String inputNombreR = Registro.getMiRegistro().getNombreUsuario().getText();
-		System.out.println(inputNombreR);
 		String inputPassR = Registro.getMiRegistro().getPassworField().getText();
-		System.out.println(inputPassR);
-
 		String inputCorreoR = Registro.getMiRegistro().getCorreo().getText();
-		System.out.println(inputCorreoR);
 
 		if (inputCorreoR.equals("") || inputNombreR.equals("")|| inputPassR.equals("")){
 
@@ -208,12 +202,46 @@ public class Juego extends Observable {
 		else{
 			Jugador j = new Jugador(inputNombreR, inputCorreoR, inputPassR);
 			ListaJugadores.getMiListaJugadores().anadirJugador(j);
-			MenuPrincipal menuPrincipal = new MenuPrincipal(inputNombreR);
-			menuPrincipal.setVisible(true);		
+			//MenuPrincipal menuPrincipal = new MenuPrincipal(inputNombreR);
+			//menuPrincipal.setVisible(true);		
+			MenuIdentificacion.getMiMenuIdentificacion().setVisible(true);
+			System.out.println(ListaJugadores.getMiListaJugadores().getNumeroDeJugadores());
 		}
 		return inputNombreR;
 		
 	}
+
+		///////  Recuperar Password ////////////////////////////////
+
+		public void recuperarPassword(){
+			System.out.println(ListaJugadores.getMiListaJugadores().getNumeroDeJugadores());
+			String inputNombre=RecuperarPassword.getMiRecuperarPassword().getNombreUsuario().getText();
+			String inputCorreo=RecuperarPassword.getMiRecuperarPassword().getCorreo().getText();
+			int i=0;
+			boolean enc=false;
+			while (!enc&& i<ListaJugadores.getMiListaJugadores().getNumeroDeJugadores()){
+				if (ListaJugadores.getMiListaJugadores().buscarJugador(inputNombre) != null){
+					Jugador jugador = ListaJugadores.getMiListaJugadores().buscarJugador(inputNombre);
+					if(jugador.getCorreo().equals(inputCorreo)){
+						enc=true;
+						RecuperarPassword.getMiRecuperarPassword().setVisible(false);
+						MenuIdentificacion.getMiMenuIdentificacion().setVisible(true);
+						System.out.println("ENVIADO");
+						
+
+
+					}
+				}	
+				i=i+1;
+			} 
+			if (enc==false){
+				JOptionPane.showMessageDialog(null, "Usuario o Correo incorrectos", "Error al recuperar la contraseña", JOptionPane.WARNING_MESSAGE);
+				RecuperarPassword.getMiRecuperarPassword().setVisible(true);
+			} 	
+		}
+
+		
+
 	 
 
 

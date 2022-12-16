@@ -10,6 +10,7 @@ public class main {
             public void run() {
                 try {
                    MenuIdentificacion.getMiMenuIdentificacion();
+                   
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
