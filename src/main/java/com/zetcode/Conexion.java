@@ -224,18 +224,6 @@ public class Conexion {
 				preparedStatement2.setString(4, sonido);
 				preparedStatement2.execute();
 				
-				//insertamos los datos del jugador
-				String usuario = listaJugadores.get(i).getUsuario().toString();
-				String correo = listaJugadores.get(i).getCorreo();
-				String contrasena = listaJugadores.get(i).getContrasena();
-				
-				preparedStatement1.setString(1, usuario);
-				preparedStatement1.setString(2, usuario);
-				preparedStatement1.setString(3, usuario);
-				preparedStatement1.setInt(4, idPersonalizacion);
-				preparedStatement1.setInt(5, idPartidaGuardada);
-				preparedStatement1.execute();
-				
 				//insertamos los datos de la partida guardada
 				int anchura = listaJugadores.get(i).getPartida().getAnchura();
 				int altura = listaJugadores.get(i).getPartida().getAltura();
@@ -285,6 +273,18 @@ public class Conexion {
 					
 					idBloque += 1;
 				}
+				
+				//insertamos los datos del jugador
+				String usuario = listaJugadores.get(i).getUsuario().toString();
+				String correo = listaJugadores.get(i).getCorreo();
+				String contrasena = listaJugadores.get(i).getContrasena();
+				
+				preparedStatement1.setString(1, usuario);
+				preparedStatement1.setString(2, usuario);
+				preparedStatement1.setString(3, usuario);
+				preparedStatement1.setInt(4, idPersonalizacion);
+				preparedStatement1.setInt(5, idPartidaGuardada);
+				preparedStatement1.execute();	
 				
 				ArrayList<Board> listaParAcabadas = listaJugadores.get(i).getPartidasAcabadas();
 				//por cada partida acabada en jugador
