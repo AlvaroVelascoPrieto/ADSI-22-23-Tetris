@@ -203,7 +203,7 @@ public class Conexion {
 			PreparedStatement preparedStatement2 = con.prepareStatement("INSERT INTO personalizacion VALUES (?,?,?,?)");
 			PreparedStatement preparedStatement3 = con.prepareStatement("INSERT INTO partida VALUES (?,?,?,?,?,?)");
 			PreparedStatement preparedStatement4 = con.prepareStatement("INSERT INTO bloque VALUES (?,?,?,?,?,?)");
-			PreparedStatement preparedStatement5 = con.prepareStatement("INSERT INTO partida VALUES (?,?,?,?)");
+			PreparedStatement preparedStatement5 = con.prepareStatement("INSERT INTO partida VALUES (?,?,?,?,?,?)");
 			int idBloque = 0;
 			int idPartidaAcabada = 0;
 			
@@ -276,11 +276,11 @@ public class Conexion {
 						forma = "NoShape";
 					}
 					
-					preparedStatement3.setInt(1, idBloque);
-					preparedStatement3.setString(2, forma);
-					preparedStatement3.setInt(3, j);
-					preparedStatement3.setInt(4, idPartidaGuardada);
-					preparedStatement3.executeQuery();
+					preparedStatement4.setInt(1, idBloque);
+					preparedStatement4.setString(2, forma);
+					preparedStatement4.setInt(3, j);
+					preparedStatement4.setInt(4, idPartidaGuardada);
+					preparedStatement4.executeQuery();
 					
 					idBloque += 1;
 				}
@@ -293,11 +293,11 @@ public class Conexion {
 					puntuacion = listaParAcabadas.get(j).getPuntuacion();
 					nivel = listaParAcabadas.get(j).getNivel();
 					
-					preparedStatement3.setInt(1, idPartidaAcabada);
-					preparedStatement3.setInt(2, puntuacion);
-					preparedStatement3.setInt(3, nivel);
-					preparedStatement3.setString(4, usuario);
-					preparedStatement3.executeQuery();
+					preparedStatement5.setInt(1, idPartidaAcabada);
+					preparedStatement5.setInt(4, puntuacion);
+					preparedStatement5.setInt(5, nivel);
+					preparedStatement5.setString(6, usuario);
+					preparedStatement5.executeQuery();
 					
 					idPartidaAcabada += 1;
 				}
