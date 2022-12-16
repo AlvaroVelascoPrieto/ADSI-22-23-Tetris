@@ -325,7 +325,7 @@ public class Conexion {
 			// TODO Auto-generated catch block
 			System.out.println("error en la creacion de la bd");
 		}
-    	
+    	//
        /* String createTables = "";
 		createTables = leerSqlFile();
         Connection con = conectar();
