@@ -81,7 +81,7 @@ public class Juego extends Observable {
 			}
 			else if(numForma == 7)
 			{
-				forma = "MirroredShape";
+				forma = "MirroredLShape";
 			}
 
 			JsonObject jsonB = new JsonObject();

@@ -80,20 +80,28 @@ public class Tetris extends JFrame {
         	{
         	case "NoShape":
         		listaBloques[i] = Tetrominoe.NoShape;
+        		break;
         	case "ZShape":
         		listaBloques[i] = Tetrominoe.ZShape;
+        		break;
         	case "SShape":
         		listaBloques[i] = Tetrominoe.SShape;
+        		break;
         	case "LineShape":
         		listaBloques[i] = Tetrominoe.LineShape;
+        		break;
         	case "TShape":
         		listaBloques[i] = Tetrominoe.TShape;
+        		break;
         	case "SquareShape":
         		listaBloques[i] = Tetrominoe.SquareShape;
+        		break;
         	case "LShape":
         		listaBloques[i] = Tetrominoe.LShape;
+        		break;
         	case "MirroredLShape":
         		listaBloques[i] = Tetrominoe.MirroredLShape;
+        		break;
         	default:
         		listaBloques[i] = Tetrominoe.NoShape;
         	}
