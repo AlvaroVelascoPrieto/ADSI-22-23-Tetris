@@ -3,6 +3,7 @@ package com.zetcode;
 import com.zetcode.Shape.Tetrominoe;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import java.awt.Color;
@@ -32,10 +33,12 @@ public class Board extends JPanel {
     private int nivel;
     private ArrayList<Shape> listaBloques;
     private String usuario;
+    private Tetris juego;
 
     public Board(Tetris parent, String pUsuario) {
         initBoard(parent);
         usuario = pUsuario;
+        juego = parent;
     }
     
     public void setDatosBasicos(int pAnchura, int pAltura, int pPuntuacion, int pNivel)
@@ -232,6 +235,9 @@ public class Board extends JPanel {
             var msg = String.format("Game over. Score: %d", numLinesRemoved);
             statusbar.setText(msg);
             ListaJugadores.getMiListaJugadores().buscarJugador(usuario).anadirPartidaAcabada(this);
+            JOptionPane.showMessageDialog(null, msg);
+            this.setVisible(false);
+            juego.setVisible(false);
         }
     }
 

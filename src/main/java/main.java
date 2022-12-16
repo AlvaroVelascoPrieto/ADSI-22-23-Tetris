@@ -15,7 +15,7 @@ public class main {
                    Conexion.getMiConexion().cargarJugadores();
                    
                    //TODO BORRAR ESTO DESPUES
-                   Conexion.getMiConexion().guardarDatos();
+                   //Conexion.getMiConexion().guardarDatos();
                    
                 } catch (Exception e) {
                     e.printStackTrace();
