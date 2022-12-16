@@ -1,7 +1,7 @@
 package vistas;
 
-import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -10,7 +10,6 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextPane;
 
 import com.zetcode.Juego;
 
@@ -34,12 +33,13 @@ public class IntPersonalizar extends JFrame implements Observer {
 	private String usuario;
 	
 	public IntPersonalizar(String pUsuario) {
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		inicializar();
 		setVisible(true);
 		Juego.getMiJuego().addObserver(this);
 		usuario = pUsuario;
 		controladorPersonalizacion.getMiControlador().setUsuarioIdentificado(usuario);
+		controladorPersonalizacion.getMiControlador().setVista(this);
 	}
 	
 	public void inicializar(){
@@ -95,8 +95,7 @@ public class IntPersonalizar extends JFrame implements Observer {
 		contentPanel.add(salir);
 		
 	}
-	
-	
+
 	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub

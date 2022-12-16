@@ -29,12 +29,14 @@ public class Tetris extends JFrame {
 	private static final Logger logger = LogManager.getLogger(Tetris.class);
     private JLabel statusbar;
     private String usuario;
-    
-    public Tetris() {
+
+
+    public Tetris(String pUsuario) {
+        usuario=pUsuario;
         initUI();
     }
     
-    public Tetris(String pUsuario)
+    public Tetris(String pUsuario,boolean cargar)
     {
     	JsonArray jsonA = Juego.getMiJuego().cargarPartida(usuario);
     	initUI(jsonA);
@@ -45,7 +47,7 @@ public class Tetris extends JFrame {
 
         statusbar = new JLabel(" 0");
         add(statusbar, BorderLayout.SOUTH);
-
+        System.out.println(usuario);
         var board = new Board(this, usuario);
         add(board);
         board.start();
@@ -109,14 +111,5 @@ public class Tetris extends JFrame {
         return statusbar;
     }
 
-    public static void main(String[] args) {
-
-    	logger.info("Playing");
-        EventQueue.invokeLater(() -> {
-
-            var game = new Tetris();
-            game.setVisible(true);
-        });
-    }
     
 }

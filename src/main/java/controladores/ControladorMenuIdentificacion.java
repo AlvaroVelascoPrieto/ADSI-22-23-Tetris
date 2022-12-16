@@ -38,7 +38,6 @@ public static ControladorMenuIdentificacion getControladorMenuIdentificacion() {
             ListaJugadores listaJ= ListaJugadores.getMiListaJugadores();
             listaJ.anadirJugador(jugador);
 
-
             MenuIdentificacion.getMiMenuIdentificacion().setVisible(false);
             IniciarSesion.getMiInicioSesion();
             IniciarSesion.getMiInicioSesion().setVisible(true); 

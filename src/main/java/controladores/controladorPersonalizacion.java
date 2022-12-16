@@ -1,6 +1,7 @@
 package controladores;
 
 import com.zetcode.Juego;
+import vistas.IntPersonalizar;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,6 +15,7 @@ public class controladorPersonalizacion implements ActionListener {
 	private ArrayList<JButton> botonesAplicar;
 	private ArrayList<JComboBox> cuadrosTexto;
 	private String usuario;
+	private IntPersonalizar interfaz;
 
 	private controladorPersonalizacion() {
 		botonesAplicar = new ArrayList<JButton>();
@@ -43,7 +45,7 @@ public class controladorPersonalizacion implements ActionListener {
 		}
 		else {
 			//Salir
-
+			this.interfaz.setVisible(false);
 		}
 	}
 	
@@ -56,5 +58,9 @@ public class controladorPersonalizacion implements ActionListener {
 	}
 
 	public void setUsuarioIdentificado(String pUsuario){this.usuario=pUsuario;}
+
+	public void setVista(IntPersonalizar pInterfaz){
+		this.interfaz=pInterfaz;
+	}
 
 }

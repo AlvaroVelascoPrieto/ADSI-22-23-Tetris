@@ -36,7 +36,7 @@ private String usuario;
 			partidaNueva.setVisible(true);
 		}
 		if (e.getActionCommand().equals("Cargar Partida")) { // cargar partida guardada
-			Tetris partidaCargada = new Tetris(usuario);
+			Tetris partidaCargada = new Tetris(usuario,true);
 			partidaCargada.setVisible(true);
 		}
 		if (e.getActionCommand().equals("Elegir Nivel")) { // abrir elegir nivel

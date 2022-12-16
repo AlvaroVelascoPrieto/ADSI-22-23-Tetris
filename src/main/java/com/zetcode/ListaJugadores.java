@@ -28,8 +28,7 @@ public class ListaJugadores {
 		return miListaJugadores;
 	}
 	
-	public void anadirJugador(Jugador pJugador) {
-		lJugadores.add(pJugador);
+	public void anadirJugador(Jugador pJugador) {lJugadores.add(pJugador);
 	}
 	
 	public Jugador buscarJugador(String pUsuario) {

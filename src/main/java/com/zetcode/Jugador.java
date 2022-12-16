@@ -48,8 +48,8 @@ public class Jugador {
 		return this.partidaGuardada;
 	}
 	
-	public boolean esJugador(String usuario) {
-		return usuario.equals(usuario);
+	public boolean esJugador(String pUsuario) {
+		return usuario.equals(pUsuario);
 	}
 	
 	private Iterator<Board> getIterador(){

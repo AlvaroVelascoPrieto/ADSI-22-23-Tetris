@@ -207,7 +207,7 @@ public class Board extends JPanel {
             int x = curX + curPiece.x(i);
             int y = curY - curPiece.y(i);
             board[(y * BOARD_WIDTH) + x] = curPiece.getShape();
-            this.listaBloques.add(curPiece);
+            //this.listaBloques.add(curPiece);
         }
 
         removeFullLines();
@@ -231,6 +231,7 @@ public class Board extends JPanel {
 
             var msg = String.format("Game over. Score: %d", numLinesRemoved);
             statusbar.setText(msg);
+            ListaJugadores.getMiListaJugadores().buscarJugador(usuario).anadirPartidaAcabada(this);
         }
     }
 

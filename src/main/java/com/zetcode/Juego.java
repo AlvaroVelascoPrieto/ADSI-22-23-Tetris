@@ -101,6 +101,7 @@ public class Juego extends Observable {
 
 	public Color getColorFondo(String pUsuario) {
 		Jugador elJugador = ListaJugadores.getMiListaJugadores().buscarJugador(pUsuario);
+		System.out.println(elJugador.getContrasena());
 		Personalizacion laPersonalizacion = ListaJugadores.getMiListaJugadores().getPersonalizacion(elJugador);
 		String color = laPersonalizacion.getColorFondo();
 		if(color=="Blanco"){
@@ -160,8 +161,6 @@ public class Juego extends Observable {
 
 	///////  Iniciar Sesión ////////////////////////////////
 	public String inicioSesion(){
-
-	
 		String inputNombre=IniciarSesion.getMiInicioSesion().getNombreUsuario().getText();
 		System.out.println(inputNombre);
 		String inputpassword=IniciarSesion.getMiInicioSesion().getPassworField().getText();
@@ -176,7 +175,6 @@ public class Juego extends Observable {
 					menuPrincipal.setVisible(true);
 					enc=true;
 				}
-				
 			}
 			
 			i=i+1;
