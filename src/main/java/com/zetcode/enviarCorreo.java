@@ -1,54 +1,50 @@
 package com.zetcode;
-import java.util.Properties;
+
+
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
- 
-
+import java.util.Properties;
 
 public class enviarCorreo {
-	private static final Properties properties = new Properties();
-	
-	private static String password;
- 
-	private static Session session;
- 
-	private static void init() {
- 
-		properties.put("mail.smtp.host", "mail.gmail.com");
-		properties.put("mail.smtp.starttls.enable", "true");
-		properties.put("mail.smtp.port",25);
-		properties.put("mail.smtp.mail.sender","emisor@gmail.com");
-		properties.put("mail.smtp.user", "usuario");
-		properties.put("mail.smtp.auth", "true");
- 
-		session = Session.getDefaultInstance(properties);
-	}
- 
-	public static void sendEmail(){
- 
-		init();
-		try{
-			MimeMessage message = new MimeMessage(session);
-			message.setFrom(new InternetAddress((String)properties.get("mail.smtp.mail.sender")));
-			message.addRecipient(Message.RecipientType.TO, new InternetAddress("receptor@gmail.com"));
-			message.setSubject("Prueba");
-			message.setText("Texto");
-			Transport t = session.getTransport("smtp");
-			t.connect((String)properties.get("mail.smtp.user"), "password");
-			t.sendMessage(message, message.getAllRecipients());
-			t.close();
-		}catch (MessagingException me){
-                        //Aqui se deberia o mostrar un mensaje de error o en lugar
-                        //de no hacer nada con la excepcion, lanzarla para que el modulo
-                        //superior la capture y avise al usuario con un popup, por ejemplo.
-			return;
-		}
-		
-	}
- 
-}
+    public enviarCorreo() {
 
+    }
+
+    public static void enviarCorreo(String destinatario, String asunto, String cuerpo) {
+        //La dirección de correo de envío
+        String emisor = "pruebaadsi03@gmail.com";
+        //La clave de aplicación obtenida según se explica en este artículo:
+        String psaswordEmisor = "baorkvofowqwvsho";
+
+        Properties props = System.getProperties();
+        props.put("mail.smtp.host", "smtp.gmail.com"); 
+        props.put("mail.smtp.user", emisor); //gmail emisor
+        props.put("mail.smtp.clave", psaswordEmisor);//Password del gmail
+        props.put("mail.smtp.auth", "true");    
+        props.put("mail.smtp.starttls.enable", "true"); 
+        props.put("mail.smtp.port", "587"); 
+
+        Session session = Session.getDefaultInstance(props);
+        MimeMessage message = new MimeMessage(session);
+
+        try {
+            message.setFrom(new InternetAddress(psaswordEmisor));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(destinatario));   
+            message.setSubject(asunto);
+            message.setText(cuerpo);
+            Transport transport = session.getTransport("smtp");
+            transport.connect("smtp.gmail.com", emisor, psaswordEmisor);
+            transport.sendMessage(message, message.getAllRecipients());
+            transport.close();
+        } catch (MessagingException me) {
+            me.printStackTrace();   
+
+        }
+    }
+
+
+}

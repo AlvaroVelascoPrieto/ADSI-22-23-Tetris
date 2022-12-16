@@ -80,7 +80,7 @@ public static ControladorMenuIdentificacion getControladorMenuIdentificacion() {
         }
         if (e.getActionCommand().equals("Recuperar")) {
             Juego.getMiJuego().recuperarPassword();
-            //enviarCorreo.sendEmail();
+            
 
  
          }

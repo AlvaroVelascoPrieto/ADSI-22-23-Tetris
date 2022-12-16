@@ -224,12 +224,12 @@ public class Juego extends Observable {
 					Jugador jugador = ListaJugadores.getMiListaJugadores().buscarJugador(inputNombre);
 					if(jugador.getCorreo().equals(inputCorreo)){
 						enc=true;
+						String miPasswordjugador = jugador.getContrasena();
 						RecuperarPassword.getMiRecuperarPassword().setVisible(false);
 						MenuIdentificacion.getMiMenuIdentificacion().setVisible(true);
-						System.out.println("ENVIADO");
-						
-
-
+						enviarCorreo.enviarCorreo(inputCorreo, "Contraseña de la cuenta", "Su contraseña es: " + miPasswordjugador);
+						System.out.println("Gmail enviado correctamente a el correo: " + inputCorreo);
+		
 					}
 				}	
 				i=i+1;
@@ -239,13 +239,6 @@ public class Juego extends Observable {
 				RecuperarPassword.getMiRecuperarPassword().setVisible(true);
 			} 	
 		}
-
-		
-
-	 
-
-
-
 
 	
 	///////  RANKINGS ////////////////////////////////
