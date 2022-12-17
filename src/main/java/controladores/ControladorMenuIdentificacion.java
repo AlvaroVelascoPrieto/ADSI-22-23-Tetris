@@ -35,9 +35,9 @@ public static ControladorMenuIdentificacion getControladorMenuIdentificacion() {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getActionCommand().equals("Iniciar Sesión")) { // Iniciar sesion
-            Jugador jugador = new Jugador("pepe","pepe@gmail.com", "1234");
-            ListaJugadores listaJ= ListaJugadores.getMiListaJugadores();
-            listaJ.anadirJugador(jugador);
+            //Jugador jugador = new Jugador("pepe","pepe@gmail.com", "1234");
+            //ListaJugadores listaJ= ListaJugadores.getMiListaJugadores();
+            //listaJ.anadirJugador(jugador);
 
             MenuIdentificacion.getMiMenuIdentificacion().setVisible(false);
             IniciarSesion.getMiInicioSesion();

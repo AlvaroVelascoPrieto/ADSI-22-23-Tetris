@@ -198,12 +198,13 @@ public class Conexion {
 	{
 		try (Connection con = conectar()){
 			//primero borramos los datos de la BD para evitar conflictos del tipo "same key"
-			PreparedStatement borrar1 = con.prepareStatement("DELETE FROM PERSONALIZACION");
-			PreparedStatement borrar2 = con.prepareStatement("DELETE FROM JUGADOR");
-			PreparedStatement borrar3 = con.prepareStatement("DELETE FROM PARTIDA");
-			PreparedStatement borrar4 = con.prepareStatement("DELETE FROM BLOQUE");
-			borrar2.execute();
+			PreparedStatement borrar1 = con.prepareStatement("DELETE FROM JUGADOR");
+			PreparedStatement borrar2 = con.prepareStatement("DELETE FROM PERSONALIZACION");
+			PreparedStatement borrar3 = con.prepareStatement("DELETE FROM BLOQUE");
+			PreparedStatement borrar4 = con.prepareStatement("DELETE FROM PARTIDA");
+			
 			borrar1.execute();
+			borrar2.execute();
 			borrar3.execute();
 			borrar4.execute();
 			
@@ -212,11 +213,11 @@ public class Conexion {
 			PreparedStatement preparedStatement1 = con.prepareStatement("INSERT INTO jugador VALUES (?,?,?,?,?)");
 			PreparedStatement preparedStatement12 = con.prepareStatement("INSERT INTO jugador(usuario,correo,contrasena,id_personalizacion) VALUES (?,?,?,?)");
 			PreparedStatement preparedStatement2 = con.prepareStatement("INSERT INTO personalizacion VALUES (?,?,?,?)");
-			PreparedStatement preparedStatement3 = con.prepareStatement("INSERT INTO partida(id_partida,anchura,altura,puntuacion,nivel) VALUES (?,?,?,?,?)");
+			PreparedStatement preparedStatement3 = con.prepareStatement("INSERT INTO partida(id_partida,puntuacion,nivel,usuario) VALUES (?,?,?,?)");
 			PreparedStatement preparedStatement4 = con.prepareStatement("INSERT INTO bloque VALUES (?,?,?,?)");
 			PreparedStatement preparedStatement5 = con.prepareStatement("INSERT INTO partida(id_partida,anchura,altura,puntuacion,nivel) VALUES (?,?,?,?,?)");
+			PreparedStatement preparedStatement6 = con.prepareStatement("SELECT id_partida from partida ORDER BY id_partida DESC LIMIT 1");
 			int idBloque = 0;
-			int idPartidaAcabada = 0;
 			
 			//por cada jugador en listajugadores
 			for(int i = 0; i < listaJugadores.size(); i++)
@@ -260,27 +261,35 @@ public class Conexion {
 						{
 						case NoShape:
 							forma = "NoShape";
+							break;
 						case ZShape:
 							forma = "ZShape";
+							break;
 						case SShape:
 							forma = "SShape";
+							break;
 						case LineShape:
 							forma = "LineShape";
+							break;
 						case TShape:
 							forma = "TShape";
+							break;
 						case SquareShape:
 							forma = "SquareShape";
+							break;
 						case LShape:
 							forma = "LShape";
+							break;
 						case MirroredLShape:
 							forma = "MirroredLShape";
+							break;
 						default:
 							forma = "NoShape";
 						}
 						
 						preparedStatement4.setInt(1, idBloque);
-						preparedStatement4.setString(2, forma);
-						preparedStatement4.setInt(3, j);
+						preparedStatement4.setInt(2, j);
+						preparedStatement4.setString(3, forma);
 						preparedStatement4.setInt(4, idPartidaGuardada);
 						preparedStatement4.execute();
 						
@@ -321,13 +330,15 @@ public class Conexion {
 					int puntuacion = listaParAcabadas.get(j).getPuntuacion();
 					int nivel = listaParAcabadas.get(j).getNivel();
 					
-					preparedStatement5.setInt(1, idPartidaAcabada);
-					preparedStatement5.setInt(2, puntuacion);
-					preparedStatement5.setInt(3, nivel);
-					preparedStatement5.setString(4, usuario);
-					preparedStatement5.execute();
+					ResultSet idPartidaAcabada = preparedStatement6.executeQuery();
+					int idPartidaAcabadaNuevo = idPartidaAcabada.getInt("id_partida");
 					
-					idPartidaAcabada += 1;
+					preparedStatement3.setInt(1, idPartidaAcabadaNuevo);
+					preparedStatement3.setInt(2, puntuacion);
+					preparedStatement3.setInt(3, nivel);
+					preparedStatement3.setString(4, usuario);
+					preparedStatement3.execute();
+					
 				}
 			}
 
