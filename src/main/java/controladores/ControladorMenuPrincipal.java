@@ -7,6 +7,7 @@ import com.zetcode.Juego;
 import com.zetcode.Tetris;
 
 import vistas.CambiarPassword;
+import vistas.ElegirNivel;
 import vistas.IntPersonalizar;
 import vistas.MenuAdmin;
 import vistas.MenuIdentificacion;
@@ -45,7 +46,8 @@ private String usuario;
 			partidaCargada.setVisible(true);
 		}
 		if (e.getActionCommand().equals("Elegir Nivel")) { // abrir elegir nivel
-
+			 ElegirNivel elegirNivel = new ElegirNivel(usuario);
+			 elegirNivel.setVisible(true);
 		}
 		if (e.getActionCommand().equals("Personalizar")) { // abrir la personalización de partidas
 			IntPersonalizar.getMiIntPersonalizar(usuario).setVisible(true);
