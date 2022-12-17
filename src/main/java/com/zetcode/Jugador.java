@@ -14,6 +14,7 @@ public class Jugador {
 	private ArrayList<Board> lPartidasTerminadas;
 	//private ArrayList<Premio> lPremios;
 	private Personalizacion personalizacion;
+	private int dificultad=0;
 	
 	public Jugador(String pUsuario, String pCorreo, String pContrasena) {
 		usuario = pUsuario;
@@ -127,5 +128,12 @@ public class Jugador {
 		return this.lPartidasTerminadas;
 	}
 
-  
+	public void setDificultad(int pDificultad) {
+		dificultad = pDificultad;
+		System.out.println(dificultad);
+	}
+	
+	public int getDificultad() {
+		return dificultad;
+	}
 }

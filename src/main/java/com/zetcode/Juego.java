@@ -102,6 +102,11 @@ public class Juego extends Observable {
 		
 	}
 
+	public void cambiarNivel(int pNivel, String pUsuario) {
+		Jugador elJugador = ListaJugadores.getMiListaJugadores().buscarJugador(pUsuario);
+		elJugador.setDificultad(pNivel);
+	}
+	
 	public void cambiarColorFondo(String pColor, String pUsuario) {
 		Jugador elJugador = ListaJugadores.getMiListaJugadores().buscarJugador(pUsuario);
 		Personalizacion laPersonalizacion = ListaJugadores.getMiListaJugadores().getPersonalizacion(elJugador);
