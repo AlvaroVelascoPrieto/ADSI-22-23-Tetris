@@ -404,7 +404,6 @@ public class Board extends JPanel {
 
 	public void anadirBloques(Tetrominoe[] pBloques) {
 		board = pBloques;
-		
 	}
 	
 }
