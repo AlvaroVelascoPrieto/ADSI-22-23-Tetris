@@ -33,66 +33,75 @@ public class Juego extends Observable {
 	{
 		Jugador j = ListaJugadores.getMiListaJugadores().buscarJugador(pUsuario);
 		Board b = j.getPartida();
-		//creamos un JsonArray que contendrá las propiedades de la partida + otro JsonArray de bloques.
-		JsonArray jsonA = new JsonArray();
-		//insertamos las propiedades de la partida en un json para dárselo al JsonArray
-		JsonObject json1 = new JsonObject();
-		json1.addProperty("Anchura", b.getAnchura());
-		json1.addProperty("Altura", b.getAltura());
-		json1.addProperty("Puntuacion", b.getPuntuacion());
-		json1.addProperty("Nivel", b.getNivel());
-
-		jsonA.add(json1);
-
-		//creamos un JsonArray que contendrá Jsons sobre las propiedades de cada bloque
-		JsonArray jsonBloques = new JsonArray();
-		//para cada bloque creamos un Json que contenga únicamente la forma de la posición i del array que expresa el tablero.
-		Tetrominoe[] listaBloques = b.getBloques();
-		for(int i = 0; i < listaBloques.length; i++)
+		//si realmente existía esa partida, se carga. Si no, se muestra un mensaje de error.
+		if(b != null)
 		{
-			int numForma = listaBloques[i].ordinal();
-			String forma = "NoShape";
-			if(numForma == 0)
+			//creamos un JsonArray que contendrá las propiedades de la partida + otro JsonArray de bloques.
+			JsonArray jsonA = new JsonArray();
+			//insertamos las propiedades de la partida en un json para dárselo al JsonArray
+			JsonObject json1 = new JsonObject();
+			json1.addProperty("Anchura", b.getAnchura());
+			json1.addProperty("Altura", b.getAltura());
+			json1.addProperty("Puntuacion", b.getPuntuacion());
+			json1.addProperty("Nivel", b.getNivel());
+
+			jsonA.add(json1);
+
+			//creamos un JsonArray que contendrá Jsons sobre las propiedades de cada bloque
+			JsonArray jsonBloques = new JsonArray();
+			//para cada bloque creamos un Json que contenga únicamente la forma de la posición i del array que expresa el tablero.
+			Tetrominoe[] listaBloques = b.getBloques();
+			for(int i = 0; i < listaBloques.length; i++)
 			{
-				forma = "NoShape";
-			}
-			else if(numForma == 1)
-			{
-				forma = "ZShape";
-			}
-			else if(numForma == 2)
-			{
-				forma = "SShape";
-			}
-			else if(numForma == 3)
-			{
-				forma = "LineShape";
-			}
-			else if(numForma == 4)
-			{
-				forma = "TShape";
-			}
-			else if(numForma == 5)
-			{
-				forma = "SquareShape";
-			}
-			else if(numForma == 6)
-			{
-				forma = "LShape";
-			}
-			else if(numForma == 7)
-			{
-				forma = "MirroredLShape";
+				int numForma = listaBloques[i].ordinal();
+				String forma = "NoShape";
+				if(numForma == 0)
+				{
+					forma = "NoShape";
+				}
+				else if(numForma == 1)
+				{
+					forma = "ZShape";
+				}
+				else if(numForma == 2)
+				{
+					forma = "SShape";
+				}
+				else if(numForma == 3)
+				{
+					forma = "LineShape";
+				}
+				else if(numForma == 4)
+				{
+					forma = "TShape";
+				}
+				else if(numForma == 5)
+				{
+					forma = "SquareShape";
+				}
+				else if(numForma == 6)
+				{
+					forma = "LShape";
+				}
+				else if(numForma == 7)
+				{
+					forma = "MirroredLShape";
+				}
+
+				JsonObject jsonB = new JsonObject();
+				jsonB.addProperty("nombreForma", forma);
+				jsonBloques.add(jsonB);
 			}
 
-			JsonObject jsonB = new JsonObject();
-			jsonB.addProperty("nombreForma", forma);
-			jsonBloques.add(jsonB);
+			jsonA.add(jsonBloques);
+
+			return jsonA;
 		}
-
-		jsonA.add(jsonBloques);
-
-		return jsonA;
+		else
+		{
+			return null;
+		}
+		
 	}
 
 	public void cambiarColorFondo(String pColor, String pUsuario) {
