@@ -147,6 +147,11 @@ public class Tetris extends JFrame {
 
         return statusbar;
     }
+    
+    public Board getPartida()
+    {
+    	return this.partida;
+    }
 
     
 }
