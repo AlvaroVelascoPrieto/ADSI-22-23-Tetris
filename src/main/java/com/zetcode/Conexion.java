@@ -289,7 +289,7 @@ public class Conexion {
 				preparedStatement1.setInt(4, idPersonalizacion);
 				preparedStatement1.setInt(5, idPartidaGuardada);
 				preparedStatement1.execute();	
-				
+				//
 				ArrayList<Board> listaParAcabadas = listaJugadores.get(i).getPartidasAcabadas();
 				//por cada partida acabada en jugador
 				for(int j = 0; j < listaParAcabadas.size(); j++)
