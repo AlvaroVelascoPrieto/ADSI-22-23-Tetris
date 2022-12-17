@@ -6,6 +6,7 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -64,7 +65,7 @@ public class Tetris extends JFrame {
     	}
     	else
     	{
-    		
+    		JOptionPane.showMessageDialog(null, "No hay una partida guardada", "Error", JOptionPane.WARNING_MESSAGE);
     	}
     }
 
