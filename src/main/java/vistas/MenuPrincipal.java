@@ -89,6 +89,12 @@ public class MenuPrincipal extends JFrame {
 		consultarRanking.setBounds(152, 195, 119, 23);
 		contentPane.add(consultarRanking);
 		consultarRanking.addActionListener(ControladorMenuPrincipal.getControladorMenuPrincipal());
+
+
+		JButton cerrarSesion = new JButton("Cerrar Sesion");
+		cerrarSesion.setBounds(152, 229, 119, 23);
+		contentPane.add(cerrarSesion);
+		cerrarSesion.addActionListener(ControladorMenuPrincipal.getControladorMenuPrincipal());
 		
 		JButton cambiarContrasena = new JButton("Cambiar Contraseña");
 		cambiarContrasena.setBounds(10, 227, 130, 23);
@@ -119,13 +125,13 @@ public class MenuPrincipal extends JFrame {
 	        }
 	 }); */
 	}
-	/*public static MenuPrincipal getMiMenuPrincipal()
+	public static MenuPrincipal getMiMenuPrincipal(String pNombreUsuario)
     {
         if(miMenuPrincipal == null)
         {
-            miMenuPrincipal = new MenuPrincipal();
+            miMenuPrincipal = new MenuPrincipal(pNombreUsuario);
         }
         return miMenuPrincipal;
-    }*/
+    }
 
 }

@@ -9,6 +9,8 @@ import controladores.*;
 public class CambiarPassword extends JFrame{
 
     private JPanel contentPane;
+    private static JPasswordField textoPassword;
+    private static CambiarPassword miCambiarPassword;
 
     public CambiarPassword(){
 
@@ -28,26 +30,44 @@ public class CambiarPassword extends JFrame{
     newPasswordLabel.setBounds(152, 40, 200, 23);
     contentPane.add(newPasswordLabel);
 
-    JTextField textoNewPassword = new JTextField();
-    textoNewPassword.setBounds(152,62,140,23);
-    contentPane.add(textoNewPassword);
+
+    contentPane.add(this.getNuevaPassword());
 
 
     //Botones
 
     JButton continuarbtn = new JButton();
-    continuarbtn.setText("Continuar");
+    continuarbtn.setText("Cambiar");
     continuarbtn.setBounds(170,93,100,23);
     contentPane.add(continuarbtn);
+    continuarbtn.addActionListener(ControladorMenuPrincipal.getControladorMenuPrincipal());
 
 
     JButton atrasbtn = new JButton();
     atrasbtn.setText("Atras");
     atrasbtn.setBounds(170,127,100,23);
     contentPane.add(atrasbtn);
-    atrasbtn.addActionListener(ControladorMenuIdentificacion.getControladorMenuIdentificacion());
+    atrasbtn.addActionListener(ControladorMenuPrincipal.getControladorMenuPrincipal());
 
             
     }
+
+    public static CambiarPassword getMicCambiarPassword()
+    {
+        if(miCambiarPassword == null)
+        {
+          miCambiarPassword = new CambiarPassword();
+        }
+        return miCambiarPassword;
+    }
+
+    public  JPasswordField getNuevaPassword() {
+		if (textoPassword == null) {
+			textoPassword = new JPasswordField();
+      textoPassword.setBounds(152,62,140,23);
+		}
+		return textoPassword;
+}
+
     
 }

@@ -17,6 +17,7 @@ import vistas.*;
 
 public class Juego extends Observable {
 	private static Juego miJuego;
+	private static String nombreJugador;
 	private Juego() {
 
 	}
@@ -190,8 +191,10 @@ public class Juego extends Observable {
 			if (ListaJugadores.getMiListaJugadores().buscarJugador(inputNombre) != null){
 				Jugador jugador = ListaJugadores.getMiListaJugadores().buscarJugador(inputNombre);
 				if(jugador.getPassword().equals(inputpassword)){
-					MenuPrincipal menuPrincipal = new MenuPrincipal(inputNombre);
-					menuPrincipal.setVisible(true);
+					MenuPrincipal.getMiMenuPrincipal(inputNombre).setVisible(true);
+					//MenuPrincipal menuPrincipal = new MenuPrincipal(inputNombre);
+					//menuPrincipal.setVisible(true);
+					this.nombreJugador=inputNombre;
 					enc=true;
 				}
 			}
@@ -259,6 +262,33 @@ public class Juego extends Observable {
 				JOptionPane.showMessageDialog(null, "Usuario o Correo incorrectos", "Error al recuperar la contraseña", JOptionPane.WARNING_MESSAGE);
 				RecuperarPassword.getMiRecuperarPassword().setVisible(true);
 			} 	
+		}
+
+	///////  Cambiar Password ////////////////////////////////
+
+	public void cambiarPassword(String nombreUsuario){
+			
+		String nuevaPassword =CambiarPassword.getMicCambiarPassword().getNuevaPassword().getText();
+		if (nuevaPassword.equals("")){
+			JOptionPane.showMessageDialog(null, "Debe rellenar el campo mostrado", "Error al cambiar la contraseña", JOptionPane.WARNING_MESSAGE);
+		}
+		else{
+			Jugador jugador = ListaJugadores.getMiListaJugadores().buscarJugador(nombreUsuario);
+			System.out.println("La contraseña antigua era: " + jugador.getContrasena());
+			jugador.cambiarPassword(nuevaPassword);
+			System.out.println("La contraseña nueva es: " + jugador.getContrasena());
+			JOptionPane.showMessageDialog(null, "Contraseña cambiado correctamente");
+			CambiarPassword.getMicCambiarPassword().setVisible(false);
+		}
+
+	}
+
+
+
+		///////  Cerrar sesion ////////////////////////////////
+
+		public void cerrarSesion(){
+			MenuPrincipal.getMiMenuPrincipal(nombreJugador).setVisible(false);
 		}
 
 	

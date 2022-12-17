@@ -51,6 +51,9 @@ public class Jugador {
 	public boolean esJugador(String pUsuario) {
 		return usuario.equals(pUsuario);
 	}
+	public void cambiarPassword(String nuevaPassword) {
+		this.contrasena=nuevaPassword;
+	}
 	
 	private Iterator<Board> getIterador(){
 		return lPartidasTerminadas.iterator();
