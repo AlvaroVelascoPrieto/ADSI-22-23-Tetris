@@ -21,8 +21,14 @@ public class testGuardarPartida {
 		ListaJugadores listaJ = ListaJugadores.getMiListaJugadores();
 		listaJ.anadirJugador(j1);
 		Tetris t1 = new Tetris("juan");
+		t1.getPartida().guardarPartida("juan");
 		
-		//Caso 2: se pulsa el botón de guardar y ya había una partida guardada previamente
+		assertNotNull(listaJ.buscarJugador("juan").getPartida());
+		assertEquals(listaJ.buscarJugador("juan").getPartida(), t1.getPartida());
+		
+		//Caso 2: se pulsa el botón de guardar y ya había una partida guardada previamente (en este caso ya tenemos la anterior partida guardada en "juan")
+		Tetris t2 = new Tetris("juan");
+		t2.getPartida().guardarPartida("juan");
 		
 		//Caso 3: se pulsa el botón de guardar cuando la partida está finalizada o cuando no se está jugando
 	}
