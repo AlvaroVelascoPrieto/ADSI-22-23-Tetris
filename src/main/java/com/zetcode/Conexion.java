@@ -197,13 +197,24 @@ public class Conexion {
 	public void guardarDatos()
 	{
 		try (Connection con = conectar()){
+			//primero borramos los datos de la BD para evitar conflictos del tipo "same key"
+			PreparedStatement borrar1 = con.prepareStatement("DELETE FROM PERSONALIZACION");
+			PreparedStatement borrar2 = con.prepareStatement("DELETE FROM JUGADOR");
+			PreparedStatement borrar3 = con.prepareStatement("DELETE FROM PARTIDA");
+			PreparedStatement borrar4 = con.prepareStatement("DELETE FROM BLOQUE");
+			borrar2.execute();
+			borrar1.execute();
+			borrar3.execute();
+			borrar4.execute();
 			
+			//ahora volcamos los datos del juego a la base de datos siguiendo un algoritmo
 			ArrayList<Jugador> listaJugadores = ListaJugadores.getMiListaJugadores().getLista();
-			PreparedStatement preparedStatement1 = con.prepareStatement("INSERT INTO jugador() VALUES (?,?,?,?,?)");
+			PreparedStatement preparedStatement1 = con.prepareStatement("INSERT INTO jugador VALUES (?,?,?,?,?)");
+			PreparedStatement preparedStatement12 = con.prepareStatement("INSERT INTO jugador(usuario,correo,contrasena,id_personalizacion) VALUES (?,?,?,?)");
 			PreparedStatement preparedStatement2 = con.prepareStatement("INSERT INTO personalizacion VALUES (?,?,?,?)");
 			PreparedStatement preparedStatement3 = con.prepareStatement("INSERT INTO partida(id_partida,anchura,altura,puntuacion,nivel) VALUES (?,?,?,?,?)");
 			PreparedStatement preparedStatement4 = con.prepareStatement("INSERT INTO bloque VALUES (?,?,?,?)");
-			PreparedStatement preparedStatement5 = con.prepareStatement("INSERT INTO partida(id_partida,anchura,altura,puntuacion,nivel,usuario) VALUES (?,?,?,?,?,?)");
+			PreparedStatement preparedStatement5 = con.prepareStatement("INSERT INTO partida(id_partida,anchura,altura,puntuacion,nivel) VALUES (?,?,?,?,?)");
 			int idBloque = 0;
 			int idPartidaAcabada = 0;
 			
@@ -232,13 +243,12 @@ public class Conexion {
 					int puntuacion = listaJugadores.get(i).getPartida().getPuntuacion();
 					int nivel = listaJugadores.get(i).getPartida().getNivel();
 					
-					preparedStatement3.setInt(1, idPartidaGuardada);
-					preparedStatement3.setInt(2, anchura);
-					preparedStatement3.setInt(3, altura);
-					preparedStatement3.setInt(4, puntuacion);
-					preparedStatement3.setInt(5, nivel);
-					preparedStatement3.setString(6, listaJugadores.get(i).getUsuario().toString());
-					preparedStatement3.execute();
+					preparedStatement5.setInt(1, idPartidaGuardada);
+					preparedStatement5.setInt(2, anchura);
+					preparedStatement5.setInt(3, altura);
+					preparedStatement5.setInt(4, puntuacion);
+					preparedStatement5.setInt(5, nivel);
+					preparedStatement5.execute();
 					
 					//por cada bloque en partida guardada
 					Tetrominoe[] t = listaJugadores.get(i).getPartida().getBloques();
@@ -280,17 +290,28 @@ public class Conexion {
 				}
 				
 				
-				//insertamos los datos del jugador
+				//insertamos los datos del jugador. Si no hay partida guardada se usa una sentencia diferente
 				String usuario = listaJugadores.get(i).getUsuario().toString();
 				String correo = listaJugadores.get(i).getCorreo();
 				String contrasena = listaJugadores.get(i).getContrasena();
-				
-				preparedStatement1.setString(1, usuario);
-				preparedStatement1.setString(2, usuario);
-				preparedStatement1.setString(3, usuario);
-				preparedStatement1.setInt(4, idPersonalizacion);
-				preparedStatement1.setInt(5, idPartidaGuardada);
-				preparedStatement1.execute();	
+				if(listaJugadores.get(i).getPartida() != null)
+				{
+					preparedStatement1.setString(1, usuario);
+					preparedStatement1.setString(2, correo);
+					preparedStatement1.setString(3, contrasena);
+					preparedStatement1.setInt(4, idPersonalizacion);
+					preparedStatement1.setInt(5, idPartidaGuardada);
+					preparedStatement1.execute();
+				}
+				else
+				{
+					preparedStatement12.setString(1, usuario);
+					preparedStatement12.setString(2, correo);
+					preparedStatement12.setString(3, contrasena);
+					preparedStatement12.setInt(4, idPersonalizacion);
+					preparedStatement12.execute();
+				}
+					
 				
 				ArrayList<Board> listaParAcabadas = listaJugadores.get(i).getPartidasAcabadas();
 				//por cada partida acabada en jugador
@@ -301,9 +322,9 @@ public class Conexion {
 					int nivel = listaParAcabadas.get(j).getNivel();
 					
 					preparedStatement5.setInt(1, idPartidaAcabada);
-					preparedStatement5.setInt(4, puntuacion);
-					preparedStatement5.setInt(5, nivel);
-					preparedStatement5.setString(6, usuario);
+					preparedStatement5.setInt(2, puntuacion);
+					preparedStatement5.setInt(3, nivel);
+					preparedStatement5.setString(4, usuario);
 					preparedStatement5.execute();
 					
 					idPartidaAcabada += 1;
