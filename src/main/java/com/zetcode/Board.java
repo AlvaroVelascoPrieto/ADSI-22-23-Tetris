@@ -17,9 +17,9 @@ import java.util.Collection;
 
 public class Board extends JPanel {
 
-    private final int BOARD_WIDTH = 10;
-    private final int BOARD_HEIGHT = 22;
-    private final int PERIOD_INTERVAL = 300;
+    private int BOARD_WIDTH = 10;
+    private int BOARD_HEIGHT = 22;
+    private int PERIOD_INTERVAL = 300;
 
     private Timer timer;
     private boolean isFallingFinished = false;
@@ -35,10 +35,26 @@ public class Board extends JPanel {
     private String usuario;
     private Tetris juego;
 
-    public Board(Tetris parent, String pUsuario) {
+    public Board(Tetris parent, String pUsuario, int pDif) {
         initBoard(parent);
         usuario = pUsuario;
         juego = parent;
+        nivel = pDif;
+        if (nivel == 0) {
+        	BOARD_WIDTH = 10;
+        	BOARD_HEIGHT = 22;
+        	PERIOD_INTERVAL = 300;
+        }
+        else if (nivel == 1) {
+        	BOARD_WIDTH = 15;
+        	BOARD_HEIGHT = 22;
+        	PERIOD_INTERVAL = 200;
+        }
+        else if (nivel == 2) {
+        	BOARD_WIDTH = 20;
+        	BOARD_HEIGHT = 22;
+        	PERIOD_INTERVAL = 100;
+        }
     }
     
     public void setDatosBasicos(int pAnchura, int pAltura, int pPuntuacion, int pNivel)
@@ -404,6 +420,7 @@ public class Board extends JPanel {
 
 	public void anadirBloques(Tetrominoe[] pBloques) {
 		board = pBloques;
+		
 	}
 	
 }
