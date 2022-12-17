@@ -50,15 +50,22 @@ public class Tetris extends JFrame {
     {
     	usuario = pUsuario;
     	JsonArray jsonA = Juego.getMiJuego().cargarPartida(usuario);
-    	initUI(jsonA);
-    	this.addWindowListener(new WindowAdapter() {
-	        @Override
-	        public void windowClosing(WindowEvent e) {
-	            
-	        	partida.pause();
-	            System.out.println("Partida cerrada");
-	        }
-	 });
+    	if(jsonA != null)
+    	{
+    		initUI(jsonA);
+        	this.addWindowListener(new WindowAdapter() {
+    	        @Override
+    	        public void windowClosing(WindowEvent e) {
+    	            
+    	        	partida.pause();
+    	            System.out.println("Partida cerrada");
+    	        }
+    	 });
+    	}
+    	else
+    	{
+    		
+    	}
     }
 
     private void initUI() {
