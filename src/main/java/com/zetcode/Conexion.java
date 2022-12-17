@@ -225,54 +225,58 @@ public class Conexion {
 				preparedStatement2.execute();
 				
 				//insertamos los datos de la partida guardada
-				int anchura = listaJugadores.get(i).getPartida().getAnchura();
-				int altura = listaJugadores.get(i).getPartida().getAltura();
-				int puntuacion = listaJugadores.get(i).getPartida().getPuntuacion();
-				int nivel = listaJugadores.get(i).getPartida().getNivel();
-				
-				preparedStatement3.setInt(1, idPartidaGuardada);
-				preparedStatement3.setInt(2, anchura);
-				preparedStatement3.setInt(3, altura);
-				preparedStatement3.setInt(4, puntuacion);
-				preparedStatement3.setInt(5, nivel);
-				preparedStatement3.execute();
-				
-				//por cada bloque en partida guardada
-				Tetrominoe[] t = listaJugadores.get(i).getPartida().getBloques();
-				for(int j = 0; j < t.length; j++)
+				if(listaJugadores.get(i).getPartida() != null)
 				{
-					//insertamos los datos de la partida acabada
-					String forma;
-					switch(t[j])
+					int anchura = listaJugadores.get(i).getPartida().getAnchura();
+					int altura = listaJugadores.get(i).getPartida().getAltura();
+					int puntuacion = listaJugadores.get(i).getPartida().getPuntuacion();
+					int nivel = listaJugadores.get(i).getPartida().getNivel();
+					
+					preparedStatement3.setInt(1, idPartidaGuardada);
+					preparedStatement3.setInt(2, anchura);
+					preparedStatement3.setInt(3, altura);
+					preparedStatement3.setInt(4, puntuacion);
+					preparedStatement3.setInt(5, nivel);
+					preparedStatement3.execute();
+					
+					//por cada bloque en partida guardada
+					Tetrominoe[] t = listaJugadores.get(i).getPartida().getBloques();
+					for(int j = 0; j < t.length; j++)
 					{
-					case NoShape:
-						forma = "NoShape";
-					case ZShape:
-						forma = "ZShape";
-					case SShape:
-						forma = "SShape";
-					case LineShape:
-						forma = "LineShape";
-					case TShape:
-						forma = "TShape";
-					case SquareShape:
-						forma = "SquareShape";
-					case LShape:
-						forma = "LShape";
-					case MirroredLShape:
-						forma = "MirroredLShape";
-					default:
-						forma = "NoShape";
+						//insertamos los datos de la partida acabada
+						String forma;
+						switch(t[j])
+						{
+						case NoShape:
+							forma = "NoShape";
+						case ZShape:
+							forma = "ZShape";
+						case SShape:
+							forma = "SShape";
+						case LineShape:
+							forma = "LineShape";
+						case TShape:
+							forma = "TShape";
+						case SquareShape:
+							forma = "SquareShape";
+						case LShape:
+							forma = "LShape";
+						case MirroredLShape:
+							forma = "MirroredLShape";
+						default:
+							forma = "NoShape";
+						}
+						
+						preparedStatement4.setInt(1, idBloque);
+						preparedStatement4.setString(2, forma);
+						preparedStatement4.setInt(3, j);
+						preparedStatement4.setInt(4, idPartidaGuardada);
+						preparedStatement4.execute();
+						
+						idBloque += 1;
 					}
-					
-					preparedStatement4.setInt(1, idBloque);
-					preparedStatement4.setString(2, forma);
-					preparedStatement4.setInt(3, j);
-					preparedStatement4.setInt(4, idPartidaGuardada);
-					preparedStatement4.execute();
-					
-					idBloque += 1;
 				}
+				
 				
 				//insertamos los datos del jugador
 				String usuario = listaJugadores.get(i).getUsuario().toString();
@@ -291,8 +295,8 @@ public class Conexion {
 				for(int j = 0; j < listaParAcabadas.size(); j++)
 				{
 					//insertamos los datos de la partida acabada
-					puntuacion = listaParAcabadas.get(j).getPuntuacion();
-					nivel = listaParAcabadas.get(j).getNivel();
+					int puntuacion = listaParAcabadas.get(j).getPuntuacion();
+					int nivel = listaParAcabadas.get(j).getNivel();
 					
 					preparedStatement5.setInt(1, idPartidaAcabada);
 					preparedStatement5.setInt(4, puntuacion);
