@@ -141,9 +141,14 @@ public class Tetris extends JFrame {
         }
         board.start(listaBloques);
         board.setBackground(Juego.getMiJuego().getColorFondo(usuario));
-
+        int dif = board.getNivel();
         setTitle("Tetris");
-        setSize(200, 400);
+        if (dif==0)
+        	setSize(200, 400);
+        if (dif==1)
+        	setSize(300,400);
+        if (dif==2)
+        	setSize(400,400);
         this.partida = board;
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
