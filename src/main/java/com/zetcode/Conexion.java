@@ -224,7 +224,7 @@ public class Conexion {
 				preparedStatement2.setString(4, sonido);
 				preparedStatement2.execute();
 				
-				//insertamos los datos de la partida guardada
+				//insertamos los datos de la partida guardada. Si no la hay, se inventa una vacía.
 				if(listaJugadores.get(i).getPartida() != null)
 				{
 					int anchura = listaJugadores.get(i).getPartida().getAnchura();
@@ -237,6 +237,7 @@ public class Conexion {
 					preparedStatement3.setInt(3, altura);
 					preparedStatement3.setInt(4, puntuacion);
 					preparedStatement3.setInt(5, nivel);
+					preparedStatement3.setString(6, listaJugadores.get(i).getUsuario().toString());
 					preparedStatement3.execute();
 					
 					//por cada bloque en partida guardada
@@ -275,6 +276,16 @@ public class Conexion {
 						
 						idBloque += 1;
 					}
+				}
+				else
+				{
+					preparedStatement3.setInt(1, idPartidaGuardada);
+					preparedStatement3.setInt(2, 10);
+					preparedStatement3.setInt(3, 22);
+					preparedStatement3.setInt(4, 0);
+					preparedStatement3.setInt(5, 1);
+					preparedStatement3.setString(6, listaJugadores.get(i).getUsuario().toString());
+					preparedStatement3.execute();
 				}
 				
 				
