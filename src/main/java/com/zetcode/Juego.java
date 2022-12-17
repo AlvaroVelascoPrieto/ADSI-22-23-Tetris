@@ -1,13 +1,11 @@
 package com.zetcode;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Iterator;
+
 import java.util.Observable;
 
 import javax.swing.JOptionPane;
 
-import org.json.JSONObject;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -220,7 +218,7 @@ public class Juego extends Observable {
 		if (enc==false){
 			JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos", "Error Inicio de Sesión", JOptionPane.WARNING_MESSAGE);
 			IniciarSesion.getMiInicioSesion().setVisible(true);
-			inputNombre="";
+			inputNombre="error";
 		} 
 
 		return inputNombre;
@@ -251,10 +249,8 @@ public class Juego extends Observable {
 
 		///////  Recuperar Password ////////////////////////////////
 
-		public void recuperarPassword(){
-			System.out.println(ListaJugadores.getMiListaJugadores().getNumeroDeJugadores());
-			String inputNombre=RecuperarPassword.getMiRecuperarPassword().getNombreUsuario().getText();
-			String inputCorreo=RecuperarPassword.getMiRecuperarPassword().getCorreo().getText();
+		public String recuperarPassword(String inputCorreo, String inputNombre){
+			String rdo="error";
 			int i=0;
 			boolean enc=false;
 			while (!enc&& i<ListaJugadores.getMiListaJugadores().getNumeroDeJugadores()){
@@ -267,6 +263,7 @@ public class Juego extends Observable {
 						MenuIdentificacion.getMiMenuIdentificacion().setVisible(true);
 						enviarCorreo.enviarCorreo(inputCorreo, "Contraseña de la cuenta", "Su contraseña es: " + miPasswordjugador);
 						System.out.println("Gmail enviado correctamente a el correo: " + inputCorreo);
+						rdo="correcto";
 		
 					}
 				}	
@@ -276,15 +273,16 @@ public class Juego extends Observable {
 				JOptionPane.showMessageDialog(null, "Usuario o Correo incorrectos", "Error al recuperar la contraseña", JOptionPane.WARNING_MESSAGE);
 				RecuperarPassword.getMiRecuperarPassword().setVisible(true);
 			} 	
+			return rdo;
 		}
 
 	///////  Cambiar Password ////////////////////////////////
 
-	public void cambiarPassword(String nombreUsuario){
-			
-		String nuevaPassword =CambiarPassword.getMicCambiarPassword().getNuevaPassword().getText();
+	public String cambiarPassword(String nombreUsuario, String nuevaPassword){
+		String rdo="correcto";
 		if (nuevaPassword.equals("")){
 			JOptionPane.showMessageDialog(null, "Debe rellenar el campo mostrado", "Error al cambiar la contraseña", JOptionPane.WARNING_MESSAGE);
+			rdo="error";
 		}
 		else{
 			Jugador jugador = ListaJugadores.getMiListaJugadores().buscarJugador(nombreUsuario);
@@ -294,7 +292,7 @@ public class Juego extends Observable {
 			JOptionPane.showMessageDialog(null, "Contraseña cambiado correctamente");
 			CambiarPassword.getMicCambiarPassword().setVisible(false);
 		}
-
+		return rdo;
 	}
 
 
@@ -308,10 +306,9 @@ public class Juego extends Observable {
 		///////  Eliminar usuario ////////////////////////////////
 
 		public void eliminarUsuario(){
-			//MenuPrincipal.getMiMenuPrincipal(nombreJugador).setVisible(false);
 			String nombreBorrar = eliminarUsuarioAdmin.getMiEliminar().getNombreUsuario().getText();
 			boolean esta = ListaJugadores.getMiListaJugadores().eliminarJugador(nombreBorrar);
-			if (esta==true){
+			if (esta==true && !nombreBorrar.equals("admin")){
 				JOptionPane.showMessageDialog(null, "Usuario eliminado correctamente");
 				eliminarUsuarioAdmin.getMiEliminar().dispose();
 				MenuAdmin.getMiMenuAdmin().setVisible(true);

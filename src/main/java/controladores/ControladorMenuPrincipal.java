@@ -10,7 +10,6 @@ import vistas.CambiarPassword;
 import vistas.IntPersonalizar;
 import vistas.MenuAdmin;
 import vistas.MenuIdentificacion;
-import vistas.MenuPrincipal;
 import vistas.MenuRankings;
 import vistas.Sonido;
 
@@ -58,8 +57,9 @@ private String usuario;
 		if (e.getActionCommand().equals("Cambiar Contraseña")) { // abrir vista cambiar contraseña		
 			CambiarPassword.getMicCambiarPassword().setVisible(true);;
 		}
-		if (e.getActionCommand().equals("Cambiar")) { // pulsa cambiar contraseña		
-			Juego.getMiJuego().cambiarPassword(usuario);
+		if (e.getActionCommand().equals("Cambiar")) { // pulsa cambiar contraseña	
+			String nuevaPassword =CambiarPassword.getMicCambiarPassword().getNuevaPassword().getText();	
+			Juego.getMiJuego().cambiarPassword(usuario,nuevaPassword);
 		}
 
 		if (e.getActionCommand().equals("Atras")) { // Atras en cambiar contraseña

@@ -4,11 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.zetcode.Board;
+
 import com.zetcode.Juego;
-import com.zetcode.Jugador;
 import com.zetcode.ListaJugadores;
 
 public class testRegistrarUsuarios {
@@ -23,16 +20,17 @@ public class testRegistrarUsuarios {
             Juego.getMiJuego().registrarJugador("iufg@gmail.com", "paco", "paco");
             assertEquals(1,ListaJugadores.getMiListaJugadores().getNumeroDeJugadores());
 
+            // Caso 1.2 Un  campo sin rellenar
+            assertEquals("error",Juego.getMiJuego().registrarJugador("iufg@gmail.com", "paco", ""));
 
-            //assertEquals("error",Juego.getMiJuego().registrarJugador("iufg@gmail.com", "paco", null));
+            // Caso 1.3 Dos campos sin rellenar
+            assertEquals("error",Juego.getMiJuego().registrarJugador("iufg@gmail.com", "", ""));
 
+            // Caso 1.4 Ningun campo rellenado    
+            assertEquals("error",Juego.getMiJuego().registrarJugador("","", ""));
 
-
-
-
-
-
- 
+            // Comprobamos que solo hay un usuario
+            assertEquals(1,ListaJugadores.getMiListaJugadores().getNumeroDeJugadores());
     }
      
     

@@ -36,6 +36,20 @@ public class testIniciarSesion {
        assertNotEquals("paco", Juego.getMiJuego().inicioSesion("luis", "ewd"));
 
 
+       // Caso 3 Inicia Sesion sin rellenar un campo
+
+       assertEquals("error",Juego.getMiJuego().inicioSesion("", "cj"));
+       assertEquals("error",Juego.getMiJuego().inicioSesion("cj", ""));
+
+
+    // Caso 3 Inicia Sesion sin rellenar ningun campo
+
+       assertEquals("error",Juego.getMiJuego().inicioSesion("", ""));
+
+       
+
+
+
 
  
     }

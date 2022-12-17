@@ -14,7 +14,8 @@ public class enviarCorreo {
 
     }
 
-    public static void enviarCorreo(String destinatario, String asunto, String cuerpo) {
+    public static String enviarCorreo(String destinatario, String asunto, String cuerpo) {
+        String rdo="correcto";
         //La dirección de correo de envío
         String emisor = "pruebaadsi03@gmail.com";
         //La clave de aplicación obtenida según se explica en este artículo:
@@ -41,10 +42,12 @@ public class enviarCorreo {
             transport.sendMessage(message, message.getAllRecipients());
             transport.close();
         } catch (MessagingException me) {
-            me.printStackTrace();   
-
+            me.printStackTrace();  
+            rdo="error"; 
         }
+    return rdo;
     }
+
 
 
 }

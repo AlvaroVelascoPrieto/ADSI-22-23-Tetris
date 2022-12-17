@@ -81,7 +81,9 @@ public static ControladorMenuIdentificacion getControladorMenuIdentificacion() {
 
         }
         if (e.getActionCommand().equals("Recuperar")) {
-            Juego.getMiJuego().recuperarPassword();
+            String inputNombre=RecuperarPassword.getMiRecuperarPassword().getNombreUsuario().getText();
+			String inputCorreo=RecuperarPassword.getMiRecuperarPassword().getCorreo().getText();
+            Juego.getMiJuego().recuperarPassword(inputCorreo,inputNombre);
          }
         if (e.getActionCommand().equals("Eliminar Usuario")) {
             MenuAdmin.getMiMenuAdmin().setVisible(false);
