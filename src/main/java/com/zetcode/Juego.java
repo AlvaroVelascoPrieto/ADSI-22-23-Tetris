@@ -190,9 +190,7 @@ public class Juego extends Observable {
 	}
 
 	///////  Iniciar Sesión ////////////////////////////////
-	public String inicioSesion(){
-		String inputNombre=IniciarSesion.getMiInicioSesion().getNombreUsuario().getText();
-		String inputpassword=IniciarSesion.getMiInicioSesion().getPassworField().getText();
+	public String inicioSesion(String inputNombre,String inputpassword){
 		int i=0;
 		boolean enc=false;
 		while (!enc&& i<ListaJugadores.getMiListaJugadores().getNumeroDeJugadores()){
@@ -222,6 +220,7 @@ public class Juego extends Observable {
 		if (enc==false){
 			JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos", "Error Inicio de Sesión", JOptionPane.WARNING_MESSAGE);
 			IniciarSesion.getMiInicioSesion().setVisible(true);
+			inputNombre="";
 		} 
 
 		return inputNombre;
@@ -229,15 +228,14 @@ public class Juego extends Observable {
 	}
 	///////  Registrar Jugador ////////////////////////////////
 
-	public String registrarJugador(){
-		String inputNombreR = Registro.getMiRegistro().getNombreUsuario().getText();
-		String inputPassR = Registro.getMiRegistro().getPassworField().getText();
-		String inputCorreoR = Registro.getMiRegistro().getCorreo().getText();
+	public String registrarJugador(String inputCorreoR, String inputNombreR, String inputPassR){
+
 
 		if (inputCorreoR.equals("") || inputNombreR.equals("")|| inputPassR.equals("")){
 
 			JOptionPane.showMessageDialog(null, "Debe rellenar todos los campos", "Error al registrar el usuario", JOptionPane.WARNING_MESSAGE);
 			Registro.getMiRegistro().setVisible(true);
+			inputNombreR="error"; 
 		}
 		else{
 			Jugador j = new Jugador(inputNombreR, inputCorreoR, inputPassR);

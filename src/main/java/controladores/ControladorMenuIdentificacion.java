@@ -51,6 +51,7 @@ public static ControladorMenuIdentificacion getControladorMenuIdentificacion() {
 
 
          if (e.getActionCommand().equals("Registrarse")) { // Registrarse
+            
              MenuIdentificacion.getMiMenuIdentificacion().setVisible(false);
              Registro.getMiRegistro();
              Registro.getMiRegistro().setVisible(true);
@@ -64,14 +65,19 @@ public static ControladorMenuIdentificacion getControladorMenuIdentificacion() {
             RecuperarPassword.getMiRecuperarPassword().setVisible(true);   
         }    
         if (e.getActionCommand().equals("Continuar")) {
+            String inputNombre=IniciarSesion.getMiInicioSesion().getNombreUsuario().getText();
+            String inputpassword=IniciarSesion.getMiInicioSesion().getPassworField().getText();        
             IniciarSesion.getMiInicioSesion().setVisible(false);
-            Juego.getMiJuego().inicioSesion();
+            Juego.getMiJuego().inicioSesion(inputNombre,inputpassword);
 
         }
 
         if (e.getActionCommand().equals("Listo")) {
+            String inputNombreR = Registro.getMiRegistro().getNombreUsuario().getText();
+            String inputPassR = Registro.getMiRegistro().getPassworField().getText();
+            String inputCorreoR = Registro.getMiRegistro().getCorreo().getText();
            Registro.getMiRegistro().setVisible(false);
-           Juego.getMiJuego().registrarJugador();
+           Juego.getMiJuego().registrarJugador(inputNombreR,inputCorreoR,inputPassR);
 
         }
         if (e.getActionCommand().equals("Recuperar")) {
