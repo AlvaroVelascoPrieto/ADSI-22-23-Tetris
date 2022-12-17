@@ -29,11 +29,21 @@ public class Tetris extends JFrame {
 	private static final Logger logger = LogManager.getLogger(Tetris.class);
     private JLabel statusbar;
     private String usuario;
+    private Board partida;
+    
 
 
     public Tetris(String pUsuario) {
         usuario=pUsuario;
         initUI();
+        this.addWindowListener(new WindowAdapter() {
+	        @Override
+	        public void windowClosing(WindowEvent e) {
+	            
+	        	partida.pause();
+	            System.out.println("Partida cerrada");
+	        }
+	 });
     }
     
     public Tetris(String pUsuario,boolean cargar)
@@ -41,6 +51,14 @@ public class Tetris extends JFrame {
     	usuario = pUsuario;
     	JsonArray jsonA = Juego.getMiJuego().cargarPartida(usuario);
     	initUI(jsonA);
+    	this.addWindowListener(new WindowAdapter() {
+	        @Override
+	        public void windowClosing(WindowEvent e) {
+	            
+	        	partida.pause();
+	            System.out.println("Partida cerrada");
+	        }
+	 });
     }
 
     private void initUI() {
@@ -54,6 +72,7 @@ public class Tetris extends JFrame {
         board.setBackground(Juego.getMiJuego().getColorFondo(usuario));
         setTitle("Tetris");
         setSize(200, 400);
+        this.partida = board;
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         
@@ -111,6 +130,7 @@ public class Tetris extends JFrame {
 
         setTitle("Tetris");
         setSize(200, 400);
+        this.partida = board;
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
     }

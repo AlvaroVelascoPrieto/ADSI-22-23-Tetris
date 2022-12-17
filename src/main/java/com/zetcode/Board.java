@@ -105,7 +105,7 @@ public class Board extends JPanel {
         timer.start();
     }
 
-    private void pause() {
+    public void pause() {
 
         isPaused = !isPaused;
 
