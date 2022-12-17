@@ -198,7 +198,7 @@ public class Conexion {
 	{
 		try (Connection con = conectar()){
 			//primero borramos los datos de la BD para evitar conflictos del tipo "same key"
-			PreparedStatement borrar1 = con.prepareStatement("TRUNCATE TABLE JUGADOR");
+			PreparedStatement borrar1 = con.prepareStatement("DELETE FROM JUGADOR");
 			PreparedStatement borrar2 = con.prepareStatement("DELETE FROM PERSONALIZACION");
 			PreparedStatement borrar3 = con.prepareStatement("DELETE FROM BLOQUE");
 			PreparedStatement borrar4 = con.prepareStatement("DELETE FROM PARTIDA");
