@@ -198,7 +198,7 @@ public class Conexion {
 	{
 		try (Connection con = conectar()){
 			//primero borramos los datos de la BD para evitar conflictos del tipo "same key"
-			PreparedStatement borrar1 = con.prepareStatement("DELETE FROM JUGADOR");
+			PreparedStatement borrar1 = con.prepareStatement("TRUNCATE TABLE JUGADOR");
 			PreparedStatement borrar2 = con.prepareStatement("DELETE FROM PERSONALIZACION");
 			PreparedStatement borrar3 = con.prepareStatement("DELETE FROM BLOQUE");
 			PreparedStatement borrar4 = con.prepareStatement("DELETE FROM PARTIDA");
@@ -216,7 +216,7 @@ public class Conexion {
 			PreparedStatement preparedStatement3 = con.prepareStatement("INSERT INTO partida(id_partida,puntuacion,nivel,usuario) VALUES (?,?,?,?)");
 			PreparedStatement preparedStatement4 = con.prepareStatement("INSERT INTO bloque VALUES (?,?,?,?)");
 			PreparedStatement preparedStatement5 = con.prepareStatement("INSERT INTO partida(id_partida,anchura,altura,puntuacion,nivel) VALUES (?,?,?,?,?)");
-			PreparedStatement preparedStatement6 = con.prepareStatement("SELECT id_partida from partida ORDER BY id_partida DESC LIMIT 1");
+			PreparedStatement preparedStatement6 = con.prepareStatement("SELECT * FROM partida ORDER BY id_partida DESC");
 			int idBloque = 0;
 			
 			//por cada jugador en listajugadores
@@ -331,7 +331,15 @@ public class Conexion {
 					int nivel = listaParAcabadas.get(j).getNivel();
 					
 					ResultSet idPartidaAcabada = preparedStatement6.executeQuery();
-					int idPartidaAcabadaNuevo = idPartidaAcabada.getInt("id_partida");
+					int idPartidaAcabadaNuevo;
+					if(idPartidaAcabada.next())
+					{
+						idPartidaAcabadaNuevo = idPartidaAcabada.getInt("id_partida") + 1;
+					}
+					else
+					{
+						idPartidaAcabadaNuevo = 0;
+					}
 					
 					preparedStatement3.setInt(1, idPartidaAcabadaNuevo);
 					preparedStatement3.setInt(2, puntuacion);

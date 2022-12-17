@@ -39,7 +39,7 @@ PRIMARY KEY(id_bloque)
 
 
 
-ALTER TABLE jugador ADD FOREIGN KEY (id_personalizacion) REFERENCES personalizacion(id_personalizacion);
-ALTER TABLE jugador ADD FOREIGN KEY(id_partidaSF) REFERENCES partida(id_partida);
-ALTER TABLE partida ADD FOREIGN KEY (usuario) REFERENCES jugador(usuario);
-ALTER TABLE bloque ADD FOREIGN KEY (id_partida) REFERENCES partida(id_partida);
+ALTER TABLE jugador ADD FOREIGN KEY (id_personalizacion) REFERENCES personalizacion(id_personalizacion) ON DELETE CASCADE;
+ALTER TABLE jugador ADD FOREIGN KEY(id_partidaSF) REFERENCES partida(id_partida) ON DELETE CASCADE;
+ALTER TABLE partida ADD FOREIGN KEY (usuario) REFERENCES jugador(usuario) ON DELETE CASCADE;
+ALTER TABLE bloque ADD FOREIGN KEY (id_partida) REFERENCES partida(id_partida) ON DELETE CASCADE;
