@@ -59,8 +59,8 @@ public class Board extends JPanel {
     
     public void setDatosBasicos(int pAnchura, int pAltura, int pPuntuacion, int pNivel)
     {
-    	//this.BOARD_WIDTH = pAnchura;
-    	//this.BOARD_HEIGHT = pAltura;
+    	this.BOARD_WIDTH = pAnchura;
+    	this.BOARD_HEIGHT = pAltura;
     	this.numLinesRemoved = pPuntuacion;
     	this.nivel = pNivel;
     }
