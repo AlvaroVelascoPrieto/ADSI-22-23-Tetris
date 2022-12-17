@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.zetcode.Juego;
 import com.zetcode.Jugador;
 import com.zetcode.ListaJugadores;
@@ -60,9 +61,14 @@ public class testGuardarPartida {
 		//Caso 2: se pulsa el botón de cargar habiendo guardado una partida previamente
 		listaJ.anadirJugador(j1);
 		Tetris t1 = new Tetris("kiko");
+		t1.getPartida().setDatosBasicos(10, 22, 30, 2); //se le dan los datos característicos
 		t1.getPartida().guardarPartida("kiko");
 		json1 = Juego.getMiJuego().cargarPartida("kiko");
-		assertNotNull(json1);
+		assertNotNull(json1); //se comprueba que existe
+		JsonObject json2 = json1.get(0).getAsJsonObject();
+		assertEquals(json2.get("Puntuacion").getAsInt(),30); //se comprueba que comparte los datos
+		assertEquals(json2.get("Nivel").getAsInt(),2); //se comprueba que comparte los datos
+		
 	}
 
 }
