@@ -111,20 +111,28 @@ public class Conexion {
                 	{
                 	case "NoShape":
                 		board[coord] = Tetrominoe.NoShape;
+                		break;
                 	case "ZShape":
                 		board[coord] = Tetrominoe.ZShape;
+                		break;
                 	case "SShape":
                 		board[coord] = Tetrominoe.SShape;
+                		break;
                 	case "LineShape":
                 		board[coord] = Tetrominoe.LineShape;
+                		break;
                 	case "TShape":
                 		board[coord] = Tetrominoe.TShape;
+                		break;
                 	case "SquareShape":
                 		board[coord] = Tetrominoe.SquareShape;
+                		break;
                 	case "LShape":
                 		board[coord] = Tetrominoe.LShape;
+                		break;
                 	case "MirroredLShape":
                 		board[coord] = Tetrominoe.MirroredLShape;
+                		break;
                 	default:
                 		board[coord] = Tetrominoe.NoShape;
                 	}
