@@ -199,11 +199,11 @@ public class Conexion {
 		try (Connection con = conectar()){
 			
 			ArrayList<Jugador> listaJugadores = ListaJugadores.getMiListaJugadores().getLista();
-			PreparedStatement preparedStatement1 = con.prepareStatement("INSERT INTO jugador VALUES (?,?,?,?,?)");
+			PreparedStatement preparedStatement1 = con.prepareStatement("INSERT INTO jugador() VALUES (?,?,?,?,?)");
 			PreparedStatement preparedStatement2 = con.prepareStatement("INSERT INTO personalizacion VALUES (?,?,?,?)");
-			PreparedStatement preparedStatement3 = con.prepareStatement("INSERT INTO partida VALUES (?,?,?,?,?,?)");
+			PreparedStatement preparedStatement3 = con.prepareStatement("INSERT INTO partida(id_partida,anchura,altura,puntuacion,nivel) VALUES (?,?,?,?,?)");
 			PreparedStatement preparedStatement4 = con.prepareStatement("INSERT INTO bloque VALUES (?,?,?,?)");
-			PreparedStatement preparedStatement5 = con.prepareStatement("INSERT INTO partida VALUES (?,?,?,?,?,?)");
+			PreparedStatement preparedStatement5 = con.prepareStatement("INSERT INTO partida(id_partida,anchura,altura,puntuacion,nivel,usuario) VALUES (?,?,?,?,?,?)");
 			int idBloque = 0;
 			int idPartidaAcabada = 0;
 			
@@ -224,7 +224,7 @@ public class Conexion {
 				preparedStatement2.setString(4, sonido);
 				preparedStatement2.execute();
 				
-				//insertamos los datos de la partida guardada. Si no la hay, se inventa una vacía.
+				//insertamos los datos de la partida guardada. Si no la hay, no se inserta nada
 				if(listaJugadores.get(i).getPartida() != null)
 				{
 					int anchura = listaJugadores.get(i).getPartida().getAnchura();
@@ -276,16 +276,7 @@ public class Conexion {
 						
 						idBloque += 1;
 					}
-				}
-				else
-				{
-					preparedStatement3.setInt(1, idPartidaGuardada);
-					preparedStatement3.setInt(2, 10);
-					preparedStatement3.setInt(3, 22);
-					preparedStatement3.setInt(4, 0);
-					preparedStatement3.setInt(5, 1);
-					preparedStatement3.setString(6, listaJugadores.get(i).getUsuario().toString());
-					preparedStatement3.execute();
+				
 				}
 				
 				
