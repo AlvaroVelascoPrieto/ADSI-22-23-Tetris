@@ -35,10 +35,6 @@ public static ControladorMenuIdentificacion getControladorMenuIdentificacion() {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getActionCommand().equals("Iniciar Sesión")) { // Iniciar sesion
-            //Jugador jugador = new Jugador("pepe","pepe@gmail.com", "1234");
-            //ListaJugadores listaJ= ListaJugadores.getMiListaJugadores();
-            //listaJ.anadirJugador(jugador);
-
             MenuIdentificacion.getMiMenuIdentificacion().setVisible(false);
             IniciarSesion.getMiInicioSesion();
             IniciarSesion.getMiInicioSesion().setVisible(true); 
@@ -80,10 +76,21 @@ public static ControladorMenuIdentificacion getControladorMenuIdentificacion() {
         }
         if (e.getActionCommand().equals("Recuperar")) {
             Juego.getMiJuego().recuperarPassword();
-            
-
- 
          }
+        if (e.getActionCommand().equals("Eliminar Usuario")) {
+            MenuAdmin.getMiMenuAdmin().setVisible(false);
+            eliminarUsuarioAdmin.getMiEliminar().setVisible(true);
+        }
+        if (e.getActionCommand().equals("Eliminar")) {
+            Juego.getMiJuego().eliminarUsuario();
+
+
+        }
+        if (e.getActionCommand().equals("Volver")) {
+            eliminarUsuarioAdmin.getMiEliminar().dispose();;
+            MenuAdmin.getMiMenuAdmin().setVisible(true);
+
+        }
 
 
         }

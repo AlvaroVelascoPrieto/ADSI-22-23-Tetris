@@ -126,5 +126,6 @@ public class Jugador {
 	{
 		return this.lPartidasTerminadas;
 	}
-	
+
+  
 }

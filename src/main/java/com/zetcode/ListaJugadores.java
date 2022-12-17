@@ -52,6 +52,21 @@ public class ListaJugadores {
 		}
 		return cont;
 	}
+
+	public boolean eliminarJugador(String pUsuario) {
+		Jugador j = this.buscarJugador(pUsuario);
+		boolean enc =false;
+		if(j== null){
+			enc=false;
+		}
+		else{
+			this.lJugadores.remove(j);
+			System.out.println("eliminado correctamente");
+			enc=true;
+
+		}
+		return enc;
+	}
 	
 	public Personalizacion getPersonalizacion(Jugador elJugador) {
 		return elJugador.getPersonalizacion();

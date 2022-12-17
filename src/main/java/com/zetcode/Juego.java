@@ -191,10 +191,17 @@ public class Juego extends Observable {
 			if (ListaJugadores.getMiListaJugadores().buscarJugador(inputNombre) != null){
 				Jugador jugador = ListaJugadores.getMiListaJugadores().buscarJugador(inputNombre);
 				if(jugador.getPassword().equals(inputpassword)){
-					MenuPrincipal.getMiMenuPrincipal(inputNombre).setVisible(true);
-					//MenuPrincipal menuPrincipal = new MenuPrincipal(inputNombre);
-					//menuPrincipal.setVisible(true);
-					this.nombreJugador=inputNombre;
+					if(inputNombre.equals("admin")){
+						MenuAdmin.getMiMenuAdmin().setVisible(true);
+					}
+					else{
+						MenuPrincipal.getMiMenuPrincipal(inputNombre).setVisible(true);
+						//MenuPrincipal menuPrincipal = new MenuPrincipal(inputNombre);
+						//menuPrincipal.setVisible(true);
+						nombreJugador=inputNombre;
+					}
+					MenuIdentificacion.getMiMenuIdentificacion().setVisible(false);
+
 					enc=true;
 				}
 			}
@@ -291,6 +298,22 @@ public class Juego extends Observable {
 			MenuPrincipal.getMiMenuPrincipal(nombreJugador).setVisible(false);
 		}
 
+		///////  Eliminar usuario ////////////////////////////////
+
+		public void eliminarUsuario(){
+			//MenuPrincipal.getMiMenuPrincipal(nombreJugador).setVisible(false);
+			String nombreBorrar = eliminarUsuarioAdmin.getMiEliminar().getNombreUsuario().getText();
+			boolean esta = ListaJugadores.getMiListaJugadores().eliminarJugador(nombreBorrar);
+			if (esta==true){
+				JOptionPane.showMessageDialog(null, "Usuario eliminado correctamente");
+				eliminarUsuarioAdmin.getMiEliminar().dispose();
+				MenuAdmin.getMiMenuAdmin().setVisible(true);
+			}
+			else{
+				JOptionPane.showMessageDialog(null, "Usuario no encontrado", "Error al eliminar usuario", JOptionPane.WARNING_MESSAGE);
+
+			}
+		}
 	
 	///////  RANKINGS ////////////////////////////////
 	public JsonArray obtRankAbsPers(String usuario) {

@@ -8,6 +8,7 @@ import com.zetcode.Tetris;
 
 import vistas.CambiarPassword;
 import vistas.IntPersonalizar;
+import vistas.MenuAdmin;
 import vistas.MenuIdentificacion;
 import vistas.MenuPrincipal;
 import vistas.MenuRankings;
@@ -70,6 +71,7 @@ private String usuario;
 			//MenuPrincipal.getMiMenuPrincipal().dispose();
 			Juego.getMiJuego().cerrarSesion();
 			MenuIdentificacion.getMiMenuIdentificacion().setVisible(true);
+			MenuAdmin.getMiMenuAdmin().dispose();
 
 		}
 	}
