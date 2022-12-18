@@ -23,6 +23,7 @@ public class Juego extends Observable {
 	public static Juego getMiJuego() {
 		if(miJuego == null) {
 			miJuego = new Juego();
+			ListaJugadores.getMiListaJugadores().anadirJugador(new Jugador("admin", "admin", "admin"));
 		}
 		return miJuego;
 	}
@@ -241,12 +242,20 @@ public class Juego extends Observable {
 			inputNombreR="error"; 
 		}
 		else{
-			Jugador j = new Jugador(inputNombreR, inputCorreoR, inputPassR);
-			ListaJugadores.getMiListaJugadores().anadirJugador(j);
-			//MenuPrincipal menuPrincipal = new MenuPrincipal(inputNombreR);
-			//menuPrincipal.setVisible(true);		
-			MenuIdentificacion.getMiMenuIdentificacion().setVisible(true);
-			System.out.println(ListaJugadores.getMiListaJugadores().getNumeroDeJugadores());
+			Jugador posibleJ = ListaJugadores.getMiListaJugadores().buscarJugador(inputNombreR);
+			if (posibleJ == null) {
+				Jugador j = new Jugador(inputNombreR, inputCorreoR, inputPassR);
+				ListaJugadores.getMiListaJugadores().anadirJugador(j);
+				//MenuPrincipal menuPrincipal = new MenuPrincipal(inputNombreR);
+				//menuPrincipal.setVisible(true);		
+				MenuIdentificacion.getMiMenuIdentificacion().setVisible(true);
+				System.out.println(ListaJugadores.getMiListaJugadores().getNumeroDeJugadores());
+			}else {
+				JOptionPane.showMessageDialog(null, "El usuario ya existe", "Error al registrar el usuario", JOptionPane.WARNING_MESSAGE);
+				Registro.getMiRegistro().setVisible(true);
+				inputNombreR="error"; 
+			}
+			
 		}
 		return inputNombreR;
 		

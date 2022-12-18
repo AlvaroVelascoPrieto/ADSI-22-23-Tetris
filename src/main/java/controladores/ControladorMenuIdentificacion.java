@@ -77,7 +77,7 @@ public static ControladorMenuIdentificacion getControladorMenuIdentificacion() {
             String inputPassR = Registro.getMiRegistro().getPassworField().getText();
             String inputCorreoR = Registro.getMiRegistro().getCorreo().getText();
            Registro.getMiRegistro().setVisible(false);
-           Juego.getMiJuego().registrarJugador(inputNombreR,inputCorreoR,inputPassR);
+           Juego.getMiJuego().registrarJugador(inputCorreoR,inputNombreR,inputPassR);
 
         }
         if (e.getActionCommand().equals("Recuperar")) {
