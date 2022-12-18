@@ -23,7 +23,7 @@ public class Juego extends Observable {
 	public static Juego getMiJuego() {
 		if(miJuego == null) {
 			miJuego = new Juego();
-			ListaJugadores.getMiListaJugadores().anadirJugador(new Jugador("admin", "admin", "admin"));
+			//ListaJugadores.getMiListaJugadores().anadirJugador(new Jugador("admin", "admin", "admin"));
 		}
 		return miJuego;
 	}

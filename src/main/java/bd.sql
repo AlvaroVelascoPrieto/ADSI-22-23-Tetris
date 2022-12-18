@@ -43,3 +43,6 @@ ALTER TABLE jugador ADD FOREIGN KEY (id_personalizacion) REFERENCES personalizac
 ALTER TABLE jugador ADD FOREIGN KEY(id_partidaSF) REFERENCES partida(id_partida) ON DELETE CASCADE;
 ALTER TABLE partida ADD FOREIGN KEY (usuario) REFERENCES jugador(usuario) ON DELETE CASCADE;
 ALTER TABLE bloque ADD FOREIGN KEY (id_partida) REFERENCES partida(id_partida) ON DELETE CASCADE;
+
+insert into personalizacion(id_personalizacion, colorFondo, colorBloques, sonido) values (0, '','','');
+insert into jugador(usuario, correo, contrasena, id_personalizacion) values ('admin', 'admin', 'admin', 0);
