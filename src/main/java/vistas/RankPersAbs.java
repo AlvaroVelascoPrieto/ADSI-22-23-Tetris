@@ -76,12 +76,18 @@ public class RankPersAbs extends JFrame {
 		//borrar los datos que hubiese anteriormente
 				model.setRowCount(0);
 		//datos --> json array con nombre puntuacion y nivel
+				
+		//para mostrar los niveles en vez de números
+		String[] niveles = new String[3];
+		niveles[0] = "Facil";
+		niveles[1] = "Medio";
+		niveles[2] = "Dificil";
 		
 		for (JsonElement partida : datos) {
 			JsonObject datosPartida = partida.getAsJsonObject();
 			Object[] fila =new Object[2];
 			fila[0] = datosPartida.get("Puntuacion").getAsInt();
-			fila[1] = datosPartida.get("Nivel").getAsInt();
+			fila[1] = niveles[datosPartida.get("Nivel").getAsInt()];
 			model.addRow(fila);
 		}
 			

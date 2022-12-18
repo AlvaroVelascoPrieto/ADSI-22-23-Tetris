@@ -18,6 +18,7 @@ import com.google.gson.JsonObject;
 import com.zetcode.Shape.Tetrominoe;
 
 import vistas.IntPersonalizar;
+import vistas.Sonido;
 
 /*
 Java Tetris game clone
@@ -42,6 +43,7 @@ public class Tetris extends JFrame {
 	        public void windowClosing(WindowEvent e) {
 	            
 	        	partida.pause();
+	        	Sonido.getMiSonido().detenerSonido();
 	            System.out.println("Partida cerrada");
 	        }
 	 });
@@ -59,6 +61,8 @@ public class Tetris extends JFrame {
     	        public void windowClosing(WindowEvent e) {
     	            
     	        	partida.pause();
+    	        	Sonido.getMiSonido().detenerSonido();
+    	        	Sonido.getMiSonido().detenerSonido();
     	            System.out.println("Partida cerrada");
     	        }
     	 });

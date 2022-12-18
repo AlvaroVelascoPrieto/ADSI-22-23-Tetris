@@ -2,6 +2,8 @@ package com.zetcode;
 
 import com.zetcode.Shape.Tetrominoe;
 
+import vistas.Sonido;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -252,6 +254,7 @@ public class Board extends JPanel {
             statusbar.setText(msg);
             ListaJugadores.getMiListaJugadores().buscarJugador(usuario).anadirPartidaAcabada(this);
             JOptionPane.showMessageDialog(null, msg);
+            Sonido.getMiSonido().detenerSonido();
             this.setVisible(false);
             juego.setVisible(false);
         }

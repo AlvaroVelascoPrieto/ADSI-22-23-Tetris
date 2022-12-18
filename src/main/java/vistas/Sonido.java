@@ -38,4 +38,9 @@ public class Sonido {
         }
         return miSonido;
     }
+    
+    public void detenerSonido() {
+    	//para parar el sonido cuando acabe el juego y no te desquicie
+    	clip.stop();
+    }
 }

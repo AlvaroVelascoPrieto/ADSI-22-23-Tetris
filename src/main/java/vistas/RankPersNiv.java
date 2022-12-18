@@ -90,7 +90,7 @@ public class RankPersNiv extends JFrame {
 		model = new DefaultTableModel();
 		table.setModel(model);
 		//model.addColumn("Puntuacion");
-		model.addColumn("Puntuacion");
+		model.addColumn("Puntuaciones");
 		puntuaciones.setViewportView(table);	}
 	
 	public void mostrarRanking(JsonArray datos) {

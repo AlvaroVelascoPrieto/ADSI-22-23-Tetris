@@ -63,14 +63,20 @@ public class RankGlobAbs extends JFrame {
 	
 	public void mostrarRanking(JsonArray datos) {
 		//borrar los datos que hubiese anteriormente
-				model.setRowCount(0);
+		model.setRowCount(0);
+		
+		String[] niveles = new String[3];
+		niveles[0] = "Facil";
+		niveles[1] = "Medio";
+		niveles[2] = "Dificil";		
+
 		// puntuacion jugador y nivel
 		for (JsonElement partida : datos) {
 			JsonObject datosPartida = partida.getAsJsonObject();
 			Object[] fila =new Object[3];
 			fila[0] = datosPartida.get("Nombre").getAsString();
 			fila[1] = datosPartida.get("Puntuacion").getAsInt();
-			fila[2] = datosPartida.get("Nivel").getAsInt();
+			fila[2] = niveles[datosPartida.get("Nivel").getAsInt()];
 			model.addRow(fila);
 		}
 	}
