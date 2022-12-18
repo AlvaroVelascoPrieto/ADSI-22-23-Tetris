@@ -3,6 +3,7 @@ import vistas.MenuIdentificacion;
 import java.awt.EventQueue;
 
 import com.zetcode.Conexion;
+import com.zetcode.ListaJugadores;
 
 public class main {
     public static void main(String[] args) {
@@ -12,7 +13,7 @@ public class main {
                    MenuIdentificacion.getMiMenuIdentificacion();
                    Conexion.getMiConexion().crearDB();
                    Conexion.getMiConexion().cargarJugadores();
-                   
+                   ListaJugadores.getMiListaJugadores().anadirAdmin();
                    //TODO BORRAR ESTO DESPUES
                    //Conexion.getMiConexion().guardarDatos();
                    

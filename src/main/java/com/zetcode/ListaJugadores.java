@@ -23,9 +23,16 @@ public class ListaJugadores {
 	public static ListaJugadores getMiListaJugadores() {
 		if(miListaJugadores == null) {
 			miListaJugadores = new ListaJugadores();
-			
 		}
 		return miListaJugadores;
+	}
+	
+	public void anadirAdmin() {
+		Jugador j = buscarJugador("admin");
+		if (j==null) {
+			Jugador admin = new Jugador("admin", "admin", "admin");
+			anadirJugador(admin);
+		}
 	}
 	
 	public void anadirJugador(Jugador pJugador) {lJugadores.add(pJugador);
