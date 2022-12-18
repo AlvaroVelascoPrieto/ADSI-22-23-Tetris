@@ -134,6 +134,7 @@ public class ListaJugadores {
 	
 	public ArrayList<Jugador> getLista()
 	{
+		//para la base de datos
 		return this.lJugadores;
 	}
 }
