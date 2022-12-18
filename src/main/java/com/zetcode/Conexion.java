@@ -368,7 +368,7 @@ public class Conexion {
         Connection con = conectar();
 
     	try {
-			RunScript.execute(con, new FileReader("src/main/java/bd.sql"));
+			RunScript.execute(con, new FileReader("bd.sql"));
 		} catch (FileNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

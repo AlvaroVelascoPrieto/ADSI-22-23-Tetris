@@ -18,7 +18,7 @@ public class Sonido {
             clip.stop();
         }
         try {
-            audioInputStream = AudioSystem.getAudioInputStream(getClass().getResourceAsStream(nombreSonido));
+            audioInputStream = AudioSystem.getAudioInputStream(getClass().getResource(nombreSonido));
             clip = AudioSystem.getClip();
             clip.open(audioInputStream);
             clip.loop(Clip.LOOP_CONTINUOUSLY);
