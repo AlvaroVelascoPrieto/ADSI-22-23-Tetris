@@ -43,14 +43,15 @@ public class ListaJugadores {
 		return null;
 	}
 	public int getNumeroDeJugadores() {
+		/*
 		Iterator<Jugador> itr = this.getIterador();
 		Jugador act;
 		int cont = 0;
 		while(itr.hasNext()) {
 			act = itr.next();
 			cont = cont+1;
-		}
-		return cont;
+		}*/
+		return lJugadores.size();
 	}
 
 	public boolean eliminarJugador(String pUsuario) {
